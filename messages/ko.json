@@ -1,0 +1,10 @@
+{
+  "HomePage": {
+    "title": "안녕 세상아",
+    "about": "어바웃 페이지로 이동"
+  },
+  "LocaleSwitcher": {
+    "label": "언어 변경",
+    "locale": "{locale, select, ko {한국어} en {English} other {Unknown}}"
+  }
+}
