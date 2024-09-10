@@ -6,5 +6,12 @@
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, ko {korean} en {English} other {Unknown}}"
+  },
+  "Header": {
+    "home": "Home",
+    "placeRecommend": "Travel Recommendations",
+    "myTrip": "My Trip",
+    "Auth": "Login | Sign Up",
+    "search": "Search..."
   }
 }
