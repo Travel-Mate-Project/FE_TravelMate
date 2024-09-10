@@ -50,7 +50,7 @@ export default function Header() {
             </div>
             <NavigationButton
               classNames={
-                'w-full bg-green100 text-white px-4 py-2 rounded-full'
+                'w-full bg-green100 text-white font-semibold px-6 py-2 rounded-full'
               }
               href={'/auth'}
               type={'button'}

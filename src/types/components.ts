@@ -3,7 +3,7 @@ import {ReactNode} from 'react';
 export interface BasicButtonProps {
   children: string | ReactNode;
   classNames?: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   type: 'button' | 'submit' | 'reset';
 }
 
@@ -14,7 +14,7 @@ export interface BasicInputProps {
   classNames?: string;
 }
 
-export interface NavigationButtonProps
-  extends Omit<BasicButtonProps, 'onClick'> {
+export interface NavigationButtonProps extends BasicButtonProps {
   href: string;
+  onClick?: () => void;
 }

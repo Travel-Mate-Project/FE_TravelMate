@@ -2,19 +2,40 @@
 
 import Link from 'next/link';
 import {useTranslations} from 'next-intl';
-import {useState} from 'react';
+import React, {useState} from 'react';
 
 import LocaleSwitcher from '@/app/[locale]/_components/LocaleSwitcher';
 import BasicButton from '@/components/BasicButton';
+import NavigationButton from '@/components/NavigationButton';
+import BasicInput from '@/components/BasicInput';
 
 export default function MobileMenu() {
   const t = useTranslations('Header');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
+
+  const MenuLink = ({
+    href,
+    children,
+  }: {
+    href: string;
+    children: React.ReactNode;
+  }) => (
+    <Link
+      href={href}
+      className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+      onClick={closeMenu}
+    >
+      {children}
+    </Link>
+  );
+
   return (
     <div className="md:hidden">
       <BasicButton
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        onClick={toggleMenu}
         classNames={'text-gray-700'}
         type={'button'}
       >
@@ -37,38 +58,28 @@ export default function MobileMenu() {
       {isMenuOpen && (
         <div className="absolute left-0 w-full bg-white shadow-md">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link
-              href="/"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-            >
-              {t('home')}
-            </Link>
-            <Link
-              href="/"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-            >
-              여행지 추천
-            </Link>
-            <Link
-              href="/"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-            >
-              나의 여행
-            </Link>
+            <MenuLink href="/">{t('home')}</MenuLink>
+            <MenuLink href="/">{t('placeRecommend')}</MenuLink>
+            <MenuLink href="/">{t('myTrip')}</MenuLink>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="px-2 space-y-1">
-              <input
-                className="w-full border border-gray-300 rounded-full py-2 mb-5 px-3 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                type="text"
-                placeholder="검색..."
+              <BasicInput
+                classNames={
+                  'w-full border border-gray-300 rounded-full py-2 mb-5 px-3 focus:outline-none focus:ring-2 focus:ring-blue-300'
+                }
+                type={'text'}
+                translationNamespace={'Header'}
+                placeholder={'search'}
               />
-              <Link
-                href="/"
-                className="block w-full bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition duration-300 text-center"
+              <NavigationButton
+                classNames="w-full bg-green100 text-white font-semibold px-6 py-2 rounded-full"
+                href="/auth"
+                type="button"
+                onClick={closeMenu}
               >
-                로그인 | 회원가입
-              </Link>
+                {t('Auth')}
+              </NavigationButton>
               <div className="flex justify-start">
                 <LocaleSwitcher />
               </div>
