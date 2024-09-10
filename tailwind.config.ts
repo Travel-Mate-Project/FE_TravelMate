@@ -9,7 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        buttonBg: '#3FB6A6',
+        green100: '#3FB6A6',
+        kakaoBg: '#FEE500',
+        gray100: '#CCCCCC',
+        gray200: '#999999',
+        gray900: '#1A1A1A',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
       },

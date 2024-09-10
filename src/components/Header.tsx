@@ -5,8 +5,8 @@ import LocaleSwitcher from '@/app/[locale]/_components/LocaleSwitcher';
 import searchSVG from '@/asset/search.svg';
 import BasicInput from '@/components/BasicInput';
 import MobileMenu from '@/components/MobilMenu';
-import {Link} from '@/i18n/routing';
 import NavigationButton from '@/components/NavigationButton';
+import {Link} from '@/i18n/routing';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -50,7 +50,7 @@ export default function Header() {
             </div>
             <NavigationButton
               classNames={
-                'w-full bg-buttonBg text-white px-4 py-2 rounded-full'
+                'w-full bg-green100 text-white px-4 py-2 rounded-full'
               }
               href={'/auth'}
               type={'button'}

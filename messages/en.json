@@ -13,5 +13,13 @@
     "myTrip": "My Trip",
     "Auth": "Login | Sign Up",
     "search": "Search..."
+  },
+  "Auth": {
+    "intro": "Plan simply and easily \n with TravelMate.",
+    "kakao": "Start with Kakao",
+    "or": "or",
+    "email": "Start with Email",
+    "alreadyUser": "Already a TravelMate member?",
+    "signIn": "Sign in"
   }
 }
