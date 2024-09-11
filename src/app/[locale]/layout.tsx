@@ -3,8 +3,6 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import React from 'react';
 
-import Header from '@/components/Header';
-
 const pretendard = localFont({
   src: [
     {
@@ -46,7 +44,6 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${pretendard.variable}`}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <Header />
           {children}
         </NextIntlClientProvider>
       </body>

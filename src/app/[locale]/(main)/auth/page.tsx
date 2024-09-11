@@ -8,7 +8,7 @@ import {Link} from '@/i18n/routing';
 export default function AuthPage() {
   const t = useTranslations('Auth');
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="h-[calc(100vh-64px)] flex items-center justify-center">
       <div className="text-center">
         <p className="text-xl font-bold pb-3">logo</p>
         <h3 style={{whiteSpace: 'pre-line'}} className="text-2xl font-bold">
@@ -57,7 +57,7 @@ export default function AuthPage() {
             }
           >
             <p className={' mr-5'}>{t('alreadyUser')}</p>
-            <Link className={'font-bold underline'} href={'/'}>
+            <Link className={'font-bold underline'} href={'/signin'}>
               {t('signIn')}
             </Link>
           </div>
