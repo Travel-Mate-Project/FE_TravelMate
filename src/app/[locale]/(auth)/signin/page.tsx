@@ -1,10 +1,11 @@
+import Image from 'next/image';
+import {useTranslations} from 'next-intl';
+import React from 'react';
+
 import SignInFrom from '@/app/[locale]/(auth)/_components/SignInFrom';
 import md from '@/asset/md.svg';
 import NavigationButton from '@/components/NavigationButton';
-import Image from 'next/image';
 import {Link} from '@/i18n/routing';
-import React from 'react';
-import {useTranslations} from 'next-intl';
 
 export default function SignInPage() {
   const t = useTranslations('signIn');
