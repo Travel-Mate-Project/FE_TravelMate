@@ -2,6 +2,7 @@
 
 import {useRouter} from '@/i18n/routing';
 import {NavigationButtonProps} from '@/types';
+
 import React from 'react';
 
 export default function NavigationButton({

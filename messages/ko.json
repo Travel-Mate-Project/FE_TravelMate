@@ -21,5 +21,23 @@
     "email": "이메일로 가입하기",
     "alreadyUser": "이미 여행메이트 회원이신가요?",
     "signIn": "로그인 하기"
+  },
+  "signIn": {
+    "logIn": "로그인",
+    "kakao": "카카오로 시작하기",
+    "sns": "SNS 연동 로그인",
+    "notUser": "아직 여행메이트 회원이 아니세요?",
+    "join": "회원가입하기",
+    "email": "이메일",
+    "password": "비밀번호",
+    "enterEmail": "이메일 입력",
+    "enterPassword": "비밀번호 입력",
+    "needEmail": "이메일을 입력해주세요.",
+    "needPassword": "비밀번호를 입력해주세요.",
+    "emailError": "이메일 형식이 올바르지 않습니다. (example@example.com)",
+    "passwordError": "비밀번호 형식이 올바르지 않습니다.\n(영문 대소문자/숫자/특수문자 포함 8자 이상)",
+    "rememberEmail": "이메일 기억",
+    "findId": "아이디 찾기",
+    "findPassword": "비밀번호 찾기"
   }
 }
