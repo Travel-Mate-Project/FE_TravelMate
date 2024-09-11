@@ -32,7 +32,7 @@ export interface AuthInputProps<T extends FieldValues> {
   type: 'text' | 'password' | 'email';
   autoComplete?: 'email' | 'name';
   register: UseFormRegister<T>;
-  control: Control<T>;
+  control?: Control<T>;
   required: boolean;
   disable?: boolean;
   rules?: Omit<
@@ -40,4 +40,10 @@ export interface AuthInputProps<T extends FieldValues> {
     'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'
   >;
   error?: string;
+}
+
+export interface SignUpFromValue {
+  email: string;
+  password: string;
+  passwordCheck: string;
 }

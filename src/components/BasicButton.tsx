@@ -9,7 +9,7 @@ export default function BasicButton({
   type,
 }: BasicButtonProps) {
   return (
-    <button type={type} className={`${classNames}`} onClick={onClick}>
+    <button type={type} className={`w-full ${classNames}`} onClick={onClick}>
       {children}
     </button>
   );
