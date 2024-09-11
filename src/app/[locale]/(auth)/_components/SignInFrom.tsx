@@ -6,8 +6,11 @@ import {SignUpFromValue} from '@/types';
 import React, {useState} from 'react';
 import BasicButton from '@/components/BasicButton';
 import {Link} from '@/i18n/routing';
+import {useTranslations} from 'next-intl';
 
 export default function SignInFrom() {
+  const t = useTranslations('signIn');
+
   const [isChecked, setIsChecked] = useState(false);
 
   const {
@@ -29,40 +32,37 @@ export default function SignInFrom() {
     <form onSubmit={handleSubmit(onSignUp)}>
       <div className={'flex flex-col gap-9'}>
         <div className={''}>
-          <label className="block mb-[6px] font-bold">이메일</label>
+          <label className="block mb-[6px] font-bold">{t('email')}</label>
           <AuthInput
             label="email"
-            placeholder="이메일"
+            placeholder={t('enterEmail')}
             type="email"
             autoComplete="email"
             register={register}
             required
             rules={{
-              required: '이메일은 필수입니다.',
+              required: t('needEmail'),
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message:
-                  '이메일 형식이 올바르지 않습니다. (example@example.com)',
+                message: t('emailError'),
               },
             }}
             error={errors.email?.message}
           />
         </div>
         <div className={''}>
-          <label className="block mb-[6px] font-bold">비밀번호</label>
+          <label className="block mb-[6px] font-bold">{t('password')}</label>
           <AuthInput
             label="password"
-            placeholder="비밀번호"
+            placeholder={t('enterPassword')}
             type="password"
             register={register}
             required
             rules={{
-              required: '비밀번호를 입력해 주세요.',
+              required: t('needPassword'),
               minLength: {
                 value: 8,
-                message:
-                  '비밀번호 형식이 올바르지 않습니다.\n' +
-                  '(영문 대소문자/숫자/특수문자 포함 8자 이상)',
+                message: t('passwordError'),
               },
             }}
             error={errors.password?.message}
@@ -76,7 +76,7 @@ export default function SignInFrom() {
           }
           type={'submit'}
         >
-          로그인
+          {t('logIn')}
         </BasicButton>
         <div className={'flex items-center justify-between mt-5'}>
           <label
@@ -90,15 +90,15 @@ export default function SignInFrom() {
               onChange={handleCheckboxChange}
               className="form-checkbox h-5 w-5 text-blue-600"
             />
-            <p className={'font-bold'}>이메일 기억</p>
+            <p className={'font-bold'}>{t('rememberEmail')}</p>
           </label>
           <div className={'flex items-center gap-1'}>
             <span className={'font-bold'}>
-              <Link href={'/'}>아이디 찾기</Link>
+              <Link href={'/'}>{t('findId')}</Link>
             </span>
             <span>|</span>
             <span className={'font-bold'}>
-              <Link href={'/'}>비밀번호 찾기</Link>
+              <Link href={'/'}>{t('findPassword')}</Link>
             </span>
           </div>
         </div>
