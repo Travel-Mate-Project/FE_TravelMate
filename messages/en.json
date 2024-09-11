@@ -6,5 +6,20 @@
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, ko {korean} en {English} other {Unknown}}"
+  },
+  "Header": {
+    "home": "Home",
+    "placeRecommend": "Travel Recommendations",
+    "myTrip": "My Trip",
+    "Auth": "Login | Sign Up",
+    "search": "Search..."
+  },
+  "Auth": {
+    "intro": "Plan simply and easily \n with TravelMate.",
+    "kakao": "Start with Kakao",
+    "or": "or",
+    "email": "Join with Email",
+    "alreadyUser": "Already a TravelMate member?",
+    "signIn": "Sign in"
   }
 }

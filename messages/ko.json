@@ -6,5 +6,20 @@
   "LocaleSwitcher": {
     "label": "언어 변경",
     "locale": "{locale, select, ko {한국어} en {English} other {Unknown}}"
+  },
+  "Header": {
+    "home": "홈",
+    "placeRecommend": "여행지 추천",
+    "myTrip": "나의 여행",
+    "Auth": "로그인 | 회원가입",
+    "search": "검색..."
+  },
+  "Auth": {
+    "intro": "여행메이트에서 간단하고\n쉽게 계획해 보세요.",
+    "kakao": "카카오로 시작하기",
+    "or": "또는",
+    "email": "이메일로 가입하기",
+    "alreadyUser": "이미 여행메이트 회원이신가요?",
+    "signIn": "로그인 하기"
   }
 }
