@@ -2,7 +2,8 @@
 
 import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
 import {SubmitHandler, useForm} from 'react-hook-form';
-import {SignUpFromValue} from '@/types';
+
+import {SignInFormValue} from '@/types';
 import React, {useState} from 'react';
 import BasicButton from '@/components/BasicButton';
 import {Link} from '@/i18n/routing';
@@ -17,19 +18,19 @@ export default function SignInFrom() {
     register,
     handleSubmit,
     formState: {errors},
-  } = useForm<SignUpFromValue>();
+  } = useForm<SignInFormValue>();
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newCheckedState = event.target.checked;
     setIsChecked(newCheckedState);
   };
 
-  const onSignUp: SubmitHandler<SignUpFromValue> = (data) => {
+  const onSignIn: SubmitHandler<SignInFormValue> = (data) => {
     console.log(data);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSignUp)}>
+    <form onSubmit={handleSubmit(onSignIn)}>
       <div className={'flex flex-col gap-9'}>
         <div className={''}>
           <label className="block mb-[6px] font-bold">{t('email')}</label>

@@ -1,3 +1,5 @@
 export default function SignUpForm() {
-  return <></>;
+  const onSignUp = () => {};
+
+  return <form></form>;
 }

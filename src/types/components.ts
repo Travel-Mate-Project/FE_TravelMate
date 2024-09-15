@@ -7,15 +7,18 @@ import {
   UseFormRegister,
 } from 'react-hook-form';
 
+type InputType = 'text' | 'password' | 'email';
+type ButtonType = 'button' | 'submit' | 'reset';
+
 export interface BasicButtonProps {
   children: string | ReactNode;
   classNames?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  type: 'button' | 'submit' | 'reset';
+  type: ButtonType;
 }
 
 export interface BasicInputProps {
-  type: 'text' | 'password' | 'email';
+  type: InputType;
   translationNamespace: string;
   placeholder?: string;
   classNames?: string;
@@ -29,7 +32,7 @@ export interface NavigationButtonProps extends BasicButtonProps {
 export interface AuthInputProps<T extends FieldValues> {
   label: Path<T>;
   placeholder: string;
-  type: 'text' | 'password' | 'email';
+  type: InputType;
   autoComplete?: 'email' | 'name';
   register: UseFormRegister<T>;
   control?: Control<T>;
@@ -42,8 +45,15 @@ export interface AuthInputProps<T extends FieldValues> {
   error?: string;
 }
 
-export interface SignUpFromValue {
+export interface SignInFormValue {
   email: string;
   password: string;
+}
+
+export interface SignUpFormValue extends SignInFormValue {
+  name: string;
+  nickname: string;
+  birthday: Date;
+  code: string;
   passwordCheck: string;
 }
