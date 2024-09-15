@@ -1,5 +1,9 @@
 'use client';
 
+import {useAuthStore} from '@/store';
+
 export default function SignUpProgressIndicator() {
-  return <nav></nav>;
+  const {stage} = useAuthStore();
+
+  return <nav>{stage}/3</nav>;
 }
