@@ -46,7 +46,7 @@ export default function AuthPage() {
             classNames={
               'bg-transparent border border-solid border-gray100 p-3 rounded-lg w-full'
             }
-            href={'/'}
+            href={'/signup'}
             type={'button'}
           >
             <p className={'text-gray200 font-semibold'}>{t('email')}</p>
