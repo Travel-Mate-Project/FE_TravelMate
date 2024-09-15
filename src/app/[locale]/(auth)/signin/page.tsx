@@ -17,8 +17,11 @@ export default function SignInPage() {
       }
     >
       <div className={'flex flex-col items-center'}>
-        <h1 className={'mb-14 text-3xl font-bold'}>Logo</h1>
-        <h2 className={'text-2xl font-bold mb-14'}> {t('logIn')}</h2>
+        <h1 className={'mb-12 text-3xl font-bold md:mb-14'}>Logo</h1>
+        <h2 className={'text-2xl font-bold mb-14 hidden md:block'}>
+          {' '}
+          {t('logIn')}
+        </h2>
         <div className={'w-screen px-6 pb-10 md:w-96'}>
           <SignInFrom />
           <div className={'flex flex-col items-center mt-12'}>
@@ -37,8 +40,12 @@ export default function SignInPage() {
                 alt={'kakao'}
               />
             </div>
-            <div className={'w-full flex items-center justify-around mt-10'}>
-              <Link href={'/'}> {t('notUser')}</Link>
+            <div
+              className={
+                'w-full flex items-center justify-around mt-10 text-sm'
+              }
+            >
+              <p> {t('notUser')}</p>
               <Link className={'font-bold underline'} href={'/'}>
                 {t('join')}
               </Link>
