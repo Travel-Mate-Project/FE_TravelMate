@@ -66,7 +66,7 @@ export default function AuthInput<T extends FieldValues>({
           <button
             type="button"
             onClick={() => setVisible(!visible)}
-            className={'absolute top-4 right-3.5 z-10 cursor-pointer'}
+            className={'absolute top-5 right-3.5 z-10 cursor-pointer'}
           >
             {visible ? (
               <Image src={openEyes} alt={'icon'} />
@@ -75,13 +75,19 @@ export default function AuthInput<T extends FieldValues>({
             )}
           </button>
         )}
+        <>
+          {error && (
+            <p className="absolute -top-8 right-0 flex mt-2 text-xs text-red-500 whitespace-pre-line">
+              <Image
+                className={'absolute left-0 mr-1.5'}
+                src={warn}
+                alt={'icon'}
+              />
+              <span className={'pl-5'}> {error}</span>
+            </p>
+          )}
+        </>
       </div>
-      {error && (
-        <p className="absolute flex mt-2 text-xs text-red-500 whitespace-pre-line">
-          <Image className={'absolute left-0 mr-1.5'} src={warn} alt={'icon'} />
-          <span className={'pl-5'}> {error}</span>
-        </p>
-      )}
     </>
   );
 }
