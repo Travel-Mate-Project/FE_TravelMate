@@ -1,13 +1,13 @@
 'use client';
 
-import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
+import {useTranslations} from 'next-intl';
+import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
 
-import {SignInFormValue} from '@/types';
-import React, {useState} from 'react';
+import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
 import BasicButton from '@/components/BasicButton';
 import {Link} from '@/i18n/routing';
-import {useTranslations} from 'next-intl';
+import {SignInFormValue} from '@/types';
 
 export default function SignInFrom() {
   const t = useTranslations('signIn');

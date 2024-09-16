@@ -6,6 +6,7 @@ export interface SignupSlice {
   nextStage: (stage: number) => void;
   // eslint-disable-next-line no-unused-vars
   previousStage: (stage: number) => void;
+  clearStage: () => void;
 }
 
 export const createProfileSlice: StateCreator<SignupSlice> = (set) => ({
@@ -24,4 +25,5 @@ export const createProfileSlice: StateCreator<SignupSlice> = (set) => ({
       }
       return {stage: state.stage};
     }),
+  clearStage: () => set(() => ({stage: 1})),
 });

@@ -1,13 +1,13 @@
 'use client';
 
+import Image from 'next/image';
 import React, {useState} from 'react';
 import {FieldValues} from 'react-hook-form';
 
-import {AuthInputProps} from '@/types';
-import openEyes from '@/asset/open-eye.svg';
 import closeEyes from '@/asset/close-eye.svg';
+import openEyes from '@/asset/open-eye.svg';
 import warn from '@/asset/warn.svg';
-import Image from 'next/image';
+import {AuthInputProps} from '@/types';
 
 export default function AuthInput<T extends FieldValues>({
   label,
