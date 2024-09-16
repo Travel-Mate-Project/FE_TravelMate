@@ -8,6 +8,18 @@ export interface SignupSlice {
 
 export const createProfileSlice: StateCreator<SignupSlice> = (set) => ({
   stage: 1,
-  nextStage: (stage) => stage + 1,
-  previousStage: (stage) => stage - 1,
+  nextStage: () =>
+    set((state) => {
+      if (state.stage < 3) {
+        return {stage: state.stage + 1};
+      }
+      return {stage: state.stage};
+    }),
+  previousStage: () =>
+    set((state) => {
+      if (state.stage > 1) {
+        return {stage: state.stage - 1};
+      }
+      return {stage: state.stage};
+    }),
 });

@@ -15,6 +15,7 @@ export default function AuthInput<T extends FieldValues>({
   type,
   autoComplete,
   register,
+  classNames,
   required,
   rules,
   error,
@@ -44,8 +45,9 @@ export default function AuthInput<T extends FieldValues>({
             w-full bg-transparent
             px-3 py-4 rounded-md
             focus:outline-none
-            relative z-10
+            relative z-10 
             ${error ? 'border-red-500' : ''}
+            ${classNames}
           `}
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}

@@ -7,7 +7,7 @@ import {
   UseFormRegister,
 } from 'react-hook-form';
 
-type InputType = 'text' | 'password' | 'email';
+type InputType = 'text' | 'password' | 'email' | 'date';
 type ButtonType = 'button' | 'submit' | 'reset';
 
 export interface BasicButtonProps {
@@ -33,6 +33,7 @@ export interface AuthInputProps<T extends FieldValues> {
   label: Path<T>;
   placeholder: string;
   type: InputType;
+  classNames?: string;
   autoComplete?: 'email' | 'name';
   register: UseFormRegister<T>;
   control?: Control<T>;

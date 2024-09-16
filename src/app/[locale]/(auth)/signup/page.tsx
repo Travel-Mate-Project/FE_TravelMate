@@ -9,7 +9,7 @@ export default function SignUpPage() {
         <SignUpProgressIndicator />
         <h2 className={'text-2xl font-bold '}>이메일로 가입하기</h2>
       </div>
-      <div className={'w-screen px-6 pb-10 md:w-96'}>
+      <div className={'w-screen px-6 pb-10 md:w-96 md:px-0'}>
         <SignUpForm />
       </div>
     </>

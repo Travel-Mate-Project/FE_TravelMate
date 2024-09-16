@@ -16,7 +16,7 @@ export default function SignInPage() {
       <h2 className={'text-2xl font-bold mb-14 hidden md:block'}>
         {t('logIn')}
       </h2>
-      <div className={'w-screen px-6 pb-10 md:w-96'}>
+      <div className={'w-screen px-6 pb-10 md:w-96 md:px-0'}>
         <SignInFrom />
         <div className={'flex flex-col items-center mt-12'}>
           <h2 className={'font-bold'}> {t('sns')}</h2>
