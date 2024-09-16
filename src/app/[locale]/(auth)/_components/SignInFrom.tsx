@@ -1,7 +1,7 @@
 'use client';
 
 import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
-import {SubmitHandler, useForm} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 
 import {SignInFormValue} from '@/types';
 import React, {useState} from 'react';
@@ -25,7 +25,7 @@ export default function SignInFrom() {
     setIsChecked(newCheckedState);
   };
 
-  const onSignIn: SubmitHandler<SignInFormValue> = (data) => {
+  const onSignIn = (data: SignInFormValue) => {
     console.log(data);
   };
 

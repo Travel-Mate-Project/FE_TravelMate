@@ -13,8 +13,10 @@ type ButtonType = 'button' | 'submit' | 'reset';
 export interface BasicButtonProps {
   children: string | ReactNode;
   classNames?: string;
+  // eslint-disable-next-line no-unused-vars
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   type: ButtonType;
+  disabled?: boolean;
 }
 
 export interface BasicInputProps {

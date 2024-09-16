@@ -1,52 +1,90 @@
 'use client';
 
-import {SubmitHandler, useForm} from 'react-hook-form';
-import {SignUpFormValue} from '@/types';
-import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
-import React from 'react';
 import {useTranslations} from 'next-intl';
+import React, {useState} from 'react';
+import {useForm} from 'react-hook-form';
+
+import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
 import BasicButton from '@/components/BasicButton';
-import {useAuthStore} from '@/store';
 import {useRouter} from '@/i18n/routing';
+import {useAuthStore} from '@/store';
+import {SignUpFormValue} from '@/types';
 
 export default function SignUpForm() {
   const t = useTranslations('signIn');
-
   const {stage, nextStage, previousStage} = useAuthStore();
   const router = useRouter();
+  const [formData, setFormData] = useState<Partial<SignUpFormValue>>({});
 
   const {
-    register,
-    handleSubmit,
-    formState: {errors},
-  } = useForm<SignUpFormValue>();
+    register: registerStage1,
+    handleSubmit: handleSubmitStage1,
+    formState: {errors: errorsStage1, isValid: isValidStage1},
+  } = useForm<
+    Pick<SignUpFormValue, 'name' | 'email' | 'password' | 'passwordCheck'>
+  >({
+    mode: 'onChange',
+  });
 
-  const onSignUp: SubmitHandler<SignUpFormValue> = (data) => {
-    console.log(data);
+  const {
+    register: registerStage2,
+    handleSubmit: handleSubmitStage2,
+    formState: {errors: errorsStage2, isValid: isValidStage2},
+  } = useForm<Pick<SignUpFormValue, 'nickname' | 'birthday'>>({
+    mode: 'onChange',
+  });
+
+  const onSubmitStage1 = (
+    data: Pick<
+      SignUpFormValue,
+      'name' | 'email' | 'password' | 'passwordCheck'
+    >,
+  ) => {
+    setFormData((prevData) => ({...prevData, ...data}));
+    nextStage(stage);
+  };
+
+  const onSubmitStage2 = (
+    data: Pick<SignUpFormValue, 'nickname' | 'birthday'>,
+  ) => {
+    const finalData = {...formData, ...data};
+    console.log(finalData);
     router.push('/welcome');
   };
 
-  const goNextStage = () => {
-    nextStage(stage);
-  };
   const goPreviousStage = () => {
     previousStage(stage);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSignUp)}>
-      <div className={'flex flex-col gap-5'}>
-        {stage === 1 && (
-          <>
-            <div className={''}>
+    <>
+      {stage === 1 && (
+        <form onSubmit={handleSubmitStage1(onSubmitStage1)}>
+          <div className="flex flex-col gap-5">
+            <div>
+              <label className="block mb-[6px] font-bold">{t('name')}</label>
+              <AuthInput
+                label="name"
+                placeholder={t('enterName')}
+                type="text"
+                autoComplete="name"
+                register={registerStage1}
+                required
+                rules={{
+                  required: t('needName'),
+                }}
+                error={errorsStage1.name?.message}
+              />
+            </div>
+            <div>
               <label className="block mb-[6px] font-bold">{t('email')}</label>
-              <div className={'flex gap-2'}>
+              <div className="flex gap-2 items-center">
                 <AuthInput
                   label="email"
                   placeholder={t('enterEmail')}
                   type="text"
                   autoComplete="email"
-                  register={register}
+                  register={registerStage1}
                   required
                   rules={{
                     required: t('needEmail'),
@@ -55,69 +93,17 @@ export default function SignUpForm() {
                       message: t('emailError'),
                     },
                   }}
-                  error={errors.email?.message}
+                  error={errorsStage1.email?.message}
                 />
                 <BasicButton
-                  classNames={
-                    'bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-32'
-                  }
-                  type={'submit'}
+                  classNames="bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-28"
+                  type="button"
                 >
-                  인증요청
+                  중복검사
                 </BasicButton>
               </div>
             </div>
-            <div className={''}>
-              <label className="block mb-[6px] font-bold">
-                {t('emailCheck')}
-              </label>
-              <div className={'flex gap-2'}>
-                <AuthInput
-                  label="code"
-                  placeholder={t('enterCode')}
-                  type="text"
-                  register={register}
-                  required
-                  rules={{
-                    required: t('needCode'),
-                    minLength: {
-                      value: 8,
-                      message: t('codeCheckError'),
-                    },
-                  }}
-                  error={errors.password?.message}
-                />
-                <BasicButton
-                  classNames={
-                    'bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-32'
-                  }
-                  type={'submit'}
-                >
-                  인증확인
-                </BasicButton>
-              </div>
-            </div>
-          </>
-        )}
-        {stage === 2 && (
-          <>
-            <div className={''}>
-              <label className="block mb-[6px] font-bold">{t('name')}</label>
-              <AuthInput
-                label="name"
-                placeholder={t('enterName')}
-                type="text"
-                autoComplete="email"
-                register={register}
-                required
-                rules={{
-                  required: t('needName'),
-                }}
-                error={errors.email?.message}
-              />
-            </div>
-
-            <div className={''}>
+            <div>
               <label className="block mb-[6px] font-bold">
                 {t('password')}
               </label>
@@ -125,7 +111,7 @@ export default function SignUpForm() {
                 label="password"
                 placeholder={t('enterPassword')}
                 type="password"
-                register={register}
+                register={registerStage1}
                 required
                 rules={{
                   required: t('needPassword'),
@@ -134,10 +120,10 @@ export default function SignUpForm() {
                     message: t('passwordError'),
                   },
                 }}
-                error={errors.password?.message}
+                error={errorsStage1.password?.message}
               />
             </div>
-            <div className={''}>
+            <div>
               <label className="block mb-[6px] font-bold">
                 {t('passwordCheck')}
               </label>
@@ -145,40 +131,48 @@ export default function SignUpForm() {
                 label="passwordCheck"
                 placeholder={t('enterPasswordCheck')}
                 type="password"
-                register={register}
+                register={registerStage1}
                 required
                 rules={{
                   required: t('needPasswordCheck'),
-                  minLength: {
-                    value: 8,
-                    message: t('passwordCheckError'),
-                  },
+                  validate: (value, formValues) =>
+                    value === formValues.password || t('passwordMismatch'),
                 }}
-                error={errors.password?.message}
+                error={errorsStage1.passwordCheck?.message}
               />
             </div>
-          </>
-        )}
-        {stage === 3 && (
-          <>
-            <div className={''}>
+          </div>
+          <div className="flex items-center gap-2 mt-8">
+            <BasicButton
+              disabled={!isValidStage1}
+              classNames="bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-full"
+              type="submit"
+            >
+              다음
+            </BasicButton>
+          </div>
+        </form>
+      )}
+      {stage === 2 && (
+        <form onSubmit={handleSubmitStage2(onSubmitStage2)}>
+          <div className="flex flex-col gap-5">
+            <div>
               <label className="block mb-[6px] font-bold">
-                {t('nickName')}
+                {t('nickname')}
               </label>
               <AuthInput
                 label="nickname"
-                placeholder={t('enterName')}
+                placeholder={t('enterNickname')}
                 type="text"
-                autoComplete="name"
-                register={register}
+                register={registerStage2}
                 required
                 rules={{
-                  required: t('needName'),
+                  required: t('needNickname'),
                 }}
-                error={errors.email?.message}
+                error={errorsStage2.nickname?.message}
               />
             </div>
-            <div className={''}>
+            <div>
               <label className="block mb-[6px] font-bold">
                 {t('birthday')}
               </label>
@@ -186,65 +180,33 @@ export default function SignUpForm() {
                 label="birthday"
                 placeholder={t('enterBirthDay')}
                 type="date"
-                autoComplete="name"
-                register={register}
+                register={registerStage2}
                 required
                 rules={{
                   required: t('needBirthDay'),
                 }}
-                error={errors.email?.message}
+                error={errorsStage2.birthday?.message}
               />
             </div>
-          </>
-        )}
-        {stage === 4 && (
-          <>
-            <h2>축하합니다</h2>
-          </>
-        )}
-      </div>
-      {stage === 3 ? (
-        <div className={'flex items-center gap-2 mt-8'}>
-          <BasicButton
-            onClick={goPreviousStage}
-            classNames={
-              'bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-32'
-            }
-            type={'button'}
-          >
-            이전
-          </BasicButton>
-          <BasicButton
-            classNames={
-              'bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-full'
-            }
-            type={'submit'}
-          >
-            완료
-          </BasicButton>
-        </div>
-      ) : (
-        <div className={'flex items-center gap-2 mt-8'}>
-          <BasicButton
-            onClick={goPreviousStage}
-            classNames={
-              'bg-gray100 px-3 py-4 rounded-lg text-white font-semibold w-32'
-            }
-            type={'button'}
-          >
-            이전
-          </BasicButton>
-          <BasicButton
-            onClick={goNextStage}
-            classNames={
-              'bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-full'
-            }
-            type={'button'}
-          >
-            다음
-          </BasicButton>
-        </div>
+          </div>
+          <div className="flex items-center gap-2 mt-8">
+            <BasicButton
+              onClick={goPreviousStage}
+              classNames="bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-28"
+              type="button"
+            >
+              이전
+            </BasicButton>
+            <BasicButton
+              disabled={!isValidStage2}
+              classNames="bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-full"
+              type="submit"
+            >
+              완료
+            </BasicButton>
+          </div>
+        </form>
       )}
-    </form>
+    </>
   );
 }
