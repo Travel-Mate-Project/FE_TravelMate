@@ -9,7 +9,7 @@ export default function SignUpProgressIndicator() {
   const t = useTranslations('signUp');
 
   return (
-    <nav className={'px-4 py-2 rounded-3xl text-sm text-green100 bg-[#F5F8FF]'}>
+    <nav className={'px-4 py-2 rounded-3xl text-sm text-green100 bg-gray50'}>
       <span className={'font-semibold'}>
         {t('stage')} {stage}
       </span>

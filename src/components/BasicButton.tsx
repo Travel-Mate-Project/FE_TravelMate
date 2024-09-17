@@ -13,7 +13,7 @@ export default function BasicButton({
     <button
       disabled={disabled}
       type={type}
-      className={`w-full ${disabled && 'cursor-not-allowed bg-gray200'} ${classNames}`}
+      className={`${disabled && 'cursor-not-allowed bg-gray200'} ${classNames}`}
       onClick={onClick}
     >
       {children}

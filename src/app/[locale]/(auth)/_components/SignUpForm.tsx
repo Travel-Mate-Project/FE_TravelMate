@@ -109,7 +109,7 @@ export default function SignUpForm() {
                 error={errors.email?.message}
               />
               <BasicButton
-                classNames="bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-28"
+                classNames="bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-[110px]"
                 type="button"
               >
                 중복검사
@@ -244,6 +244,7 @@ export default function SignUpForm() {
               placeholder={t('enterBirthDay')}
               type="date"
               register={register}
+              control={control}
               required
               rules={{
                 required: t('needBirthDay'),

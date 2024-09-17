@@ -48,7 +48,7 @@
     "password": "Password",
     "passwordCheck": "Confirm Password",
     "nickname": "Nickname",
-    "birthday": "Birthday",
+    "birthday": "Birthday (ex. 19960328)",
     "enterName": "Enter name",
     "enterEmail": "Enter email",
     "enterNickname": "Enter nickname",

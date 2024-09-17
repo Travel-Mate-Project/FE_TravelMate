@@ -52,7 +52,7 @@
     "enterName": "이름 입력",
     "enterEmail": "이메일 입력",
     "enterNickname": "닉네임 입력",
-    "enterBirthDay": "생일 입력",
+    "enterBirthDay": "생일 입력 (ex. 19960328)",
     "needName": "이름을 입력해 주세요.",
     "needNickname": "닉네임을 입력해 주세요.",
     "enterPassword": "비밀번호 입력",
