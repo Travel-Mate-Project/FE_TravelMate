@@ -48,6 +48,13 @@ export interface AuthInputProps<T extends FieldValues> {
   error?: string;
 }
 
+export interface BasicCheckboxProps {
+  label: string;
+  checked: boolean;
+  // eslint-disable-next-line no-unused-vars
+  onChange: (checked: boolean) => void;
+}
+
 export interface SignInFormValue {
   email: string;
   password: string;
@@ -59,4 +66,8 @@ export interface SignUpFormValue extends SignInFormValue {
   birthday: Date;
   code: string;
   passwordCheck: string;
+  allTermsAgreed: boolean;
+  personalInfoAgreed: boolean;
+  uniqueIdentifierAgreed: boolean;
+  serviceTermsAgreed: boolean;
 }
