@@ -10,7 +10,7 @@ import {useRouter} from '@/i18n/routing';
 import {useAuthStore} from '@/store';
 
 export default function WelcomePage() {
-  const t = useTranslations('signUp');
+  const t = useTranslations('welcome');
   const {clearStage} = useAuthStore();
   const router = useRouter();
 
@@ -27,12 +27,8 @@ export default function WelcomePage() {
       <div className={'flex flex-col items-center gap-10'}>
         <Image src={welcome} alt={'welcome'} />
         <div className={'flex flex-col gap-3 items-center'}>
-          <h2 className={'text-2xl font-bold'}>
-            회원가입이 완료되었습니다! 👋
-          </h2>
-          <p className={'text-sm font-semibold'}>
-            지금 바로 다양한 여행코스를 손쉽게 착착!
-          </p>
+          <h2 className={'text-2xl font-bold'}>{t('intro')} 👋</h2>
+          <p className={'text-sm font-semibold'}>{t('sub')}</p>
         </div>
         <BasicButton
           onClick={() => router.push('/signin')}

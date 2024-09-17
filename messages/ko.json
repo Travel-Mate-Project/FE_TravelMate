@@ -63,7 +63,11 @@
     "needBirthDay": "생일을 입력해 주세요.",
     "emailError": "이메일 형식이 올바르지 않습니다.",
     "passwordError": "영문 대소문자/숫자/특수문자 포함 8자 이상",
-    "passwordMismatch": "비밀번호가 일치하지 않습니다.",
-    "goToSignIn": "로그인 하러 가기"
+    "passwordMismatch": "비밀번호가 일치하지 않습니다."
+  },
+  "welcome": {
+    "goToSignIn": "로그인 하러 가기",
+    "intro": "회원가입이 완료되었습니다!",
+    "sub": "지금 바로 다양한 여행코스를 손쉽게 착착!"
   }
 }
