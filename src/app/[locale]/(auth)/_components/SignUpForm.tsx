@@ -12,7 +12,7 @@ import {useAuthStore} from '@/store';
 import {SignUpFormValue} from '@/types';
 
 export default function SignUpForm() {
-  const t = useTranslations('signIn');
+  const t = useTranslations('signUp');
   const {stage, nextStage, previousStage} = useAuthStore();
   const router = useRouter();
 
@@ -152,7 +152,7 @@ export default function SignUpForm() {
               error={errors.passwordCheck?.message}
             />
           </div>
-          <div className={'flex flex-col gap-1.5 font-semibold'}>
+          <div className={'flex flex-col gap-3 font-semibold'}>
             <div className={'flex w-full items-center justify-between'}>
               <Controller
                 name="allTermsAgreed"
@@ -161,7 +161,7 @@ export default function SignUpForm() {
                 render={({field}) => (
                   <BasicCheckBox
                     label="본인인증 약관 전체동의 (필수)"
-                    checked={field.value}
+                    checked={field.value ?? false}
                     onChange={(checked) => {
                       field.onChange(checked);
                       setValue('personalInfoAgreed', checked);
@@ -181,7 +181,7 @@ export default function SignUpForm() {
                 render={({field}) => (
                   <BasicCheckBox
                     label="개인정보 수집 이용 동의"
-                    checked={field.value}
+                    checked={field.value ?? false}
                     onChange={field.onChange}
                   />
                 )}
@@ -196,7 +196,7 @@ export default function SignUpForm() {
                 render={({field}) => (
                   <BasicCheckBox
                     label="고유식별 정보처리 동의"
-                    checked={field.value}
+                    checked={field.value ?? false}
                     onChange={field.onChange}
                   />
                 )}
@@ -211,7 +211,7 @@ export default function SignUpForm() {
                 render={({field}) => (
                   <BasicCheckBox
                     label="서비스 이용약관 동의"
-                    checked={field.value}
+                    checked={field.value ?? false}
                     onChange={field.onChange}
                   />
                 )}
@@ -253,7 +253,7 @@ export default function SignUpForm() {
           </div>
         </div>
       )}
-      <div className="flex items-center gap-2 mt-8">
+      <div className="flex items-center gap-2 mt-12">
         {stage === 2 && (
           <BasicButton
             onClick={goPreviousStage}
