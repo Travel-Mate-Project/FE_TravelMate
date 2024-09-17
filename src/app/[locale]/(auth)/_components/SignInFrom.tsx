@@ -73,7 +73,7 @@ export default function SignInFrom() {
       <div className={'mt-16'}>
         <BasicButton
           classNames={
-            'bg-green100 px-3 py-4 rounded-lg text-white font-semibold'
+            'w-full bg-green100 px-3 py-4 rounded-lg text-white font-semibold'
           }
           type={'submit'}
         >

@@ -63,6 +63,7 @@
     "needBirthDay": "생일을 입력해 주세요.",
     "emailError": "이메일 형식이 올바르지 않습니다.",
     "passwordError": "영문 대소문자/숫자/특수문자 포함 8자 이상",
-    "passwordMismatch": "비밀번호가 일치하지 않습니다."
+    "passwordMismatch": "비밀번호가 일치하지 않습니다.",
+    "goToSignIn": "로그인 하러 가기"
   }
 }

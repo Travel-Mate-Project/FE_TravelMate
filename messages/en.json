@@ -63,6 +63,7 @@
     "needBirthDay": "Please enter your birthday.",
     "emailError": "Invalid email format.",
     "passwordError": "8+ chars: A-Z, a-z, 0-9, symbol",
-    "passwordMismatch": "Passwords do not match."
+    "passwordMismatch": "Passwords do not match.",
+    "goToSignIn": "Go to Sign In"
   }
 }
