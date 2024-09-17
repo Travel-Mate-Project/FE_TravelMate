@@ -31,7 +31,7 @@ export default function SignInFrom() {
 
   return (
     <form onSubmit={handleSubmit(onSignIn)}>
-      <div className={'flex flex-col gap-9'}>
+      <div className={'flex flex-col gap-7'}>
         <div className={''}>
           <label className="block mb-[6px] font-bold">{t('email')}</label>
           <AuthInput

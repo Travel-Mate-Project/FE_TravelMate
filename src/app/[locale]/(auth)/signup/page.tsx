@@ -1,5 +1,5 @@
-import SignUpProgressIndicator from '@/app/[locale]/(auth)/_components/SignUpProgressIndicator';
 import SignUpForm from '@/app/[locale]/(auth)/_components/SignUpForm';
+import SignUpProgressIndicator from '@/app/[locale]/(auth)/_components/SignUpProgressIndicator';
 
 export default function SignUpPage() {
   return (

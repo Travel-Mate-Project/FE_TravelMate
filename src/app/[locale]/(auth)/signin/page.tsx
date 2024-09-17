@@ -22,14 +22,14 @@ export default function SignInPage() {
           <h2 className={'font-bold'}> {t('sns')}</h2>
           <div className={'relative w-full'}>
             <NavigationButton
-              classNames={'bg-kakaoBg px-3 py-4 rounded-lg w-full mt-12'}
+              classNames={'bg-kakaoBg px-3 py-4 rounded-lg w-full mt-8'}
               href={'/'}
               type={'button'}
             >
               {t('kakao')}
             </NavigationButton>
             <Image
-              className={'absolute top-[68px] left-6'}
+              className={'absolute top-[52px] left-6'}
               src={md}
               alt={'kakao'}
             />
