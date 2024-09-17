@@ -14,6 +14,7 @@ const config: Config = {
         gray50: '#F5F8FF',
         gray100: '#CCCCCC',
         gray200: '#999999',
+        gray800: '#4D4D4D',
         gray900: '#1A1A1A',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
