@@ -21,7 +21,7 @@ export default function WelcomePage() {
   return (
     <div
       className={
-        'flex items-center justify-center h-[calc(100vh-100px)] px-5 md:py-0'
+        'flex items-center justify-center h-[calc(100vh-100px)] px-6 md:py-0'
       }
     >
       <div className={'flex flex-col items-center gap-10'}>
