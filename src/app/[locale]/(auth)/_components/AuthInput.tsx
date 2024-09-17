@@ -2,16 +2,13 @@
 
 import Image from 'next/image';
 import React, {useState} from 'react';
-import {Controller, FieldValues} from 'react-hook-form';
-import ReactDatePicker from 'react-datepicker';
+import {FieldValues} from 'react-hook-form';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import closeEyes from '@/asset/close-eye.svg';
 import openEyes from '@/asset/open-eye.svg';
 import warn from '@/asset/warn.svg';
 import {AuthInputProps} from '@/types';
-import {ko} from 'date-fns/locale/ko';
-import CustomCalenderHeader from '@/components/CustomCalenderHeader';
 
 export default function AuthInput<T extends FieldValues>({
   label,
@@ -19,7 +16,6 @@ export default function AuthInput<T extends FieldValues>({
   type,
   autoComplete,
   register,
-  control,
   classNames,
   required,
   rules,
@@ -47,50 +43,6 @@ export default function AuthInput<T extends FieldValues>({
     ${error ? 'border-red-500' : ''}
     ${classNames}
   `;
-
-  if (type === 'date') {
-    return (
-      <div className="w-full relative">
-        <Controller
-          name={label}
-          control={control}
-          rules={{required, ...rules}}
-          render={({field}) => (
-            <ReactDatePicker
-              wrapperClassName="w-full max-w-xl"
-              renderCustomHeader={CustomCalenderHeader}
-              locale={ko}
-              selected={field.value}
-              onChange={(date) => field.onChange(date)}
-              className={commonInputClass}
-              placeholderText={placeholder}
-              dateFormat="yyyyMMdd"
-              onFocus={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
-              dayClassName={() => 'custom-day'}
-            />
-          )}
-        />
-        <div
-          className={`
-            absolute inset-0 rounded-md pointer-events-none
-            transition-all duration-200
-            ${getBorderClass()}
-          `}
-        ></div>
-        {error && (
-          <p className="absolute -top-8 right-0 flex mt-2 text-xs text-red-500 whitespace-pre-line">
-            <Image
-              className={'absolute left-0 mr-1.5'}
-              src={warn}
-              alt={'icon'}
-            />
-            <span className={'pl-5'}> {error}</span>
-          </p>
-        )}
-      </div>
-    );
-  }
 
   return (
     <>

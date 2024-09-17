@@ -7,7 +7,7 @@ import {
   UseFormRegister,
 } from 'react-hook-form';
 
-type InputType = 'text' | 'password' | 'email' | 'date';
+type InputType = 'text' | 'password' | 'email' | 'date' | 'number';
 type ButtonType = 'button' | 'submit' | 'reset';
 
 export interface BasicButtonProps {
