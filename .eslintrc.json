@@ -95,6 +95,7 @@
           ".tsx"
         ]
       }
-    }
+    },
+    "import/ignore": ["react-hook-form"]
   }
 }

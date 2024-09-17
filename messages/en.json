@@ -34,10 +34,40 @@
     "enterPassword": "Enter password",
     "needEmail": "Please enter your email.",
     "needPassword": "Please enter your password.",
-    "emailError": "Invalid email format. (example@example.com)",
-    "passwordError": "Invalid password format.\n(Must be at least 8 characters long and include uppercase and lowercase letters, numbers, and special characters)",
+    "emailError": "Invalid email format.",
+    "passwordError": "8+ chars: upper & lowercase, numbers, symbols",
     "rememberEmail": "Remember me",
     "findId": "Find ID",
     "findPassword": "Find PW"
+  },
+  "signUp": {
+    "joinEmail": "Join with Email",
+    "stage": "Stage",
+    "email": "Email",
+    "name": "Name",
+    "password": "Password",
+    "passwordCheck": "Confirm Password",
+    "nickname": "Nickname",
+    "birthday": "Birthday (ex. 19960328)",
+    "enterName": "Enter name",
+    "enterEmail": "Enter email",
+    "enterNickname": "Enter nickname",
+    "enterBirthDay": "Enter BirthDay",
+    "needName": "Please enter your name.",
+    "needNickname": "Please enter a nickname.",
+    "enterPassword": "Enter password",
+    "enterPasswordCheck": "Re-enter password",
+    "needEmail": "Please enter your email.",
+    "needPassword": "Please enter a password.",
+    "needPasswordCheck": "Please re-enter password.",
+    "needBirthDay": "Please enter your birthday.",
+    "emailError": "Invalid email format.",
+    "passwordError": "8+ chars: A-Z, a-z, 0-9, symbol",
+    "passwordMismatch": "Passwords do not match."
+  },
+  "welcome": {
+    "goToSignIn": "Go to Sign In",
+    "intro": "Registration completed!",
+    "sub": "Start planning various travel courses easily right now!"
   }
 }

@@ -7,9 +7,15 @@ export default function BasicButton({
   classNames,
   onClick,
   type,
+  disabled = false,
 }: BasicButtonProps) {
   return (
-    <button type={type} className={`w-full ${classNames}`} onClick={onClick}>
+    <button
+      disabled={disabled}
+      type={type}
+      className={`${disabled && 'cursor-not-allowed bg-gray200'} ${classNames}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

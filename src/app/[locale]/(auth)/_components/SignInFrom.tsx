@@ -1,12 +1,13 @@
 'use client';
 
-import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
-import {SubmitHandler, useForm} from 'react-hook-form';
-import {SignUpFromValue} from '@/types';
+import {useTranslations} from 'next-intl';
 import React, {useState} from 'react';
+import {useForm} from 'react-hook-form';
+
+import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
 import BasicButton from '@/components/BasicButton';
 import {Link} from '@/i18n/routing';
-import {useTranslations} from 'next-intl';
+import {SignInFormValue} from '@/types';
 
 export default function SignInFrom() {
   const t = useTranslations('signIn');
@@ -17,20 +18,20 @@ export default function SignInFrom() {
     register,
     handleSubmit,
     formState: {errors},
-  } = useForm<SignUpFromValue>();
+  } = useForm<SignInFormValue>();
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newCheckedState = event.target.checked;
     setIsChecked(newCheckedState);
   };
 
-  const onSignUp: SubmitHandler<SignUpFromValue> = (data) => {
+  const onSignIn = (data: SignInFormValue) => {
     console.log(data);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSignUp)}>
-      <div className={'flex flex-col gap-9'}>
+    <form onSubmit={handleSubmit(onSignIn)}>
+      <div className={'flex flex-col gap-7'}>
         <div className={''}>
           <label className="block mb-[6px] font-bold">{t('email')}</label>
           <AuthInput
@@ -72,7 +73,7 @@ export default function SignInFrom() {
       <div className={'mt-16'}>
         <BasicButton
           classNames={
-            'bg-green100 px-3 py-4 rounded-lg text-white font-semibold'
+            'w-full bg-green100 px-3 py-4 rounded-lg text-white font-semibold'
           }
           type={'submit'}
         >

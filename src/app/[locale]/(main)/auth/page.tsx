@@ -14,7 +14,7 @@ export default function AuthPage() {
         <h3 style={{whiteSpace: 'pre-line'}} className="text-2xl font-bold">
           {t('intro')}
         </h3>
-        <div className={'w-96'}>
+        <div className={'w-96 px-6 md:px-0'}>
           <div className={'relative'}>
             <NavigationButton
               classNames={'bg-kakaoBg p-3 rounded-lg w-full mt-12'}
@@ -46,7 +46,7 @@ export default function AuthPage() {
             classNames={
               'bg-transparent border border-solid border-gray100 p-3 rounded-lg w-full'
             }
-            href={'/'}
+            href={'/signup'}
             type={'button'}
           >
             <p className={'text-gray200 font-semibold'}>{t('email')}</p>
