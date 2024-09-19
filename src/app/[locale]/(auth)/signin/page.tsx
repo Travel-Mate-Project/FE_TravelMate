@@ -6,13 +6,14 @@ import SignInFrom from '@/app/[locale]/(auth)/_components/SignInFrom';
 import md from '@/asset/md.svg';
 import NavigationButton from '@/components/NavigationButton';
 import {Link} from '@/i18n/routing';
+import Logo from '@/asset/Logo.svg';
 
 export default function SignInPage() {
   const t = useTranslations('signIn');
 
   return (
     <>
-      <h1 className={'mb-12 text-3xl font-bold md:mb-14'}>Logo</h1>
+      <Image className={'mb-10'} src={Logo} alt={'logo'} />
       <h2 className={'text-2xl font-bold mb-14 hidden md:block'}>
         {t('logIn')}
       </h2>
