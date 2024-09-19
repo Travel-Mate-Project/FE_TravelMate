@@ -251,7 +251,7 @@ export default function SignUpForm() {
             <AuthInput
               label="birthday"
               placeholder={t('enterBirthDay')}
-              type="text"
+              type="number"
               register={register}
               required
               rules={{
