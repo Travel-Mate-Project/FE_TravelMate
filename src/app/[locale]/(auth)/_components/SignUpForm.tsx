@@ -172,7 +172,6 @@ export default function SignUpForm() {
                 )}
               />
               <span className={'font-sm text-gray100 underline'}>
-                {' '}
                 {t('check')}
               </span>
             </div>
@@ -225,7 +224,6 @@ export default function SignUpForm() {
                 )}
               />
               <span className={'font-sm text-gray100 underline'}>
-                {' '}
                 {t('check')}
               </span>
             </div>
@@ -253,11 +251,16 @@ export default function SignUpForm() {
             <AuthInput
               label="birthday"
               placeholder={t('enterBirthDay')}
-              type="number"
+              type="text"
               register={register}
               required
               rules={{
                 required: t('needBirthDay'),
+                pattern: {
+                  value:
+                    /^(19\d{2}|20\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/,
+                  message: t('birthDayError'),
+                },
               }}
               error={errors.birthday?.message}
             />

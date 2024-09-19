@@ -61,6 +61,7 @@
     "needPassword": "비밀번호를 입력해주세요.",
     "needPasswordCheck": "비밀번호를 한번더 압력해 주세요.",
     "needBirthDay": "생일을 입력해 주세요.",
+    "birthDayError": "올바른 생일이 아닙니다.",
     "emailError": "이메일 형식이 올바르지 않습니다.",
     "passwordError": "영문 대소문자/숫자/특수문자 포함 8자 이상",
     "passwordMismatch": "비밀번호가 일치하지 않습니다.",

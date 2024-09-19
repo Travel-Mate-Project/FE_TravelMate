@@ -35,15 +35,6 @@ export default function AuthInput<T extends FieldValues>({
     return 'shadow-[0_0_0_1px_theme(colors.gray100)]';
   };
 
-  const commonInputClass = `
-    w-full bg-transparent
-    px-3 py-4 rounded-md
-    focus:outline-none
-    relative z-10 
-    ${error ? 'border-red-500' : ''}
-    ${classNames}
-  `;
-
   return (
     <>
       <div className="w-full relative">
@@ -51,7 +42,7 @@ export default function AuthInput<T extends FieldValues>({
           {...register(label, {required, ...rules})}
           type={type === 'password' && visible ? 'text' : type}
           autoComplete={autoComplete}
-          className={commonInputClass}
+          className={`w-full bg-transparent px-3 py-4 rounded-md focus:outline-none hover:appearance-none relative z-10 ${error ? 'border-red-500' : ''} ${classNames}`}
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
