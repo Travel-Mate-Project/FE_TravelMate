@@ -1,10 +1,11 @@
 import {create, StateCreator} from 'zustand';
-import {createProfileSlice, SignupSlice} from '@/store/auth/signupSlice';
+
+import {createSignupSlice, SignupSlice} from '@/store/auth/signupSlice';
 
 export interface AuthStore extends SignupSlice {}
 
 export const createAuthStore: StateCreator<AuthStore> = (...a) => ({
-  ...createProfileSlice(...a),
+  ...createSignupSlice(...a),
 });
 
 export const useAuthStore = create<AuthStore>()((...a) => ({

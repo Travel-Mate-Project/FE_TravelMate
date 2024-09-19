@@ -9,7 +9,7 @@ export interface SignupSlice {
   clearStage: () => void;
 }
 
-export const createProfileSlice: StateCreator<SignupSlice> = (set) => ({
+export const createSignupSlice: StateCreator<SignupSlice> = (set) => ({
   stage: 1,
   nextStage: () =>
     set((state) => {
