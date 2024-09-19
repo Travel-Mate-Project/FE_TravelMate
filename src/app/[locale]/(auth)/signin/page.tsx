@@ -3,10 +3,10 @@ import {useTranslations} from 'next-intl';
 import React from 'react';
 
 import SignInFrom from '@/app/[locale]/(auth)/_components/SignInFrom';
+import Logo from '@/asset/Logo.svg';
 import md from '@/asset/md.svg';
 import NavigationButton from '@/components/NavigationButton';
 import {Link} from '@/i18n/routing';
-import Logo from '@/asset/Logo.svg';
 
 export default function SignInPage() {
   const t = useTranslations('signIn');
