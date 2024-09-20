@@ -60,7 +60,7 @@ export default function Header() {
             <LocaleSwitcher />
           </div>
 
-          <div className="flex items-center">
+          <div className="flex items-center md:hidden">
             <svg
               className={'w-[25px] h-[25px]'}
               viewBox="0 0 21 20"
