@@ -1,3 +1,11 @@
+import TripConfigurationPanel from '@/app/[locale]/(main)/_components/TripConfigurationPanel';
+
 export default function MainPage() {
-  return <main>메인페이지</main>;
+  return (
+    <div className={''}>
+      <div className={'flex justify-center'}>
+        <TripConfigurationPanel />
+      </div>
+    </div>
+  );
 }

@@ -6,9 +6,9 @@ import {useForm} from 'react-hook-form';
 
 import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
 import BasicButton from '@/components/BasicButton';
+import BasicCheckBox from '@/components/BasicCheckBox';
 import {Link} from '@/i18n/routing';
 import {SignInFormValue} from '@/types';
-import BasicCheckBox from '@/components/BasicCheckBox';
 
 export default function SignInFrom() {
   const t = useTranslations('signIn');

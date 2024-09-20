@@ -2,7 +2,7 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import React from 'react';
 
-import LocaleSwitcher from '@/app/[locale]/_components/LocaleSwitcher';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 import Logo from '@/asset/Logo.svg';
 import searchSVG from '@/asset/search.svg';
 import BasicInput from '@/components/BasicInput';

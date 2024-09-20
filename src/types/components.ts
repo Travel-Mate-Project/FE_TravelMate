@@ -10,7 +10,7 @@ import {
 type InputType = 'text' | 'password' | 'email' | 'date' | 'number';
 type ButtonType = 'button' | 'submit' | 'reset';
 
-export interface BasicButtonProps {
+export interface ButtonProps {
   children: string | ReactNode;
   classNames?: string;
   // eslint-disable-next-line no-unused-vars
@@ -19,19 +19,12 @@ export interface BasicButtonProps {
   disabled?: boolean;
 }
 
-export interface BasicInputProps {
-  type: InputType;
-  translationNamespace: string;
-  placeholder?: string;
-  classNames?: string;
-}
-
-export interface NavigationButtonProps extends BasicButtonProps {
+export interface NavigationButtonProps extends ButtonProps {
   href: string;
   onClick?: () => void;
 }
 
-export interface AuthInputProps<T extends FieldValues> {
+export interface InputProps<T extends FieldValues> {
   label: Path<T>;
   placeholder: string;
   type: InputType;
@@ -48,7 +41,7 @@ export interface AuthInputProps<T extends FieldValues> {
   error?: string;
 }
 
-export interface BasicCheckboxProps {
+export interface CheckboxProps {
   label: string;
   checked: boolean;
   // eslint-disable-next-line no-unused-vars
@@ -70,4 +63,10 @@ export interface SignUpFormValue extends SignInFormValue {
   personalInfoAgreed: boolean;
   uniqueIdentifierAgreed: boolean;
   serviceTermsAgreed: boolean;
+}
+
+export interface TripConfigurationFormValue {
+  search: string;
+  date: string;
+  single: boolean;
 }

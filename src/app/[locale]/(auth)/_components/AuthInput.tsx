@@ -8,7 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import closeEyes from '@/asset/close-eye.svg';
 import openEyes from '@/asset/open-eye.svg';
 import warn from '@/asset/warn.svg';
-import {AuthInputProps} from '@/types';
+import {InputProps} from '@/types';
 
 export default function AuthInput<T extends FieldValues>({
   label,
@@ -21,7 +21,7 @@ export default function AuthInput<T extends FieldValues>({
   rules,
   error,
   disable = false,
-}: AuthInputProps<T>) {
+}: InputProps<T>) {
   const [isFocused, setIsFocused] = useState(false);
   const [visible, setVisible] = useState(false);
 

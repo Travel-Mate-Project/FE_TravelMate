@@ -4,7 +4,7 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import React, {useState} from 'react';
 
-import LocaleSwitcher from '@/app/[locale]/_components/LocaleSwitcher';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 import Logo from '@/asset/Logo.svg';
 import BasicButton from '@/components/BasicButton';
 import BasicInput from '@/components/BasicInput';

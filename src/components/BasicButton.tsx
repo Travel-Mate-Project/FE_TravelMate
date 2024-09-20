@@ -1,6 +1,6 @@
 'use client';
 
-import {BasicButtonProps} from '@/types';
+import {ButtonProps} from '@/types';
 
 export default function BasicButton({
   children,
@@ -8,7 +8,7 @@ export default function BasicButton({
   onClick,
   type,
   disabled = false,
-}: BasicButtonProps) {
+}: ButtonProps) {
   return (
     <button
       disabled={disabled}
