@@ -13,7 +13,9 @@ export default function SignInPage() {
 
   return (
     <>
-      <Image className={'mb-10'} src={Logo} alt={'logo'} />
+      <Link href={'/'}>
+        <Image className={'mb-10'} src={Logo} alt={'logo'} />
+      </Link>
       <h2 className={'text-2xl font-bold mb-14 hidden md:block'}>
         {t('logIn')}
       </h2>

@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import {useTranslations} from 'next-intl';
+import React from 'react';
 
 import LocaleSwitcher from '@/app/[locale]/_components/LocaleSwitcher';
+import Logo from '@/asset/Logo.svg';
 import searchSVG from '@/asset/search.svg';
 import BasicInput from '@/components/BasicInput';
 import MobileMenu from '@/components/MobilMenu';
@@ -14,12 +16,10 @@ export default function Header() {
     <header className="absolute w-full bg-transparent">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold">
-              logo
-            </Link>
-          </div>
-
+          <MobileMenu />
+          <Link className={'hidden md:inline'} href={'/'}>
+            <Image src={Logo} alt={'logo'} width={110} priority />
+          </Link>
           <nav className="hidden md:flex space-x-10">
             <Link href="/" className="text-gray-700 hover:text-gray-900">
               {t('home')}
@@ -60,7 +60,29 @@ export default function Header() {
             <LocaleSwitcher />
           </div>
 
-          <MobileMenu />
+          <div className="flex items-center">
+            <svg
+              className={'w-[25px] h-[25px]'}
+              viewBox="0 0 21 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.66667 15.8333C13.3486 15.8333 16.3333 12.8486 16.3333 9.16667C16.3333 5.48477 13.3486 2.5 9.66667 2.5C5.98477 2.5 3 5.48477 3 9.16667C3 12.8486 5.98477 15.8333 9.66667 15.8333Z"
+                stroke="black"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M18 17.5L14.375 13.875"
+                stroke="black"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         </div>
       </div>
     </header>
