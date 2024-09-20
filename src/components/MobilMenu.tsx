@@ -6,8 +6,6 @@ import React, {useState} from 'react';
 
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import Logo from '@/asset/Logo.svg';
-import BasicButton from '@/components/BasicButton';
-import BasicInput from '@/components/BasicInput';
 import NavigationButton from '@/components/NavigationButton';
 import {Link} from '@/i18n/routing';
 
@@ -21,11 +19,7 @@ export default function MobileMenu() {
   return (
     <div className="md:hidden">
       <div className={'flex items-center'}>
-        <BasicButton
-          onClick={toggleMenu}
-          classNames={'text-gray-700'}
-          type={'button'}
-        >
+        <button onClick={toggleMenu} type={'button'}>
           <svg
             className="w-[30px] h-[30px]"
             viewBox="0 0 24 24"
@@ -40,7 +34,7 @@ export default function MobileMenu() {
               strokeLinejoin="round"
             />
           </svg>
-        </BasicButton>
+        </button>
         <Link href={'/'}>
           <Image
             className={'ml-5'}
@@ -52,7 +46,7 @@ export default function MobileMenu() {
         </Link>
       </div>
       {isMenuOpen && (
-        <div className="absolute pt-3 left-0 w-full bg-white shadow-md">
+        <div className="absolute pt-3 left-0 w-full bg-white shadow-md z-30">
           <div className="flex flex-col gap-5 items-center px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link href="/">{t('home')}</Link>
             <Link href="/">{t('placeRecommend')}</Link>
@@ -60,12 +54,11 @@ export default function MobileMenu() {
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="px-2 space-y-1">
-              <BasicInput
-                classNames={
+              <input
+                className={
                   'w-full border border-gray-300 rounded-full py-2 mb-5 px-3 focus:outline-none focus:ring-2 focus:ring-blue-300'
                 }
                 type={'text'}
-                translationNamespace={'Header'}
                 placeholder={'search'}
               />
               <NavigationButton

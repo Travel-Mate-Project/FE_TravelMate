@@ -13,7 +13,7 @@ export default function BasicButton({
     <button
       disabled={disabled}
       type={type}
-      className={`${disabled ? `!cursor-not-allowed !bg-gray200 ${classNames}` : classNames}`}
+      className={`${disabled ? `!cursor-not-allowed !bg-gray200 px-3 py-4 rounded-lg text-white font-semibold ${classNames}` : `bg-green100 px-3 py-4 rounded-lg text-white font-semibold ${classNames}`}`}
       onClick={onClick}
     >
       {children}

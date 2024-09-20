@@ -108,10 +108,7 @@ export default function SignUpForm() {
                 }}
                 error={errors.email?.message}
               />
-              <BasicButton
-                classNames="bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-[120px]"
-                type="button"
-              >
+              <BasicButton classNames="w-[120px]" type="button">
                 {t('duplicate')}
               </BasicButton>
             </div>
@@ -270,17 +267,17 @@ export default function SignUpForm() {
       <div className="flex items-center gap-2 mt-12">
         {stage === 2 && (
           <BasicButton
+            classNames={'w-32'}
             onClick={goPreviousStage}
-            classNames="bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-28"
             type="button"
           >
             {t('prev')}
           </BasicButton>
         )}
         <BasicButton
+          classNames={'w-full'}
           onClick={stage === 1 ? handleNextStage : undefined}
           disabled={!isValid}
-          classNames="bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-full"
           type="submit"
         >
           {stage === 1 ? t('next') : t('complete')}

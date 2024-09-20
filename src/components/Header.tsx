@@ -5,7 +5,6 @@ import React from 'react';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import Logo from '@/asset/Logo.svg';
 import searchSVG from '@/asset/search.svg';
-import BasicInput from '@/components/BasicInput';
 import MobileMenu from '@/components/MobilMenu';
 import NavigationButton from '@/components/NavigationButton';
 import {Link} from '@/i18n/routing';
@@ -34,12 +33,11 @@ export default function Header() {
 
           <div className="hidden md:flex items-center space-x-12">
             <div className="relative">
-              <BasicInput
-                classNames={
+              <input
+                className={
                   'w-48 lg:w-64 border border-gray-300 rounded-full py-1 pl-12 focus:outline-none focus:ring-2 focus:ring-blue-300'
                 }
                 type={'text'}
-                translationNamespace={'Header'}
                 placeholder={'search'}
               />
               <Image

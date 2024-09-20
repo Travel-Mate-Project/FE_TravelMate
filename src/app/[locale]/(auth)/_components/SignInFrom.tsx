@@ -71,12 +71,7 @@ export default function SignInFrom() {
         </div>
       </div>
       <div className={'mt-16'}>
-        <BasicButton
-          classNames={
-            'w-full bg-green100 px-3 py-4 rounded-lg text-white font-semibold'
-          }
-          type={'submit'}
-        >
+        <BasicButton classNames={'w-full'} type={'submit'}>
           {t('logIn')}
         </BasicButton>
         <div

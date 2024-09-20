@@ -1,11 +1,11 @@
 'use client';
 
+import React from 'react';
 import {useForm} from 'react-hook-form';
 
 import BasicInput from '@/components/BasicInput';
 import {TripConfigurationFormValue} from '@/types';
 import BasicButton from '@/components/BasicButton';
-import React from 'react';
 
 export default function TripConfigurationForm() {
   const {register, handleSubmit} = useForm<TripConfigurationFormValue>();
