@@ -4,6 +4,7 @@ import {useTranslations} from 'next-intl';
 import React, {useState} from 'react';
 
 import Logo from '@/asset/Logo.svg';
+import MenuIcon from '@/asset/Hamburger_MD.svg';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import NavigationButton from '@/components/NavigationButton';
 import {Link} from '@/i18n/routing';
@@ -19,20 +20,7 @@ export default function MobileMenu() {
     <div className="md:hidden">
       <div className={'flex items-center'}>
         <button onClick={toggleMenu} type={'button'}>
-          <svg
-            className="w-[30px] h-[30px]"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5 17H19M5 12H19M5 7H19"
-              stroke="#1A1A1A"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <MenuIcon width={30} height={30} />
         </button>
         <Link className={'hidden md:block'} href={'/'}>
           <Logo className={'ml-5'} />
@@ -47,13 +35,6 @@ export default function MobileMenu() {
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="px-2 space-y-1">
-              <input
-                className={
-                  'w-full border border-gray-300 rounded-full py-2 mb-5 px-3 focus:outline-none focus:ring-2 focus:ring-blue-300'
-                }
-                type={'text'}
-                placeholder={'search'}
-              />
               <NavigationButton
                 classNames="w-full bg-green100 text-white font-semibold px-6 py-2 rounded-full"
                 href="/auth"

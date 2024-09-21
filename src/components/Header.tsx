@@ -2,7 +2,8 @@ import {useTranslations} from 'next-intl';
 import React from 'react';
 
 import Logo from '@/asset/Logo.svg';
-import SearchIcon from '@/asset/Search.svg';
+import SearchIcon from '@/asset/search.svg';
+import HeaderSearchIcon from '@/asset/header-search-icon.svg';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import MobileMenu from '@/components/MobilMenu';
 import NavigationButton from '@/components/NavigationButton';
@@ -39,7 +40,7 @@ export default function Header() {
                 type={'text'}
                 placeholder={'search'}
               />
-              <SearchIcon className={'absolute top-1.5 left-3'} />
+              <SearchIcon className={'absolute top-1.5 left-3 '} />
             </div>
             <NavigationButton
               classNames={
@@ -54,27 +55,7 @@ export default function Header() {
           </div>
 
           <div className="flex items-center md:hidden">
-            <svg
-              className={'w-[25px] h-[25px]'}
-              viewBox="0 0 21 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.66667 15.8333C13.3486 15.8333 16.3333 12.8486 16.3333 9.16667C16.3333 5.48477 13.3486 2.5 9.66667 2.5C5.98477 2.5 3 5.48477 3 9.16667C3 12.8486 5.98477 15.8333 9.66667 15.8333Z"
-                stroke="black"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M18 17.5L14.375 13.875"
-                stroke="black"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <HeaderSearchIcon width={25} height={25} />
           </div>
         </div>
       </div>
