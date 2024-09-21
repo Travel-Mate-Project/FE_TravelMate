@@ -1,10 +1,9 @@
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import React from 'react';
 
-import LocaleSwitcher from '@/components/LocaleSwitcher';
 import Logo from '@/asset/Logo.svg';
-import searchSVG from '@/asset/search.svg';
+import SearchIcon from '@/asset/Search.svg';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 import MobileMenu from '@/components/MobilMenu';
 import NavigationButton from '@/components/NavigationButton';
 import {Link} from '@/i18n/routing';
@@ -12,12 +11,12 @@ import {Link} from '@/i18n/routing';
 export default function Header() {
   const t = useTranslations('Header');
   return (
-    <header className="absolute w-full bg-transparent">
+    <header className="absolute w-full bg-transparent py-3">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <MobileMenu />
           <Link className={'hidden md:inline'} href={'/'}>
-            <Image src={Logo} alt={'logo'} width={110} priority />
+            <Logo />
           </Link>
           <nav className="hidden md:flex space-x-10">
             <Link href="/" className="text-gray-700 hover:text-gray-900">
@@ -40,11 +39,7 @@ export default function Header() {
                 type={'text'}
                 placeholder={'search'}
               />
-              <Image
-                className={'absolute top-1.5 left-3'}
-                src={searchSVG}
-                alt={'검색'}
-              />
+              <SearchIcon className={'absolute top-1.5 left-3'} />
             </div>
             <NavigationButton
               classNames={

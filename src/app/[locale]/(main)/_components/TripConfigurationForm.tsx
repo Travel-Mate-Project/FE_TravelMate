@@ -3,9 +3,9 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
 
+import BasicButton from '@/components/BasicButton';
 import BasicInput from '@/components/BasicInput';
 import {TripConfigurationFormValue} from '@/types';
-import BasicButton from '@/components/BasicButton';
 
 export default function TripConfigurationForm() {
   const {register, handleSubmit} = useForm<TripConfigurationFormValue>();
@@ -102,7 +102,7 @@ export default function TripConfigurationForm() {
           인원선택
         </span>
       </div>
-      
+
       <BasicButton
         classNames={
           'w-full mt-5 bg-green100 px-3 py-4 rounded-lg text-white font-semibold'

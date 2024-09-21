@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import React from 'react';
 
@@ -12,7 +11,7 @@ export default function SignUpPage() {
   return (
     <>
       <Link href={'/'}>
-        <Image className={'mb-5'} src={Logo} alt={'logo'} />
+        <Logo className={'mb-5'} />
       </Link>
       <div className={'flex items-center gap-3 mb-14'}>
         <SignUpProgressIndicator />

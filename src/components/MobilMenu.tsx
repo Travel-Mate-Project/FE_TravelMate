@@ -1,11 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import React, {useState} from 'react';
 
-import LocaleSwitcher from '@/components/LocaleSwitcher';
 import Logo from '@/asset/Logo.svg';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 import NavigationButton from '@/components/NavigationButton';
 import {Link} from '@/i18n/routing';
 
@@ -35,14 +34,8 @@ export default function MobileMenu() {
             />
           </svg>
         </button>
-        <Link href={'/'}>
-          <Image
-            className={'ml-5'}
-            src={Logo}
-            alt={'logo'}
-            width={90}
-            priority
-          />
+        <Link className={'hidden md:block'} href={'/'}>
+          <Logo className={'ml-5'} />
         </Link>
       </div>
       {isMenuOpen && (

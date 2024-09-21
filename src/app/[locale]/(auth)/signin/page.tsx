@@ -1,10 +1,9 @@
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import React from 'react';
 
 import SignInFrom from '@/app/[locale]/(auth)/_components/SignInFrom';
 import Logo from '@/asset/Logo.svg';
-import md from '@/asset/md.svg';
+import Kakao from '@/asset/md.svg';
 import NavigationButton from '@/components/NavigationButton';
 import {Link} from '@/i18n/routing';
 
@@ -14,7 +13,7 @@ export default function SignInPage() {
   return (
     <>
       <Link href={'/'}>
-        <Image className={'mb-10'} src={Logo} alt={'logo'} />
+        <Logo className={'mb-10'} />
       </Link>
       <h2 className={'text-2xl font-bold mb-14 hidden md:block'}>
         {t('logIn')}
@@ -31,11 +30,7 @@ export default function SignInPage() {
             >
               {t('kakao')}
             </NavigationButton>
-            <Image
-              className={'absolute top-[52px] left-6'}
-              src={md}
-              alt={'kakao'}
-            />
+            <Kakao className={'absolute top-[52px] left-6'} />
           </div>
           <div
             className={'w-full flex items-center justify-around mt-10 text-sm'}
