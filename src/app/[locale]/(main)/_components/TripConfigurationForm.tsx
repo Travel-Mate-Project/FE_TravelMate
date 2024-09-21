@@ -1,14 +1,25 @@
 'use client';
 
 import React from 'react';
-import {useForm} from 'react-hook-form';
+import {useForm, useWatch} from 'react-hook-form';
 
+import Autocomplete from '@/components/Autocomplete';
 import BasicButton from '@/components/BasicButton';
 import BasicInput from '@/components/BasicInput';
+import {useDebounce} from '@/hooks/useDebounce';
 import {TripConfigurationFormValue} from '@/types';
 
 export default function TripConfigurationForm() {
-  const {register, handleSubmit} = useForm<TripConfigurationFormValue>();
+  const {register, handleSubmit, control} =
+    useForm<TripConfigurationFormValue>();
+
+  const searchQuery = useWatch({
+    control: control,
+    name: 'search',
+    defaultValue: '',
+  });
+
+  const debounceQuery = useDebounce(searchQuery);
 
   const handleMakeTrip = (data: TripConfigurationFormValue) => {
     console.log('handleMakeTrip', data);
@@ -32,11 +43,16 @@ export default function TripConfigurationForm() {
         />
         <span
           className={
-            'absolute left-0 top-4 text-gray300 text-sm pointer-events-none'
+            'absolute left-0 top-3.5 text-gray300 text-sm pointer-events-none'
           }
         >
           지역검색
         </span>
+        {searchQuery && (
+          <Autocomplete>
+            <div>example</div>
+          </Autocomplete>
+        )}
       </div>
       <div className={'flex'}>
         <div className={'relative'}>
@@ -52,7 +68,7 @@ export default function TripConfigurationForm() {
           />
           <span
             className={
-              'absolute left-0 top-4 text-gray300 text-sm pointer-events-none'
+              'absolute left-0 top-3.5 text-gray300 text-sm pointer-events-none'
             }
           >
             출발일
@@ -76,7 +92,7 @@ export default function TripConfigurationForm() {
           />
           <span
             className={
-              'absolute left-0 top-4 text-gray300 text-sm pointer-events-none'
+              'absolute left-0 top-3.5 text-gray300 text-sm pointer-events-none'
             }
           >
             도착일
@@ -96,7 +112,7 @@ export default function TripConfigurationForm() {
         />
         <span
           className={
-            'absolute left-0 top-4 text-gray300 text-sm pointer-events-none'
+            'absolute left-0 top-3.5 text-gray300 text-sm pointer-events-none'
           }
         >
           인원선택

@@ -13,7 +13,7 @@ export default function Header() {
   const t = useTranslations('Header');
   return (
     <header className="absolute w-full bg-transparent py-3">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <MobileMenu />
           <Link className={'hidden md:inline'} href={'/'}>
