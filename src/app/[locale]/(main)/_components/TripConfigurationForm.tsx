@@ -25,6 +25,8 @@ export default function TripConfigurationForm() {
     console.log('handleMakeTrip', data);
   };
 
+  // console.log('debounceQuery', debounceQuery);
+
   return (
     <form
       onSubmit={handleSubmit(handleMakeTrip)}
@@ -48,7 +50,7 @@ export default function TripConfigurationForm() {
         >
           지역검색
         </span>
-        {searchQuery && (
+        {debounceQuery && (
           <Autocomplete>
             <div>example</div>
           </Autocomplete>

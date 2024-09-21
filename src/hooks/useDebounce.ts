@@ -1,24 +1,23 @@
 import {debounce} from 'lodash';
-import {useCallback, useEffect, useRef, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 
-export const useDebounce = (searchQuery: string) => {
+export const useDebounce = (searchQuery: string, delay = 300) => {
   const [query, setQuery] = useState('');
 
-  const debouncedSearchRef = useRef(
-    debounce((query: string) => {
-      setQuery(query);
-    }, 300),
+  const debouncedSearch = useCallback(
+    debounce((newQuery: string) => {
+      setQuery(newQuery);
+    }, delay),
+    [delay],
   );
 
-  const placeSearch = useCallback((query: string) => {
-    debouncedSearchRef.current(query);
-  }, []);
-
   useEffect(() => {
-    if (searchQuery) {
-      placeSearch(searchQuery);
-    }
-  }, [searchQuery, placeSearch]);
+    debouncedSearch(searchQuery);
+
+    return () => {
+      debouncedSearch.cancel();
+    };
+  }, [searchQuery, debouncedSearch]);
 
   return query;
 };
