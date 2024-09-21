@@ -44,7 +44,7 @@ export default function TripConfigurationForm() {
             classNames={
               'w-full pb-3 pt-9 placeholder:text-black placeholder:font-semibold focus:outline-none z-10'
             }
-            label={'search'}
+            label={'startDate'}
             placeholder={'날짜추가'}
             type={'text'}
             register={register}
@@ -68,7 +68,7 @@ export default function TripConfigurationForm() {
             classNames={
               'w-full pb-3 pt-9 placeholder:text-black placeholder:font-semibold focus:outline-none z-10'
             }
-            label={'search'}
+            label={'endDate'}
             placeholder={'날짜추가'}
             type={'text'}
             register={register}
@@ -88,7 +88,7 @@ export default function TripConfigurationForm() {
           classNames={
             'w-full pb-3 pt-9 border-y border-solid border-gray100 placeholder:text-black placeholder:font-semibold focus:outline-none z-10'
           }
-          label={'search'}
+          label={'single'}
           placeholder={'선택'}
           type={'text'}
           register={register}
@@ -102,6 +102,7 @@ export default function TripConfigurationForm() {
           인원선택
         </span>
       </div>
+      
       <BasicButton
         classNames={
           'w-full mt-5 bg-green100 px-3 py-4 rounded-lg text-white font-semibold'

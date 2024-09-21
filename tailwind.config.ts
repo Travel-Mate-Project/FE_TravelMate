@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         green100: '#3FB6A6',
+        green200: '#00927E',
         kakaoBg: '#FEE500',
         gray50: '#F5F8FF',
         gray100: '#CCCCCC',

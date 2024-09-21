@@ -67,6 +67,7 @@ export interface SignUpFormValue extends SignInFormValue {
 
 export interface TripConfigurationFormValue {
   search: string;
-  date: string;
+  startDate: string;
+  endDate: string;
   single: boolean;
 }

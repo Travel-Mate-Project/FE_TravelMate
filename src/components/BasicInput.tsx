@@ -17,16 +17,14 @@ export default function BasicInput<T extends FieldValues>({
 }: InputProps<T>) {
   return (
     <>
-      {register && (
-        <input
-          {...register(label, {required, ...rules})}
-          className={classNames}
-          type={type}
-          placeholder={placeholder}
-          autoComplete={autoComplete}
-          disabled={disable}
-        />
-      )}
+      <input
+        {...register(label, {required, ...rules})}
+        className={classNames}
+        type={type}
+        placeholder={placeholder}
+        autoComplete={autoComplete}
+        disabled={disable}
+      />
     </>
   );
 }
