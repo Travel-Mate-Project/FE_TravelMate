@@ -16,7 +16,7 @@ export default function BasicButton({
       className={`${
         disabled
           ? `!cursor-not-allowed !bg-gray200 px-3 py-4 rounded-lg text-white font-semibold ${classNames}`
-          : `bg-green100 px-3 py-4 rounded-lg text-white font-semibold ${classNames}`
+          : `bg-green100 px-3 py-4 rounded-lg text-white font-semibold hover:bg-green200 transition duration-200 ease-in-out ${classNames}`
       }`}
       onClick={onClick}
     >
