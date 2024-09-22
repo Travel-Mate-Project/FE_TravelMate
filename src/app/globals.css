@@ -18,4 +18,42 @@
     }
 }
 
+.react-calendar {
+    background: white;
+    margin-bottom: 60px;
+}
+
+.react-calendar__tile {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    text-align: center;
+    line-height: 16px;
+}
+
+.react-calendar__month-view__weekdays {
+    text-align: center;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.react-calendar__navigation {
+    display: flex;
+    font-weight: bold;
+    justify-content: space-around;
+    height: 44px;
+    font-size: 20px;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+.react-calendar__viewContainer {
+    margin-top: 15px;
+}
+
+.react-calendar__navigation button {
+    min-width: 44px;
+    background: none;
+}
+
 

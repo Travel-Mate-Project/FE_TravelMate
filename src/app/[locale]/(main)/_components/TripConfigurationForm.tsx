@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useForm, useWatch} from 'react-hook-form';
 
 import Subtract from '@/asset/subtract.svg';
@@ -10,9 +10,16 @@ import BasicInput from '@/components/BasicInput';
 import {useDebounce} from '@/hooks/useDebounce';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import {TripConfigurationFormValue} from '@/types';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
+import {Link} from '@/i18n/routing';
+import {useDateStore} from '@/store';
 
 export default function TripConfigurationForm() {
+  const {date, isSelected} = useDateStore();
+  const [startDate, endDate] = date;
   const [isAutocompleteOpen, setIsAutocompleteOpen] = useState<boolean>(false);
+
   const {register, handleSubmit, control, setValue} =
     useForm<TripConfigurationFormValue>();
   const formRef = useRef<HTMLFormElement>(null);
@@ -22,6 +29,7 @@ export default function TripConfigurationForm() {
     name: 'search',
     defaultValue: '',
   });
+
   const debounceQuery = useDebounce(searchQuery);
   useOutsideClick(formRef, () => setIsAutocompleteOpen(false));
 
@@ -33,6 +41,13 @@ export default function TripConfigurationForm() {
     setValue('search', selection);
     setIsAutocompleteOpen(false);
   };
+
+  useEffect(() => {
+    if (isSelected) {
+      setValue('startDate', dayjs(startDate).format('YYYY.MM.DD'));
+      setValue('endDate', dayjs(endDate).format('YYYY.MM.DD'));
+    }
+  }, [startDate, endDate, isSelected]);
 
   return (
     <form
@@ -76,7 +91,7 @@ export default function TripConfigurationForm() {
           </Autocomplete>
         )}
       </div>
-      <div className={'flex'}>
+      <Link href={'/date'} className={'flex relative'}>
         <div className={'relative'}>
           <BasicInput
             classNames={
@@ -87,6 +102,7 @@ export default function TripConfigurationForm() {
             type={'text'}
             register={register}
             required
+            readOnly
           />
           <span
             className={
@@ -111,6 +127,7 @@ export default function TripConfigurationForm() {
             type={'text'}
             register={register}
             required
+            readOnly
           />
           <span
             className={
@@ -120,7 +137,7 @@ export default function TripConfigurationForm() {
             도착일
           </span>
         </div>
-      </div>
+      </Link>
       <div className={'relative w-full'}>
         <BasicInput
           classNames={

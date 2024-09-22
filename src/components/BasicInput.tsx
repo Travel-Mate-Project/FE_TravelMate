@@ -15,8 +15,10 @@ export default function BasicInput<T extends FieldValues>({
   maxLength = 15,
   rules,
   disable = false,
+  onClick,
   onFocus,
   onBlur,
+  readOnly = false,
 }: InputProps<T>) {
   return (
     <>
@@ -30,6 +32,8 @@ export default function BasicInput<T extends FieldValues>({
         maxLength={maxLength}
         onFocus={onFocus}
         onBlur={onBlur}
+        onClick={onClick}
+        readOnly={readOnly}
       />
     </>
   );

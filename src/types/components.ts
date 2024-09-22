@@ -5,6 +5,7 @@ import {
   Path,
   RegisterOptions,
   UseFormRegister,
+  UseFormSetValue,
 } from 'react-hook-form';
 
 type InputType = 'text' | 'password' | 'email' | 'date' | 'number';
@@ -35,8 +36,10 @@ export interface InputProps<T extends FieldValues> {
   required: boolean;
   disable?: boolean;
   maxLength?: number;
+  onClick?: () => void;
   onFocus?: () => void;
   onBlur?: () => void;
+  readOnly?: boolean;
   rules?: Omit<
     RegisterOptions<T>,
     'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'
@@ -73,4 +76,11 @@ export interface TripConfigurationFormValue {
   startDate: string;
   endDate: string;
   single: boolean;
+}
+
+export interface ModalProps {
+  title: string;
+  children: ReactNode;
+  setValue?: UseFormSetValue<TripConfigurationFormValue>;
+  handleChange?: <T>(value?: T) => void;
 }

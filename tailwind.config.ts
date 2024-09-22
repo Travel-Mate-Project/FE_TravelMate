@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        green50: '#4ED0BE',
         green100: '#3FB6A6',
         green200: '#00927E',
         kakaoBg: '#FEE500',
@@ -18,6 +19,7 @@ const config: Config = {
         gray300: '#666666',
         gray800: '#4D4D4D',
         gray900: '#1A1A1A',
+        modalBg: 'rgba(91, 112, 131, 0.4)',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
       },
