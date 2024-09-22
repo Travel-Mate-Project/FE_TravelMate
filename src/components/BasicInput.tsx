@@ -12,6 +12,7 @@ export default function BasicInput<T extends FieldValues>({
   register,
   classNames,
   required,
+  maxLength = 15,
   rules,
   disable = false,
 }: InputProps<T>) {
@@ -24,6 +25,7 @@ export default function BasicInput<T extends FieldValues>({
         placeholder={placeholder}
         autoComplete={autoComplete}
         disabled={disable}
+        maxLength={maxLength}
       />
     </>
   );

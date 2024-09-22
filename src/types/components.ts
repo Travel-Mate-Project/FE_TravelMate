@@ -34,6 +34,7 @@ export interface InputProps<T extends FieldValues> {
   control?: Control<T>;
   required: boolean;
   disable?: boolean;
+  maxLength?: number;
   rules?: Omit<
     RegisterOptions<T>,
     'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'
