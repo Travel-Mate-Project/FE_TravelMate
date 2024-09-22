@@ -6,8 +6,10 @@ import {useForm, useWatch} from 'react-hook-form';
 import Autocomplete from '@/components/Autocomplete';
 import BasicButton from '@/components/BasicButton';
 import BasicInput from '@/components/BasicInput';
+import Subtract from '@/asset/subtract.svg';
 import {useDebounce} from '@/hooks/useDebounce';
 import {TripConfigurationFormValue} from '@/types';
+import {Link} from '@/i18n/routing';
 
 export default function TripConfigurationForm() {
   const {register, handleSubmit, control} =
@@ -52,7 +54,14 @@ export default function TripConfigurationForm() {
         </span>
         {debounceQuery && (
           <Autocomplete>
-            <div>example</div>
+            {new Array(3).fill(0).map((_, i) => (
+              // 임시 배열 설정 추후 MSW 테스트 필요
+              <li className={'p-1'} key={i}>
+                <Link className={'flex items-center'} href={`#${i}`}>
+                  <Subtract className={'mr-1'} /> example
+                </Link>
+              </li>
+            ))}
           </Autocomplete>
         )}
       </div>
