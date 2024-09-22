@@ -1,49 +1,57 @@
 'use client';
 
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {useForm, useWatch} from 'react-hook-form';
 
+import Subtract from '@/asset/subtract.svg';
 import Autocomplete from '@/components/Autocomplete';
 import BasicButton from '@/components/BasicButton';
 import BasicInput from '@/components/BasicInput';
-import Subtract from '@/asset/subtract.svg';
 import {useDebounce} from '@/hooks/useDebounce';
+import useOutsideClick from '@/hooks/useOutsideClick';
 import {TripConfigurationFormValue} from '@/types';
-import {Link} from '@/i18n/routing';
 
 export default function TripConfigurationForm() {
-  const {register, handleSubmit, control} =
+  const [isAutocompleteOpen, setIsAutocompleteOpen] = useState<boolean>(false);
+  const {register, handleSubmit, control, setValue} =
     useForm<TripConfigurationFormValue>();
+  const formRef = useRef<HTMLFormElement>(null);
 
   const searchQuery = useWatch({
     control: control,
     name: 'search',
     defaultValue: '',
   });
-
   const debounceQuery = useDebounce(searchQuery);
+  useOutsideClick(formRef, () => setIsAutocompleteOpen(false));
 
   const handleMakeTrip = (data: TripConfigurationFormValue) => {
     console.log('handleMakeTrip', data);
   };
 
-  // console.log('debounceQuery', debounceQuery);
+  const handleAutocompleteSelect = (selection: string) => {
+    setValue('search', selection);
+    setIsAutocompleteOpen(false);
+  };
 
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit(handleMakeTrip)}
       className={'flex flex-col items-center mt-2 w-full'}
     >
       <div className={'relative w-full'}>
         <BasicInput
           classNames={
-            'w-full pb-3 pt-9 border-y border-solid border-gray100 placeholder:text-black placeholder:font-semibold focus:outline-none z-10'
+            'w-full pb-3 pt-9 border-y border-solid border-gray100 font-semibold placeholder:text-black placeholder:font-semibold focus:outline-none z-10'
           }
           label={'search'}
           placeholder={'어디든지'}
           type={'text'}
           register={register}
           required
+          onFocus={() => setIsAutocompleteOpen(true)}
+          onBlur={() => () => setIsAutocompleteOpen(false)}
         />
         <span
           className={
@@ -52,14 +60,17 @@ export default function TripConfigurationForm() {
         >
           지역검색
         </span>
-        {debounceQuery && (
+        {isAutocompleteOpen && debounceQuery && (
           <Autocomplete>
-            {new Array(3).fill(0).map((_, i) => (
+            {new Array(3).fill('제주도').map((place, i) => (
               // 임시 배열 설정 추후 MSW 테스트 필요
               <li className={'p-1'} key={i}>
-                <Link className={'flex items-center'} href={`#${i}`}>
-                  <Subtract className={'mr-1'} /> example
-                </Link>
+                <button
+                  onClick={() => handleAutocompleteSelect(place)}
+                  className={'flex items-center font-semibold'}
+                >
+                  <Subtract className={'mr-1'} /> {place}
+                </button>
               </li>
             ))}
           </Autocomplete>
@@ -69,7 +80,7 @@ export default function TripConfigurationForm() {
         <div className={'relative'}>
           <BasicInput
             classNames={
-              'w-full pb-3 pt-9 placeholder:text-black placeholder:font-semibold focus:outline-none z-10'
+              'w-full pb-3 pt-9 placeholder:text-black font-semibold placeholder:font-semibold focus:outline-none z-10'
             }
             label={'startDate'}
             placeholder={'날짜추가'}
@@ -93,7 +104,7 @@ export default function TripConfigurationForm() {
         <div className={'relative'}>
           <BasicInput
             classNames={
-              'w-full pb-3 pt-9 placeholder:text-black placeholder:font-semibold focus:outline-none z-10'
+              'w-full pb-3 pt-9 placeholder:text-black font-semibold placeholder:font-semibold focus:outline-none z-10'
             }
             label={'endDate'}
             placeholder={'날짜추가'}
@@ -113,7 +124,7 @@ export default function TripConfigurationForm() {
       <div className={'relative w-full'}>
         <BasicInput
           classNames={
-            'w-full pb-3 pt-9 border-y border-solid border-gray100 placeholder:text-black placeholder:font-semibold focus:outline-none z-10'
+            'w-full pb-3 pt-9 border-y border-solid border-gray100 font-semibold placeholder:text-black placeholder:font-semibold focus:outline-none z-10'
           }
           label={'single'}
           placeholder={'선택'}

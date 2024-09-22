@@ -15,6 +15,8 @@ export default function BasicInput<T extends FieldValues>({
   maxLength = 15,
   rules,
   disable = false,
+  onFocus,
+  onBlur,
 }: InputProps<T>) {
   return (
     <>
@@ -26,6 +28,8 @@ export default function BasicInput<T extends FieldValues>({
         autoComplete={autoComplete}
         disabled={disable}
         maxLength={maxLength}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
     </>
   );

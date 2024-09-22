@@ -35,6 +35,8 @@ export interface InputProps<T extends FieldValues> {
   required: boolean;
   disable?: boolean;
   maxLength?: number;
+  onFocus?: () => void;
+  onBlur?: () => void;
   rules?: Omit<
     RegisterOptions<T>,
     'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'
