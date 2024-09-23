@@ -1,7 +1,8 @@
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
+import React from 'react';
 
-import md from '@/asset/md.svg';
+import Logo from '@/asset/Logo.svg';
+import Kakao from '@/asset/md.svg';
 import NavigationButton from '@/components/NavigationButton';
 import {Link} from '@/i18n/routing';
 
@@ -9,9 +10,12 @@ export default function AuthPage() {
   const t = useTranslations('Auth');
   return (
     <div className="h-[calc(100vh-64px)] flex items-center justify-center">
-      <div className="text-center">
-        <p className="text-xl font-bold pb-3">logo</p>
-        <h3 style={{whiteSpace: 'pre-line'}} className="text-2xl font-bold">
+      <div className="flex flex-col items-center">
+        <Logo className={'mb-5'} />
+        <h3
+          style={{whiteSpace: 'pre-line'}}
+          className="text-2xl font-bold text-center"
+        >
           {t('intro')}
         </h3>
         <div className={'w-96 px-6 md:px-0'}>
@@ -23,11 +27,7 @@ export default function AuthPage() {
             >
               {t('kakao')}
             </NavigationButton>
-            <Image
-              className={'absolute top-16 left-6'}
-              src={md}
-              alt={'kakao'}
-            />
+            <Kakao className={'absolute top-16 left-6'} />
           </div>
           <div className={'flex items-center my-3'}>
             <div

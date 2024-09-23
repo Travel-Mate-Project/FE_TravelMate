@@ -1,6 +1,6 @@
 'use client';
 
-import {BasicButtonProps} from '@/types';
+import {ButtonProps} from '@/types';
 
 export default function BasicButton({
   children,
@@ -8,12 +8,16 @@ export default function BasicButton({
   onClick,
   type,
   disabled = false,
-}: BasicButtonProps) {
+}: ButtonProps) {
   return (
     <button
       disabled={disabled}
       type={type}
-      className={`${disabled && 'cursor-not-allowed bg-gray200'} ${classNames}`}
+      className={`${
+        disabled
+          ? `!cursor-not-allowed !bg-gray200 px-3 py-4 rounded-lg text-white font-semibold ${classNames}`
+          : `bg-green100 px-3 py-4 rounded-lg text-white font-semibold hover:bg-green200 transition duration-200 ease-in-out ${classNames}`
+      }`}
       onClick={onClick}
     >
       {children}

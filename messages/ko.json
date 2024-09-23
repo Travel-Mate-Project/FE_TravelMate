@@ -36,7 +36,7 @@
     "needPassword": "비밀번호를 입력해주세요.",
     "emailError": "이메일 형식이 올바르지 않습니다.",
     "passwordError": "영문 대소문자/숫자/특수문자 포함 8자 이상",
-    "rememberEmail": "이메일 기억",
+    "rememberEmail": "이메일 유지",
     "findId": "아이디 찾기",
     "findPassword": "비밀번호 찾기"
   },
@@ -61,9 +61,19 @@
     "needPassword": "비밀번호를 입력해주세요.",
     "needPasswordCheck": "비밀번호를 한번더 압력해 주세요.",
     "needBirthDay": "생일을 입력해 주세요.",
+    "birthDayError": "올바른 생일이 아닙니다.",
     "emailError": "이메일 형식이 올바르지 않습니다.",
     "passwordError": "영문 대소문자/숫자/특수문자 포함 8자 이상",
-    "passwordMismatch": "비밀번호가 일치하지 않습니다."
+    "passwordMismatch": "비밀번호가 일치하지 않습니다.",
+    "duplicate": "중복검사",
+    "agreeAllTerms": "본인인증 약관 전체동의 (필수)",
+    "agreePersonalInfo": "개인정보 수집 이용 동의",
+    "agreeUniqueInfo": "고유식별 정보처리 동의",
+    "agreeServiceTerms": "서비스 이용약관 동의",
+    "next": "다음",
+    "complete": "완료",
+    "prev": "이전",
+    "check": "확인하기"
   },
   "welcome": {
     "goToSignIn": "로그인 하러 가기",

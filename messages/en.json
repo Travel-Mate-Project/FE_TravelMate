@@ -61,9 +61,19 @@
     "needPassword": "Please enter a password.",
     "needPasswordCheck": "Please re-enter password.",
     "needBirthDay": "Please enter your birthday.",
+    "birthDayError": "Invalid birthday.",
     "emailError": "Invalid email format.",
     "passwordError": "8+ chars: A-Z, a-z, 0-9, symbol",
-    "passwordMismatch": "Passwords do not match."
+    "passwordMismatch": "Passwords do not match.",
+    "duplicate": "Verify",
+    "agreeAllTerms": "Agree All (Required)",
+    "agreePersonalInfo": "Agree Personal Data Use",
+    "agreeUniqueInfo": "Agree ID Info Processing",
+    "agreeServiceTerms": "Agree Service Terms",
+    "next": "Next",
+    "complete": "Complete",
+    "prev": "Previous",
+    "check": "View"
   },
   "welcome": {
     "goToSignIn": "Go to Sign In",

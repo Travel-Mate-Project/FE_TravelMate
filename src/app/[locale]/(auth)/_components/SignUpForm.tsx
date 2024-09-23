@@ -108,11 +108,8 @@ export default function SignUpForm() {
                 }}
                 error={errors.email?.message}
               />
-              <BasicButton
-                classNames="bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-[110px]"
-                type="button"
-              >
-                중복검사
+              <BasicButton classNames="w-[120px]" type="button">
+                {t('duplicate')}
               </BasicButton>
             </div>
           </div>
@@ -160,7 +157,7 @@ export default function SignUpForm() {
                 rules={{required: true}}
                 render={({field}) => (
                   <BasicCheckBox
-                    label="본인인증 약관 전체동의 (필수)"
+                    label={t('agreeAllTerms')}
                     checked={field.value ?? false}
                     onChange={(checked) => {
                       field.onChange(checked);
@@ -171,7 +168,9 @@ export default function SignUpForm() {
                   />
                 )}
               />
-              <span className={'font-sm text-gray100 underline'}>확인하기</span>
+              <span className={'font-sm text-gray100 underline'}>
+                {t('check')}
+              </span>
             </div>
             <div className={'flex w-full items-center justify-between'}>
               <Controller
@@ -180,13 +179,16 @@ export default function SignUpForm() {
                 rules={{required: true}}
                 render={({field}) => (
                   <BasicCheckBox
-                    label="개인정보 수집 이용 동의"
+                    label={t('agreePersonalInfo')}
                     checked={field.value ?? false}
                     onChange={field.onChange}
                   />
                 )}
               />
-              <span className={'font-sm text-gray100 underline'}>확인하기</span>
+              <span className={'font-sm text-gray100 underline'}>
+                {' '}
+                {t('check')}
+              </span>
             </div>
             <div className={'flex w-full items-center justify-between'}>
               <Controller
@@ -195,13 +197,15 @@ export default function SignUpForm() {
                 rules={{required: true}}
                 render={({field}) => (
                   <BasicCheckBox
-                    label="고유식별 정보처리 동의"
+                    label={t('agreeUniqueInfo')}
                     checked={field.value ?? false}
                     onChange={field.onChange}
                   />
                 )}
               />
-              <span className={'font-sm text-gray100 underline'}>확인하기</span>
+              <span className={'font-sm text-gray100 underline'}>
+                {t('check')}
+              </span>
             </div>
             <div className={'flex w-full items-center justify-between'}>
               <Controller
@@ -210,13 +214,15 @@ export default function SignUpForm() {
                 rules={{required: true}}
                 render={({field}) => (
                   <BasicCheckBox
-                    label="서비스 이용약관 동의"
+                    label={t('agreeServiceTerms')}
                     checked={field.value ?? false}
                     onChange={field.onChange}
                   />
                 )}
               />
-              <span className={'font-sm text-gray100 underline'}>확인하기</span>
+              <span className={'font-sm text-gray100 underline'}>
+                {t('check')}
+              </span>
             </div>
           </div>
         </div>
@@ -247,6 +253,11 @@ export default function SignUpForm() {
               required
               rules={{
                 required: t('needBirthDay'),
+                pattern: {
+                  value:
+                    /^(19\d{2}|20\d{2})(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/,
+                  message: t('birthDayError'),
+                },
               }}
               error={errors.birthday?.message}
             />
@@ -256,20 +267,20 @@ export default function SignUpForm() {
       <div className="flex items-center gap-2 mt-12">
         {stage === 2 && (
           <BasicButton
+            classNames={'w-32'}
             onClick={goPreviousStage}
-            classNames="bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-28"
             type="button"
           >
-            이전
+            {t('prev')}
           </BasicButton>
         )}
         <BasicButton
+          classNames={'w-full'}
           onClick={stage === 1 ? handleNextStage : undefined}
           disabled={!isValid}
-          classNames="bg-green100 px-3 py-4 rounded-lg text-white font-semibold w-full"
           type="submit"
         >
-          {stage === 1 ? '다음' : '완료'}
+          {stage === 1 ? t('next') : t('complete')}
         </BasicButton>
       </div>
     </form>

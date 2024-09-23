@@ -1,14 +1,13 @@
 'use client';
 
-import Image from 'next/image';
 import React, {useState} from 'react';
 import {FieldValues} from 'react-hook-form';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import closeEyes from '@/asset/close-eye.svg';
-import openEyes from '@/asset/open-eye.svg';
-import warn from '@/asset/warn.svg';
-import {AuthInputProps} from '@/types';
+import CloseEyes from '@/asset/close-eye.svg';
+import OpenEyes from '@/asset/open-eye.svg';
+import Warn from '@/asset/warn.svg';
+import {InputProps} from '@/types';
 
 export default function AuthInput<T extends FieldValues>({
   label,
@@ -21,7 +20,7 @@ export default function AuthInput<T extends FieldValues>({
   rules,
   error,
   disable = false,
-}: AuthInputProps<T>) {
+}: InputProps<T>) {
   const [isFocused, setIsFocused] = useState(false);
   const [visible, setVisible] = useState(false);
 
@@ -35,15 +34,6 @@ export default function AuthInput<T extends FieldValues>({
     return 'shadow-[0_0_0_1px_theme(colors.gray100)]';
   };
 
-  const commonInputClass = `
-    w-full bg-transparent
-    px-3 py-4 rounded-md
-    focus:outline-none
-    relative z-10 
-    ${error ? 'border-red-500' : ''}
-    ${classNames}
-  `;
-
   return (
     <>
       <div className="w-full relative">
@@ -51,7 +41,7 @@ export default function AuthInput<T extends FieldValues>({
           {...register(label, {required, ...rules})}
           type={type === 'password' && visible ? 'text' : type}
           autoComplete={autoComplete}
-          className={commonInputClass}
+          className={`w-full bg-transparent px-3 py-4 rounded-md focus:outline-none hover:appearance-none relative z-10 ${error ? 'border-red-500' : ''} ${classNames}`}
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
@@ -73,21 +63,13 @@ export default function AuthInput<T extends FieldValues>({
             onClick={() => setVisible(!visible)}
             className={'absolute top-5 right-3.5 z-10 cursor-pointer'}
           >
-            {visible ? (
-              <Image src={openEyes} alt={'icon'} />
-            ) : (
-              <Image src={closeEyes} alt={'icon'} />
-            )}
+            {visible ? <OpenEyes /> : <CloseEyes />}
           </button>
         )}
         <>
           {error && (
             <p className="absolute -top-8 right-0 flex mt-2 text-xs text-red-500 whitespace-pre-line">
-              <Image
-                className={'absolute left-0 mr-1.5'}
-                src={warn}
-                alt={'icon'}
-              />
+              <Warn className={'absolute left-0 mr-1.5'} />
               <span className={'pl-5'}> {error}</span>
             </p>
           )}

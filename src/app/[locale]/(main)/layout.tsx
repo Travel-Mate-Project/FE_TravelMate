@@ -1,11 +1,22 @@
 import React, {ReactNode} from 'react';
+
 import Header from '@/components/Header';
 
-export default function MainLayout({children}: {children: ReactNode}) {
+interface Props {
+  children: ReactNode;
+  modal: ReactNode;
+}
+
+export default function MainLayout({children, modal}: Props) {
   return (
     <>
       <Header />
-      <div className={'pt-16'}>{children}</div>
+      <main
+        className={'pt-24 px-5 w-full max-w-xl mx-auto md:px-1.5 md:max-w-6xl'}
+      >
+        {children}
+        {modal}
+      </main>
     </>
   );
 }

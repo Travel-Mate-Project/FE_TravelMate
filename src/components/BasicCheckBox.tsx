@@ -1,10 +1,10 @@
-import {BasicCheckboxProps} from '@/types';
+import {CheckboxProps} from '@/types';
 
 export default function BasicCheckBox({
   label,
   checked,
   onChange,
-}: BasicCheckboxProps) {
+}: CheckboxProps) {
   return (
     <label className="flex items-center cursor-pointer">
       <div className="relative">

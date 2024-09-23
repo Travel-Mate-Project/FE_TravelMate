@@ -1,15 +1,40 @@
-import {useTranslations} from 'next-intl';
+'use client';
 
-import {BasicInputProps} from '@/types';
+import {FieldValues} from 'react-hook-form';
 
-export default function BasicInput({
+import {InputProps} from '@/types';
+
+export default function BasicInput<T extends FieldValues>({
+  label,
   placeholder,
   type,
+  autoComplete,
+  register,
   classNames,
-  translationNamespace,
-}: BasicInputProps) {
-  const t = useTranslations(translationNamespace);
+  required,
+  maxLength = 15,
+  rules,
+  disable = false,
+  onClick,
+  onFocus,
+  onBlur,
+  readOnly = false,
+}: InputProps<T>) {
   return (
-    <input className={classNames} type={type} placeholder={t(placeholder)} />
+    <>
+      <input
+        {...register(label, {required, ...rules})}
+        className={classNames}
+        type={type}
+        placeholder={placeholder}
+        autoComplete={autoComplete}
+        disabled={disable}
+        maxLength={maxLength}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onClick={onClick}
+        readOnly={readOnly}
+      />
+    </>
   );
 }

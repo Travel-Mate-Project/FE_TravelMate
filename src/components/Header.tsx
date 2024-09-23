@@ -1,9 +1,10 @@
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
+import React from 'react';
 
-import LocaleSwitcher from '@/app/[locale]/_components/LocaleSwitcher';
-import searchSVG from '@/asset/search.svg';
-import BasicInput from '@/components/BasicInput';
+import Logo from '@/asset/Logo.svg';
+import SearchIcon from '@/asset/search.svg';
+import HeaderSearchIcon from '@/asset/header-search-icon.svg';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 import MobileMenu from '@/components/MobilMenu';
 import NavigationButton from '@/components/NavigationButton';
 import {Link} from '@/i18n/routing';
@@ -11,15 +12,13 @@ import {Link} from '@/i18n/routing';
 export default function Header() {
   const t = useTranslations('Header');
   return (
-    <header className="absolute w-full bg-transparent">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="absolute w-full bg-transparent py-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold">
-              logo
-            </Link>
-          </div>
-
+          <MobileMenu />
+          <Link className={'hidden md:inline'} href={'/'}>
+            <Logo />
+          </Link>
           <nav className="hidden md:flex space-x-10">
             <Link href="/" className="text-gray-700 hover:text-gray-900">
               {t('home')}
@@ -34,19 +33,14 @@ export default function Header() {
 
           <div className="hidden md:flex items-center space-x-12">
             <div className="relative">
-              <BasicInput
-                classNames={
+              <input
+                className={
                   'w-48 lg:w-64 border border-gray-300 rounded-full py-1 pl-12 focus:outline-none focus:ring-2 focus:ring-blue-300'
                 }
                 type={'text'}
-                translationNamespace={'Header'}
                 placeholder={'search'}
               />
-              <Image
-                className={'absolute top-1.5 left-3'}
-                src={searchSVG}
-                alt={'검색'}
-              />
+              <SearchIcon className={'absolute top-1.5 left-3 '} />
             </div>
             <NavigationButton
               classNames={
@@ -60,7 +54,9 @@ export default function Header() {
             <LocaleSwitcher />
           </div>
 
-          <MobileMenu />
+          <div className="flex items-center md:hidden">
+            <HeaderSearchIcon width={25} height={25} />
+          </div>
         </div>
       </div>
     </header>

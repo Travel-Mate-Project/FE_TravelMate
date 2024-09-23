@@ -6,6 +6,7 @@ import {useForm} from 'react-hook-form';
 
 import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
 import BasicButton from '@/components/BasicButton';
+import BasicCheckBox from '@/components/BasicCheckBox';
 import {Link} from '@/i18n/routing';
 import {SignInFormValue} from '@/types';
 
@@ -20,8 +21,7 @@ export default function SignInFrom() {
     formState: {errors},
   } = useForm<SignInFormValue>();
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newCheckedState = event.target.checked;
+  const handleCheckboxChange = (newCheckedState: boolean) => {
     setIsChecked(newCheckedState);
   };
 
@@ -71,28 +71,19 @@ export default function SignInFrom() {
         </div>
       </div>
       <div className={'mt-16'}>
-        <BasicButton
-          classNames={
-            'w-full bg-green100 px-3 py-4 rounded-lg text-white font-semibold'
-          }
-          type={'submit'}
-        >
+        <BasicButton classNames={'w-full'} type={'submit'}>
           {t('logIn')}
         </BasicButton>
-        <div className={'flex items-center justify-between mt-5'}>
-          <label
-            htmlFor={'email-save'}
-            className="flex items-center space-x-2 cursor-pointer "
-          >
-            <input
-              id={'email-save'}
-              type="checkbox"
-              checked={isChecked}
-              onChange={handleCheckboxChange}
-              className="form-checkbox h-5 w-5 text-blue-600"
-            />
-            <p className={'font-bold'}>{t('rememberEmail')}</p>
-          </label>
+        <div
+          className={
+            'flex items-center justify-between mt-5 font-semibold text-gray800'
+          }
+        >
+          <BasicCheckBox
+            label={t('rememberEmail')}
+            checked={isChecked}
+            onChange={handleCheckboxChange}
+          />
           <div className={'flex items-center gap-1'}>
             <span className={'font-bold'}>
               <Link href={'/'}>{t('findId')}</Link>
