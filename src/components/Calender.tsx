@@ -23,7 +23,7 @@ export default function EnhancedCalendar() {
       const start = range[0];
       const end = range[1];
       const currentDate = dayjs(date);
-      let classes: string[] = [];
+      const classes: string[] = [];
 
       if (currentDate.isSame(start, 'day')) {
         classes.push('relative bg-green50 text-white rounded-l-full');

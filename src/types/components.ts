@@ -75,12 +75,29 @@ export interface TripConfigurationFormValue {
   search: string;
   startDate: string;
   endDate: string;
-  single: boolean;
+  single: string;
 }
 
 export interface ModalProps {
   title: string;
   children: ReactNode;
   setValue?: UseFormSetValue<TripConfigurationFormValue>;
+  // eslint-disable-next-line no-unused-vars
   handleChange?: <T>(value?: T) => void;
+}
+
+interface SelectOptions {
+  value: string;
+  label: string;
+}
+
+export interface SelectBoxProps
+  extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  children?: ReactNode;
+  classNames?: string;
+  defaultValue?: string;
+  options: SelectOptions[];
+  label: string;
+  onChange: <T>(event: T) => void;
+  value?: string;
 }

@@ -1,18 +1,20 @@
 'use client';
 
+import dayjs from 'dayjs';
 import React, {useEffect, useRef, useState} from 'react';
-import {useForm, useWatch} from 'react-hook-form';
+import {Controller, useForm, useWatch} from 'react-hook-form';
 
+import BasicSelectBox from '@/app/[locale]/(main)/_components/CustomDropdown';
 import Subtract from '@/asset/subtract.svg';
 import Autocomplete from '@/components/Autocomplete';
 import BasicButton from '@/components/BasicButton';
 import BasicInput from '@/components/BasicInput';
 import {useDebounce} from '@/hooks/useDebounce';
 import useOutsideClick from '@/hooks/useOutsideClick';
-import {TripConfigurationFormValue} from '@/types';
-import dayjs from 'dayjs';
-import 'dayjs/locale/ko';
 import {Link} from '@/i18n/routing';
+import {TripConfigurationFormValue} from '@/types';
+
+import 'dayjs/locale/ko';
 import {useDateStore} from '@/store';
 
 export default function TripConfigurationForm() {
@@ -139,15 +141,24 @@ export default function TripConfigurationForm() {
         </div>
       </Link>
       <div className={'relative w-full'}>
-        <BasicInput
-          classNames={
-            'w-full pb-3 pt-9 border-y border-solid border-gray100 font-semibold placeholder:text-black placeholder:font-semibold focus:outline-none z-10'
-          }
-          label={'single'}
-          placeholder={'선택'}
-          type={'text'}
-          register={register}
-          required
+        <Controller
+          name="single"
+          control={control}
+          defaultValue="1"
+          rules={{required: true}}
+          render={({field}) => (
+            // 옵션 value는 백엔드와 상의 후 교체
+            <BasicSelectBox
+              options={[
+                {value: '1', label: '혼자 여행'},
+                {value: '2', label: '친구와 여행'},
+              ]}
+              value={field.value}
+              onChange={field.onChange}
+              classNames="appearance-none w-full pb-3 pt-9 border-y border-solid border-gray100 font-semibold placeholder:text-black placeholder:font-semibold focus:outline-none"
+              label="선택"
+            />
+          )}
         />
         <span
           className={
