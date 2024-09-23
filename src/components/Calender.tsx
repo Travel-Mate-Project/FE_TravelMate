@@ -22,18 +22,22 @@ export default function EnhancedCalendar() {
       const start = range[0];
       const end = range[1];
       const currentDate = dayjs(date);
+      let classes: string[] = [];
+
       if (currentDate.isSame(start, 'day')) {
-        return 'bg-green50 text-white rounded-l-lg';
+        classes.push('relative bg-green50 text-white rounded-l-full');
       }
       if (currentDate.isSame(end, 'day')) {
-        return 'bg-green200 text-white rounded-r-lg';
+        classes.push('relative bg-green200 text-white rounded-r-full');
       }
       if (
         currentDate.isAfter(start, 'day') &&
         currentDate.isBefore(end, 'day')
       ) {
-        return 'bg-green100 text-white';
+        classes.push('bg-green100 text-white');
       }
+
+      return classes.join(' ');
     }
     return null;
   };
@@ -76,7 +80,7 @@ export default function EnhancedCalendar() {
           selectRange={true}
           formatMonthYear={(locale, date) => {
             const year = dayjs(date).format('YYYY');
-            const month = dayjs(date).format('M');
+            const month = dayjs(date).format('MM');
             return `${year} . ${month}`;
           }}
           formatShortWeekday={(locale, date) =>

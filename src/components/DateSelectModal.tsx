@@ -14,7 +14,11 @@ export default function Modal({children, title}: ModalProps) {
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-modalBg flex items-center justify-center z-50">
+    <div
+      className={
+        'fixed inset-0 bg-modalBg flex items-center justify-center z-50'
+      }
+    >
       <div
         className={`
          absolute bottom-0
@@ -26,12 +30,16 @@ export default function Modal({children, title}: ModalProps) {
           md:transform-none md:opacity-100
         `}
       >
-        <div className="relative py-10 px-6 flex min-h-full flex-col items-center">
-          <h2 className="text-2xl font-bold mb-10">{title}</h2>
+        <div
+          className={
+            'relative py-10 px-6 flex min-h-full flex-col items-center'
+          }
+        >
+          <h2 className={'text-2xl font-bold mb-10'}>{title}</h2>
           {children}
           <CloseIcon
             onClick={() => router.back()}
-            className="absolute top-10 right-5 cursor-pointer"
+            className={'absolute top-10 right-5 cursor-pointer'}
           />
         </div>
       </div>
