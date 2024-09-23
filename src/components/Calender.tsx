@@ -49,10 +49,11 @@ export default function EnhancedCalendar() {
 
   const handleRangeChange = (value: Date) => {
     const clickedDate = dayjs(value);
-    if (range[0].isSame(range[0], 'day')) {
+    const [startDay, endDay] = range;
+    if (startDay.isSame(startDay, 'day')) {
       setRange([clickedDate, clickedDate]);
     } else {
-      const newRange = [range[1], clickedDate].sort(
+      const newRange = [endDay, clickedDate].sort(
         (a, b) => b.valueOf() - a.valueOf(),
       ) as [Dayjs, Dayjs];
       setRange(newRange);
