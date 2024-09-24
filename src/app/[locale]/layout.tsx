@@ -2,6 +2,7 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import React from 'react';
 
+import MSW from '@/components/MSW';
 import {pretendard} from '@/lib/fonts';
 
 export default async function LocaleLayout({
@@ -17,6 +18,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${pretendard.variable}`}>
       <body>
         <NextIntlClientProvider messages={messages}>
+          <MSW />
           {children}
         </NextIntlClientProvider>
       </body>
