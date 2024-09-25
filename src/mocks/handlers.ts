@@ -1,8 +1,8 @@
 import {http, HttpResponse} from 'msw';
 
 export const handlers = [
-  http.post('/api/test', () => {
+  http.get(`/api/test`, () => {
     console.log('test');
-    return HttpResponse.json([], {});
+    return HttpResponse.json([{data: 'test'}, {data: 'test2'}], {});
   }),
 ];
