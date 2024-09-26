@@ -1,5 +1,5 @@
 export const DB = {
-  place: [
+  region: [
     {
       placeId: 1,
       name: '제주 해수욕장',

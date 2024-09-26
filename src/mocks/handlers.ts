@@ -5,6 +5,6 @@ import {DB} from '@/db/db';
 
 export const handlers = [
   http.get(END_POINT.place.regions, () => {
-    return HttpResponse.json(DB.place, {});
+    return HttpResponse.json(DB.region, {});
   }),
 ];
