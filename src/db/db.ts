@@ -29,7 +29,7 @@ export const DB = {
     {
       placeId: 3,
       name: '제주 해수욕장3',
-      description: '대충 설명 설명',
+      description: '대충 설명 설명2',
       addr: '제주도 어딘가',
       type: '타입1',
       latitude: 123123.123,
@@ -42,7 +42,7 @@ export const DB = {
     {
       placeId: 4,
       name: '제주 해수욕장4',
-      description: '대충 설명 설명',
+      description: '대충 설명 설명3',
       addr: '제주도 어딘가',
       type: '타입1',
       latitude: 123123.123,
@@ -55,7 +55,7 @@ export const DB = {
     {
       placeId: 5,
       name: '제주 해수욕장5',
-      description: '대충 설명 설명',
+      description: '대충 설명 설명4',
       addr: '제주도 어딘가',
       type: '타입1',
       latitude: 123123.123,
@@ -66,4 +66,4 @@ export const DB = {
       rating: 4.2,
     },
   ],
-} as const;
+};
