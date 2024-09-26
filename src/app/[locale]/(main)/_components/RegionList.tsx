@@ -1,5 +1,7 @@
 'use client';
 
+import Card from '@/components/Card';
+import Carousel from '@/components/Carousel';
 import {useGetRegionList} from '@/hooks/withQuery/useGetRegionList';
 import {RegionType} from '@/types/response';
 
@@ -7,10 +9,14 @@ export default function RegionList() {
   const {regionList} = useGetRegionList();
 
   return (
-    <div>
-      {regionList.map((region: RegionType) => (
-        <div key={region.placeId}>{region.name}</div>
-      ))}
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      <Carousel>
+        {regionList.map((region: RegionType) => (
+          <div key={region.placeId}>
+            <Card region={region} />
+          </div>
+        ))}
+      </Carousel>
     </div>
   );
 }

@@ -1,11 +1,5 @@
-import Image from 'next/image';
-
 import {CardProps} from '@/types';
 
-export default function Card({places}: CardProps) {
-  return (
-    <article>
-      <Image priority src={places.imageURL} alt={'image'} />
-    </article>
-  );
+export default function Card({region}: CardProps) {
+  return <article className={'w-96'}>{region.name}</article>;
 }

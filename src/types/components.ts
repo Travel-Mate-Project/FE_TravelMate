@@ -9,7 +9,7 @@ import {
   UseFormSetValue,
 } from 'react-hook-form';
 
-import {PlaceType} from '@/types/response';
+import {RegionType} from '@/types/response';
 
 type InputType = 'text' | 'password' | 'email' | 'date' | 'number';
 type ButtonType = 'button' | 'submit' | 'reset';
@@ -112,7 +112,7 @@ export interface TitleProps {
 }
 
 export interface CardProps {
-  places: PlaceType;
+  region: RegionType;
 }
 
 export interface QueryConfig {
