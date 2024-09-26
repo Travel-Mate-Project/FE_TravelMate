@@ -1,5 +1,5 @@
-import {CheckboxProps} from '@/types';
 import Checked from '@/asset/check.svg';
+import {CheckboxProps} from '@/types';
 
 export default function BasicCheckBox({
   label,
