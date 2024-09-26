@@ -1,7 +1,7 @@
 'use client';
 
 import dayjs, {Dayjs} from 'dayjs';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Calendar from 'react-calendar';
 
 import LeftButton from '@/asset/leftButton.svg';
@@ -12,7 +12,7 @@ import {useDateStore} from '@/store';
 
 export default function EnhancedCalendar() {
   const router = useRouter();
-  const {setDate, setIsSelected} = useDateStore();
+  const {date, isSelected, setDate, setIsSelected} = useDateStore();
   const [range, setRange] = useState<[Dayjs, Dayjs]>([
     dayjs(),
     dayjs().add(3, 'day'),
@@ -67,6 +67,14 @@ export default function EnhancedCalendar() {
     setIsSelected(true);
     router.back();
   };
+
+  useEffect(() => {
+    if (isSelected) {
+      const startDate = dayjs(date[0]);
+      const endDate = dayjs(date[1]);
+      setRange([startDate, endDate]);
+    }
+  }, [date, isSelected]);
 
   return (
     <div className={'min-h-full flex flex-col'}>
