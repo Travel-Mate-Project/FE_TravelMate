@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import React, {useEffect, useRef, useState} from 'react';
 import {Controller, useForm, useWatch} from 'react-hook-form';
 
-import BasicSelectBox from '@/app/[locale]/(main)/_components/CustomDropdown';
+import CustomDropdownSelectBox from '@/app/[locale]/(main)/_components/CustomDropdownSelectBox';
 import Subtract from '@/asset/subtract.svg';
 import Autocomplete from '@/components/Autocomplete';
 import BasicButton from '@/components/BasicButton';
@@ -148,7 +148,7 @@ export default function TripConfigurationForm() {
           rules={{required: true}}
           render={({field}) => (
             // 옵션 value는 백엔드와 상의 후 교체
-            <BasicSelectBox
+            <CustomDropdownSelectBox
               options={[
                 {value: '1', label: '혼자 여행'},
                 {value: '2', label: '친구와 여행'},
