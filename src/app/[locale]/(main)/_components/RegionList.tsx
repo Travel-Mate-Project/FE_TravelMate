@@ -9,7 +9,7 @@ export default function RegionList() {
   const {regionList} = useGetRegionList();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto py-8">
       <Carousel>
         {regionList.map((region: RegionType) => (
           <div key={region.placeId}>

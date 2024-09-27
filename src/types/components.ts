@@ -124,3 +124,7 @@ export interface ServerPrefetchProviderProps {
   children: ReactNode;
   queries: QueryConfig | QueryConfig[];
 }
+
+export interface CarouseButtonProps extends ButtonProps {
+  isNext: boolean;
+}
