@@ -88,6 +88,7 @@ export default function EnhancedCalendar() {
           next2Label={null}
           prev2Label={null}
           selectRange={true}
+          defaultActiveStartDate={date[0]}
           formatMonthYear={(locale, date) => {
             const year = dayjs(date).format('YYYY');
             const month = dayjs(date).format('MM');

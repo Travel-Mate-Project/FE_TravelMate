@@ -22,11 +22,11 @@ export default function Modal({children, title}: ModalProps) {
       <div
         className={`
          absolute bottom-0
-          bg-white w-full h-[88%] max-w-md rounded-t-2xl shadow-lg
+          bg-white w-full h-[90%] max-w-md rounded-t-2xl shadow-lg
           transition-all duration-300 ease-in-out
           ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}
           md:static
-          md:w-7xl md:h-[88%] md:rounded-2xl
+          md:w-7xl md:h-[750px] md:rounded-2xl
           md:transform-none md:opacity-100
         `}
       >
