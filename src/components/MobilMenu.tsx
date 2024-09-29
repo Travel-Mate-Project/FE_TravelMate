@@ -17,13 +17,13 @@ export default function MobileMenu() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <div className="md:hidden">
+    <div className="">
       <div className={'flex items-center'}>
         <button onClick={toggleMenu} type={'button'}>
           <MenuIcon width={30} height={30} />
         </button>
-        <Link className={'hidden md:block'} href={'/'}>
-          <Logo className={'ml-5'} />
+        <Link href={'/'}>
+          <Logo className={'ml-5'} width={100} height={30} />
         </Link>
       </div>
       {isMenuOpen && (

@@ -13,7 +13,7 @@ export default function RegionList() {
       <Carousel>
         {regionList.map((region: RegionType) => (
           <div key={region.placeId}>
-            <Card region={region} />
+            <Card region={region} variant={'region'} />
           </div>
         ))}
       </Carousel>

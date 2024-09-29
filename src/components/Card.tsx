@@ -2,15 +2,57 @@ import Image from 'next/image';
 
 import {CardProps} from '@/types';
 
-export default function Card({region}: CardProps) {
+import Star from '@/asset/Star.svg';
+import Message from '@/asset/message.svg';
+
+export default function Card({
+  region,
+  width = 200,
+  height = 200,
+  variant,
+}: CardProps) {
   return (
-    <article className={'w-[200px] h-[200px] flex align-center justify-center'}>
-      <Image
-        src={region.imageURL}
-        alt={'placeImage'}
-        width={200}
-        height={200}
-      />
+    <article
+      className={`min-w-[${width}px] flex align-center flex-col justify-center gap-1.5`}
+    >
+      <div className={'relative'}>
+        <Image
+          src={region.imageURL}
+          alt={'placeImage'}
+          width={width}
+          height={height}
+        />
+        {variant === 'course' && (
+          <p
+            className={
+              'absolute bottom-0 text-white bg-black rounded-tr-md py-1 px-2 text-sm opacity-70'
+            }
+          >
+            1박2일
+          </p>
+        )}
+      </div>
+      <div className={'flex flex-col justify-center'}>
+        <p className={'font-semibold'}>{region.name}</p>
+        {variant !== 'region' && (
+          <>
+            <span className={'text-gray300 text-sm'}>{region.addr}</span>
+            {variant === 'course' && (
+              <span className={'text-gray300 text-sm'}>{region.createdAt}</span>
+            )}
+          </>
+        )}
+      </div>
+      <div className={'flex items-center text-gray300 text-sm gap-2'}>
+        <div className={'flex items-center'}>
+          <Star />
+          <span className={'pl-1'}>{region.rating}</span>
+        </div>
+        <div className={'flex items-center'}>
+          <Message />
+          <span className={'pl-1'}>{region.commentCount}</span>
+        </div>
+      </div>
     </article>
   );
 }

@@ -7,7 +7,7 @@ export default function TripConfigurationPanel() {
   return (
     <div className={'rounded-xl max-w-full h-auto '}>
       <div className={'flex flex-col items-center py-10'}>
-        <Logo className={'ml-5'} />
+        <Logo className={'ml-5'} width={214} height={52} />
         <h2 className={'font-semibold text-xl mt-8'}>
           여행코스를 손쉽게 착착 🙌
         </h2>
