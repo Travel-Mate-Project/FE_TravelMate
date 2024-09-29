@@ -8,7 +8,7 @@ import SelectOpen from '@/asset/selectOpen.svg';
 import Single from '@/asset/single.svg';
 import {SelectBoxProps} from '@/types';
 
-export default function CustomStyledDropdown({
+export default function CustomDropdownSelectBox({
   label,
   classNames,
   onChange,
@@ -77,7 +77,15 @@ export default function CustomStyledDropdown({
                   </span>
                 )}
               </button>
-              {option.value === value ? <Check className="mr-4" /> : ''}
+              {option.value === value ? (
+                <Check
+                  className={
+                    'absolute right-2 stroke-green100 w-5 h-5 stroke-2'
+                  }
+                />
+              ) : (
+                ''
+              )}
             </li>
           ))}
         </ul>

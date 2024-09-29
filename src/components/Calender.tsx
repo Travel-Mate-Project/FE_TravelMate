@@ -1,7 +1,7 @@
 'use client';
 
 import dayjs, {Dayjs} from 'dayjs';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Calendar from 'react-calendar';
 
 import LeftButton from '@/asset/leftButton.svg';
@@ -9,10 +9,12 @@ import RightButton from '@/asset/rightButton.svg';
 import BasicButton from '@/components/BasicButton';
 import {useRouter} from '@/i18n/routing';
 import {useDateStore} from '@/store';
+import {useTranslations} from 'next-intl';
 
 export default function EnhancedCalendar() {
+  const t = useTranslations('calender');
   const router = useRouter();
-  const {setDate, setIsSelected} = useDateStore();
+  const {date, isSelected, setDate, setIsSelected} = useDateStore();
   const [range, setRange] = useState<[Dayjs, Dayjs]>([
     dayjs(),
     dayjs().add(3, 'day'),
@@ -68,6 +70,14 @@ export default function EnhancedCalendar() {
     router.back();
   };
 
+  useEffect(() => {
+    if (isSelected) {
+      const startDate = dayjs(date[0]);
+      const endDate = dayjs(date[1]);
+      setRange([startDate, endDate]);
+    }
+  }, [date, isSelected]);
+
   return (
     <div className={'min-h-full flex flex-col'}>
       <div className={'flex flex-col items-center'}>
@@ -80,13 +90,22 @@ export default function EnhancedCalendar() {
           next2Label={null}
           prev2Label={null}
           selectRange={true}
+          defaultActiveStartDate={date[0]}
           formatMonthYear={(locale, date) => {
             const year = dayjs(date).format('YYYY');
             const month = dayjs(date).format('MM');
             return `${year} . ${month}`;
           }}
           formatShortWeekday={(locale, date) =>
-            ['일', '월', '화', '수', '목', '금', '토'][date.getDay()]
+            [
+              t('Sun'),
+              t('Mon'),
+              t('Tue'),
+              t('Wed'),
+              t('Thu'),
+              t('Fri'),
+              t('Sat'),
+            ][date.getDay()]
           }
           formatDay={(locale, date) => dayjs(date).format('D')}
           onClickDay={(value: Date) => handleRangeChange(value)}
@@ -99,7 +118,7 @@ export default function EnhancedCalendar() {
           'w-[calc(100%-48px)] absolute bottom-12 left-1/2 transform -translate-x-1/2'
         }
       >
-        확인
+        {t('confirm')}
       </BasicButton>
     </div>
   );

@@ -5,14 +5,22 @@
   },
   "LocaleSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, ko {korean} en {English} other {Unknown}}"
+    "locale": "{locale, select, ko {KO} en {EN} other {Unknown}}"
   },
   "Header": {
-    "home": "Home",
+    "home": "Trip Planning",
     "placeRecommend": "Travel Recommendations",
-    "myTrip": "My Trip",
-    "Auth": "Login | Sign Up",
+    "myTrip": "My Trips",
+    "profile": "Profile",
+    "Auth": "Sign in",
     "search": "Search..."
+  },
+  "footer": {
+    "serviceIntro": "About",
+    "privacyPolicy": "Privacy",
+    "termsOfService": "Terms",
+    "customerService": "Support",
+    "adInquiry": "Ads"
   },
   "Auth": {
     "intro": "Plan simply and easily \n with TravelMate.",
@@ -79,5 +87,34 @@
     "goToSignIn": "Go to Sign In",
     "intro": "Registration completed!",
     "sub": "Start planning various travel courses easily right now!"
+  },
+  "tripConfigPanel": {
+    "intro": "Plan your trip with ease",
+    "locationSearch": "Find location",
+    "whereEver": "Anywhere",
+    "addDate": "Add dates",
+    "startDay": "Start date",
+    "endDay": "End date",
+    "tripType": "Group size",
+    "alone": "Solo travel",
+    "together": "Group travel",
+    "makeTrip": "Create plan"
+  },
+  "calender": {
+    "intro": "What are your travel dates?",
+    "Mon": "Mon",
+    "Tue": "Tue",
+    "Wed": "Wed",
+    "Thu": "Thu",
+    "Fri": "Fri",
+    "Sat": "Sat",
+    "Sun": "Sun",
+    "confirm": "confirm"
+  },
+  "mainTravelList": {
+    "topTenPlace": "Top 10 Most Loved Destinations",
+    "hotRegion": "Trending Regions",
+    "course": "Routes",
+    "place": "Attractions"
   }
 }

@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import React, {useEffect, useRef, useState} from 'react';
 import {Controller, useForm, useWatch} from 'react-hook-form';
 
-import BasicSelectBox from '@/app/[locale]/(main)/_components/CustomDropdown';
+import CustomDropdownSelectBox from '@/app/[locale]/(main)/_components/CustomDropdownSelectBox';
 import Subtract from '@/asset/subtract.svg';
 import Autocomplete from '@/components/Autocomplete';
 import BasicButton from '@/components/BasicButton';
@@ -16,8 +16,10 @@ import {TripConfigurationFormValue} from '@/types';
 
 import 'dayjs/locale/ko';
 import {useDateStore} from '@/store';
+import {useTranslations} from 'next-intl';
 
 export default function TripConfigurationForm() {
+  const t = useTranslations('tripConfigPanel');
   const {date, isSelected} = useDateStore();
   const [startDate, endDate] = date;
   const [isAutocompleteOpen, setIsAutocompleteOpen] = useState<boolean>(false);
@@ -63,7 +65,7 @@ export default function TripConfigurationForm() {
             'w-full pb-3 pt-9 border-y border-solid border-gray100 font-semibold placeholder:text-black placeholder:font-semibold focus:outline-none z-10'
           }
           label={'search'}
-          placeholder={'어디든지'}
+          placeholder={t('whereEver')}
           type={'text'}
           register={register}
           required
@@ -75,7 +77,7 @@ export default function TripConfigurationForm() {
             'absolute left-0 top-3.5 text-gray300 text-sm pointer-events-none'
           }
         >
-          지역검색
+          {t('locationSearch')}
         </span>
         {isAutocompleteOpen && debounceQuery && (
           <Autocomplete>
@@ -100,7 +102,7 @@ export default function TripConfigurationForm() {
               'w-full pb-3 pt-9 placeholder:text-black font-semibold placeholder:font-semibold focus:outline-none z-10'
             }
             label={'startDate'}
-            placeholder={'날짜추가'}
+            placeholder={t('addDate')}
             type={'text'}
             register={register}
             required
@@ -111,7 +113,7 @@ export default function TripConfigurationForm() {
               'absolute left-0 top-3.5 text-gray300 text-sm pointer-events-none'
             }
           >
-            출발일
+            {t('startDay')}
           </span>
         </div>
         <div
@@ -125,7 +127,7 @@ export default function TripConfigurationForm() {
               'w-full pb-3 pt-9 placeholder:text-black font-semibold placeholder:font-semibold focus:outline-none z-10'
             }
             label={'endDate'}
-            placeholder={'날짜추가'}
+            placeholder={t('addDate')}
             type={'text'}
             register={register}
             required
@@ -136,7 +138,7 @@ export default function TripConfigurationForm() {
               'absolute left-0 top-3.5 text-gray300 text-sm pointer-events-none'
             }
           >
-            도착일
+            {t('endDay')}
           </span>
         </div>
       </Link>
@@ -148,15 +150,15 @@ export default function TripConfigurationForm() {
           rules={{required: true}}
           render={({field}) => (
             // 옵션 value는 백엔드와 상의 후 교체
-            <BasicSelectBox
+            <CustomDropdownSelectBox
               options={[
-                {value: '1', label: '혼자 여행'},
-                {value: '2', label: '친구와 여행'},
+                {value: '1', label: t('alone')},
+                {value: '2', label: t('together')},
               ]}
               value={field.value}
               onChange={field.onChange}
               classNames="appearance-none w-full pb-3 pt-9 border-y border-solid border-gray100 font-semibold placeholder:text-black placeholder:font-semibold focus:outline-none"
-              label="선택"
+              label={'tripType'}
             />
           )}
         />
@@ -165,7 +167,7 @@ export default function TripConfigurationForm() {
             'absolute left-0 top-3.5 text-gray300 text-sm pointer-events-none'
           }
         >
-          인원선택
+          {t('tripType')}
         </span>
       </div>
 
@@ -175,7 +177,7 @@ export default function TripConfigurationForm() {
         }
         type={'submit'}
       >
-        일정 만들기
+        {t('makeTrip')}
       </BasicButton>
     </form>
   );

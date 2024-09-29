@@ -11,7 +11,7 @@ export default function AuthPage() {
   return (
     <div className="h-[calc(100vh-64px)] flex items-center justify-center">
       <div className="flex flex-col items-center">
-        <Logo className={'mb-5'} />
+        <Logo className={'mb-5'} width={214} height={52} />
         <h3
           style={{whiteSpace: 'pre-line'}}
           className="text-2xl font-bold text-center"

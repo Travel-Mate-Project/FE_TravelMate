@@ -1,3 +1,4 @@
+import Checked from '@/asset/check.svg';
 import {CheckboxProps} from '@/types';
 
 export default function BasicCheckBox({
@@ -19,14 +20,7 @@ export default function BasicCheckBox({
             checked ? 'bg-green100 border-none' : 'bg-white'
           }`}
         >
-          {checked && (
-            <svg
-              className="w-4 h-4 text-white fill-current"
-              viewBox="0 0 15 20"
-            >
-              <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-            </svg>
-          )}
+          {checked && <Checked className={'w-4 h-4 absolute left-0.5'} />}
         </div>
       </div>
       <span className="ml-2">{label}</span>

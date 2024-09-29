@@ -1,3 +1,4 @@
+import {QueryFunction, QueryKey} from '@tanstack/react-query';
 import React, {ReactNode} from 'react';
 import {
   Control,
@@ -7,6 +8,8 @@ import {
   UseFormRegister,
   UseFormSetValue,
 } from 'react-hook-form';
+
+import {RegionType} from '@/types/response';
 
 type InputType = 'text' | 'password' | 'email' | 'date' | 'number';
 type ButtonType = 'button' | 'submit' | 'reset';
@@ -98,6 +101,36 @@ export interface SelectBoxProps
   defaultValue?: string;
   options: SelectOptions[];
   label: string;
+  // eslint-disable-next-line no-unused-vars
   onChange: <T>(event: T) => void;
   value?: string;
+}
+
+export interface TitleProps {
+  title: string;
+  children: ReactNode;
+}
+
+export type Variant = 'course' | 'place' | 'region';
+
+export interface CardProps {
+  region: RegionType;
+  width?: number;
+  height?: number;
+  // NOTICE: course-코스 , place-명소, region-지역
+  variant: Variant;
+}
+
+export interface QueryConfig {
+  queryKey: QueryKey;
+  queryFn: QueryFunction;
+}
+
+export interface ServerPrefetchProviderProps {
+  children: ReactNode;
+  queries: QueryConfig | QueryConfig[];
+}
+
+export interface CarouseButtonProps extends ButtonProps {
+  isNext: boolean;
 }

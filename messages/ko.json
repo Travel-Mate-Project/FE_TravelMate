@@ -5,14 +5,22 @@
   },
   "LocaleSwitcher": {
     "label": "언어 변경",
-    "locale": "{locale, select, ko {한국어} en {English} other {Unknown}}"
+    "locale": "{locale, select, ko {KO} en {EN} other {Unknown}}"
   },
   "Header": {
-    "home": "홈",
+    "home": "여행계획",
     "placeRecommend": "여행지 추천",
     "myTrip": "나의 여행",
-    "Auth": "로그인 | 회원가입",
+    "profile": "프로필",
+    "Auth": "로그인",
     "search": "검색..."
+  },
+  "footer": {
+    "serviceIntro": "서비스소개",
+    "privacyPolicy": "개인정보처리방침",
+    "termsOfService": "이용약관",
+    "customerService": "고객센터",
+    "adInquiry": "광고문의"
   },
   "Auth": {
     "intro": "여행메이트에서 간단하고\n쉽게 계획해 보세요.",
@@ -79,5 +87,34 @@
     "goToSignIn": "로그인 하러 가기",
     "intro": "회원가입이 완료되었습니다!",
     "sub": "지금 바로 다양한 여행코스를 손쉽게 착착!"
+  },
+  "tripConfigPanel": {
+    "intro": "여행코스를 손쉽게 착착",
+    "locationSearch": "지역검색",
+    "whereEver": "어디든지",
+    "addDate": "날짜 추가",
+    "startDay": "출발일",
+    "endDay": "도착일",
+    "tripType": "인원선택",
+    "alone": "혼자 여행",
+    "together": "친구와 여행",
+    "makeTrip": "일정 만들기"
+  },
+  "calender": {
+    "intro": "여행 기간이 어떻게 되시나요?",
+    "Mon": "월",
+    "Tue": "화",
+    "Wed": "수",
+    "Thu": "목",
+    "Fri": "금",
+    "Sat": "토",
+    "Sun": "일",
+    "confirm": "확인"
+  },
+  "mainTravelList": {
+    "topTenPlace": "현재 가장 사랑받는 여행지 BEST 10",
+    "hotRegion": "요즘 많이 찾는 지역",
+    "course": "코스",
+    "place": "명소"
   }
 }

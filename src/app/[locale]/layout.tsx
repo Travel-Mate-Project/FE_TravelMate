@@ -2,7 +2,9 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import React from 'react';
 
+import MSW from '@/components/MSW';
 import {pretendard} from '@/lib/fonts';
+import QueryProvider from '@/provider/QueryProvider';
 
 export default async function LocaleLayout({
   children,
@@ -16,9 +18,12 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${pretendard.variable}`}>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <QueryProvider>
+          <NextIntlClientProvider messages={messages}>
+            <MSW />
+            {children}
+          </NextIntlClientProvider>
+        </QueryProvider>
       </body>
     </html>
   );
