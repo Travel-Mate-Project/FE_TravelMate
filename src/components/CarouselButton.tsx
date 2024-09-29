@@ -15,8 +15,8 @@ export default function CarouselButton({
       disabled={disabled}
       className={`${
         isNext
-          ? 'absolute right-0 top-1/2 -translate-y-1/2'
-          : 'absolute left-0 top-1/2 -translate-y-1/2'
+          ? 'absolute right-0 top-1/2 -translate-y-16'
+          : 'absolute left-0 top-1/2 -translate-y-16'
       } ${classNames}`}
     >
       {children}

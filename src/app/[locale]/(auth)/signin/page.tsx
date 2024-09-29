@@ -13,11 +13,9 @@ export default function SignInPage() {
   return (
     <>
       <Link href={'/'}>
-        <Logo className={'mb-10'} />
+        <Logo width={159} height={37} />
       </Link>
-      <h2 className={'text-2xl font-bold mb-14 hidden md:block'}>
-        {t('logIn')}
-      </h2>
+      <h2 className={'text-2xl font-bold my-10'}>{t('logIn')}</h2>
       <div className={'w-screen px-6 pb-10 md:w-96 md:px-0'}>
         <SignInFrom />
         <div className={'flex flex-col items-center mt-12'}>

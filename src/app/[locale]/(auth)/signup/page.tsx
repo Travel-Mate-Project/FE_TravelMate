@@ -11,7 +11,7 @@ export default function SignUpPage() {
   return (
     <>
       <Link href={'/'}>
-        <Logo className={'mb-5'} />
+        <Logo className={'mb-5'} width={159} height={37} />
       </Link>
       <div className={'flex items-center gap-3 mb-14'}>
         <SignUpProgressIndicator />

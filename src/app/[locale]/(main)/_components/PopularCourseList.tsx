@@ -9,7 +9,7 @@ export default function PopularCourseList() {
   console.log(courseList);
 
   return (
-    <div className="w-full mx-auto py-8">
+    <div className="w-full mx-auto py-2">
       <Carousel>
         {courseList.map((region: RegionType) => (
           <div key={region.placeId}>

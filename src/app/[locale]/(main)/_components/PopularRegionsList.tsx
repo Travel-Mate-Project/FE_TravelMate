@@ -9,9 +9,9 @@ export default function PopularRegionsList() {
   const {regionList} = useGetPopularRegionList();
 
   return (
-    <div className="max-w-7xl mx-auto py-8">
+    <div className="w-full mx-auto mt-3">
       <Carousel>
-        {regionList.map((region: RegionType) => (
+        {regionList?.map((region: RegionType) => (
           <div key={region.placeId}>
             <Card region={region} variant={'region'} />
           </div>
