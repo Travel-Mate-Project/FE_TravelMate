@@ -111,12 +111,14 @@ export interface TitleProps {
   children: ReactNode;
 }
 
+export type Variant = 'course' | 'place' | 'region';
+
 export interface CardProps {
   region: RegionType;
   width?: number;
   height?: number;
   // NOTICE: course-코스 , place-명소, region-지역
-  variant: 'course' | 'place' | 'region';
+  variant: Variant;
 }
 
 export interface QueryConfig {

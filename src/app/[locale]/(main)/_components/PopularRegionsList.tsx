@@ -2,11 +2,11 @@
 
 import Card from '@/components/Card';
 import Carousel from '@/components/Carousel';
-import {useGetRegionList} from '@/hooks/withQuery/useGetRegionList';
+import {useGetPopularRegionList} from '@/hooks/withQuery/useGetPopularRegionList';
 import {RegionType} from '@/types/response';
 
-export default function RegionList() {
-  const {regionList} = useGetRegionList();
+export default function PopularRegionsList() {
+  const {regionList} = useGetPopularRegionList();
 
   return (
     <div className="max-w-7xl mx-auto py-8">

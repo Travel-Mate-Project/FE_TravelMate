@@ -7,4 +7,12 @@ export const handlers = [
   http.get(END_POINT.place.regions, () => {
     return HttpResponse.json(DB.region, {});
   }),
+
+  http.get(END_POINT.place.place, () => {
+    return HttpResponse.json(DB.place, {});
+  }),
+
+  http.get(END_POINT.place.course, () => {
+    return HttpResponse.json(DB.course, {});
+  }),
 ];

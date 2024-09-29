@@ -1,9 +1,9 @@
 import Image from 'next/image';
 
+import Message from '@/asset/message.svg';
 import {CardProps} from '@/types';
 
 import Star from '@/asset/Star.svg';
-import Message from '@/asset/message.svg';
 
 export default function Card({
   region,
