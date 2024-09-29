@@ -5,8 +5,10 @@ import {QUERY_KEY} from '@/constants/queryKey';
 import ServerPrefetchProvider from '@/provider/ServerPrefetchProvider';
 import PopularRegionsList from '@/app/[locale]/(main)/_components/PopularRegionsList';
 import DynamicTravelList from '@/app/[locale]/(main)/_components/DynamicTravelList';
+import {useTranslations} from 'next-intl';
 
 export default function MainPage() {
+  const t = useTranslations('mainTravelList');
   return (
     <div className={''}>
       <div className={'flex flex-col items-center justify-center'}>
@@ -18,10 +20,10 @@ export default function MainPage() {
             {queryKey: [QUERY_KEY.PLACE.COURSE], queryFn: getCourseList},
           ]}
         >
-          <Title title={'현재 가장 사랑받는 여행지 BEST 10'}>
+          <Title title={t('topTenPlace')}>
             <DynamicTravelList />
           </Title>
-          <Title title={'요즘 많이 찾는 지역'}>
+          <Title title={t('hotRegion')}>
             <PopularRegionsList />
           </Title>
         </ServerPrefetchProvider>

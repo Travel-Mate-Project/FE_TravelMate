@@ -1,10 +1,12 @@
 import React from 'react';
 import Modal from '@/components/DateSelectModal';
 import Calender from '@/components/Calender';
+import {useTranslations} from 'next-intl';
 
 export default function DatePage() {
+  const t = useTranslations('calender');
   return (
-    <Modal title={'여행 기간이 어떻게 되시나요?'}>
+    <Modal title={t('intro')}>
       <Calender />
     </Modal>
   );

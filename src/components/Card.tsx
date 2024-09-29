@@ -15,7 +15,7 @@ export default function Card({
   return (
     <Link href={`/`}>
       <article
-        className={`min-w-[${width}px] h-[300px] flex align-center flex-col gap-1.5`}
+        className={`w-[${width}px] h-[300px] flex align-center flex-col gap-1.5`}
       >
         <div className={'relative'}>
           <Image

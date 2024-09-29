@@ -3,8 +3,11 @@
 import {useState} from 'react';
 import PopularCourseList from '@/app/[locale]/(main)/_components/PopularCourseList';
 import PopularPlaceList from '@/app/[locale]/(main)/_components/PopularPlaceList';
+import {useTranslations} from 'next-intl';
 
 export default function DynamicTravelList() {
+  const t = useTranslations('mainTravelList');
+
   const [listType, setListType] = useState<'course' | 'place'>('course');
 
   return (
@@ -20,7 +23,7 @@ export default function DynamicTravelList() {
             } rounded-2xl px-3 py-1 border border-solid border-black`}
             type={'button'}
           >
-            코스
+            {t('course')}
           </button>
           <button
             onClick={() => setListType('place')}
@@ -31,7 +34,7 @@ export default function DynamicTravelList() {
             } rounded-2xl px-3 py-1 border border-solid border-black`}
             type={'button'}
           >
-            명소
+            {t('place')}
           </button>
         </div>
       </div>
