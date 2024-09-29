@@ -15,6 +15,13 @@
     "Auth": "Sign in",
     "search": "Search..."
   },
+  "footer": {
+    "serviceIntro": "About",
+    "privacyPolicy": "Privacy",
+    "termsOfService": "Terms",
+    "customerService": "Support",
+    "adInquiry": "Ads"
+  },
   "Auth": {
     "intro": "Plan simply and easily \n with TravelMate.",
     "kakao": "Start with Kakao",
