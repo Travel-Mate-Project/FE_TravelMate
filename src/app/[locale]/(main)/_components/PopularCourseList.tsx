@@ -11,7 +11,7 @@ export default function PopularCourseList() {
   return (
     <div className="w-full mx-auto py-2">
       <Carousel>
-        {courseList.map((region: RegionType) => (
+        {courseList?.map((region: RegionType) => (
           <div key={region.placeId}>
             <Card region={region} variant={'course'} />
           </div>
