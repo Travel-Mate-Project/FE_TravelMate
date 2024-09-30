@@ -1,4 +1,5 @@
 import {useMutation} from '@tanstack/react-query';
+
 import {signUp} from '@/api/auth';
 import {useRouter} from '@/i18n/routing';
 
