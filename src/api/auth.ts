@@ -1,4 +1,4 @@
-import {axiosDefault} from '@/api/axios/axiosInstance';
+import {axiosDefault, axiosServer} from '@/api/axios/axiosInstance';
 import {END_POINT} from '@/constants/endPoint';
 import {SignInReq, SignUpReq} from '@/types';
 
@@ -8,6 +8,6 @@ export const signUp = async (signUpData: SignUpReq) => {
 };
 
 export const signIn = async (SignInData: SignInReq) => {
-  const res = await axiosDefault.post(END_POINT.auth.signIn, SignInData);
+  const res = await axiosServer.post(END_POINT.auth.signIn, SignInData);
   return res.data;
 };
