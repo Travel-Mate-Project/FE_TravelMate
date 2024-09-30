@@ -67,7 +67,7 @@ export default function CustomDropdownSelectBox({
                   setIsOpen(false);
                 }}
               >
-                {option.value === '1' ? (
+                {option.value === 'alone' ? (
                   <span className={'flex items-center gap-2'}>
                     <Single /> {option.label}
                   </span>
