@@ -6,8 +6,6 @@ import {RegionType} from '@/types/response';
 export default function PopularCourseList() {
   const {courseList} = useGetPopularCourseList();
 
-  console.log(courseList);
-
   return (
     <div className="w-full mx-auto py-2">
       <Carousel>

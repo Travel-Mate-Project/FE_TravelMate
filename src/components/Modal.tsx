@@ -36,7 +36,7 @@ export default function Modal({children, title, modalHeight = 90}: ModalProps) {
           transition-all duration-300 ease-in-out
           ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}
           md:static
-          md:w-7xl md:${heightClass} md:rounded-2xl
+          md:w-7xl md:h-[60%] md:rounded-2xl
           md:transform-none md:opacity-100
         `}
       >
