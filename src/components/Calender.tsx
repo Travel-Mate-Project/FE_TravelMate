@@ -115,7 +115,7 @@ export default function EnhancedCalendar() {
         type={'button'}
         onClick={handleSetDate}
         classNames={
-          'w-[calc(100%-48px)] absolute bottom-12 left-1/2 transform -translate-x-1/2'
+          'w-[calc(100%-48px)] absolute bottom-8 left-1/2 transform -translate-x-1/2'
         }
       >
         {t('confirm')}
