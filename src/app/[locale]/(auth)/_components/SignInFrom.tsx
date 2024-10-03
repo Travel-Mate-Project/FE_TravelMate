@@ -9,9 +9,11 @@ import BasicButton from '@/components/BasicButton';
 import BasicCheckBox from '@/components/BasicCheckBox';
 import {Link} from '@/i18n/routing';
 import {SignInFormValue} from '@/types';
+import {useSignIn} from '@/hooks/withQuery/useSignIn';
 
 export default function SignInFrom() {
   const t = useTranslations('signIn');
+  const signInMutation = useSignIn();
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -27,6 +29,11 @@ export default function SignInFrom() {
 
   const onSignIn = (data: SignInFormValue) => {
     console.log(data);
+    const finalData = {
+      userEmail: data.email,
+      password: data.password,
+    };
+    signInMutation(finalData);
   };
 
   return (

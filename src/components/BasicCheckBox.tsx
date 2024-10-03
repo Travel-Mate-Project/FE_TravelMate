@@ -20,7 +20,13 @@ export default function BasicCheckBox({
             checked ? 'bg-green100 border-none' : 'bg-white'
           }`}
         >
-          {checked && <Checked className={'w-4 h-4 absolute left-0.5'} />}
+          {checked && (
+            <Checked
+              width={16}
+              height={16}
+              className={'w-4 h-4 absolute top-0.5 left-0.5'}
+            />
+          )}
         </div>
       </div>
       <span className="ml-2">{label}</span>

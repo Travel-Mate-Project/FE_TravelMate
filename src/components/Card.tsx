@@ -15,7 +15,7 @@ export default function Card({
   return (
     <Link href={`/`}>
       <article
-        className={`w-[${width}px] h-[300px] flex align-center flex-col gap-1.5`}
+        className={`w-[200px] h-[300px] flex align-center flex-col gap-1.5`}
       >
         <div className={'relative'}>
           <Image
@@ -47,16 +47,18 @@ export default function Card({
             </>
           )}
         </div>
-        <div className={'flex items-center text-gray300 text-sm gap-2'}>
-          <div className={'flex items-center'}>
-            <Star />
-            <span className={'pl-1'}>{region.rating}</span>
+        {variant !== 'region' && (
+          <div className={'flex items-center text-gray300 text-sm gap-2'}>
+            <div className={'flex items-center'}>
+              <Star />
+              <span className={'pl-1'}>{region.rating}</span>
+            </div>
+            <div className={'flex items-center'}>
+              <Message />
+              <span className={'pl-1'}>{region.commentCount}</span>
+            </div>
           </div>
-          <div className={'flex items-center'}>
-            <Message />
-            <span className={'pl-1'}>{region.commentCount}</span>
-          </div>
-        </div>
+        )}
       </article>
     </Link>
   );

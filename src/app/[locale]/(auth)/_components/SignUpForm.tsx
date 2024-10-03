@@ -7,14 +7,14 @@ import {Controller, useForm} from 'react-hook-form';
 import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
 import BasicButton from '@/components/BasicButton';
 import BasicCheckBox from '@/components/BasicCheckBox';
-import {useRouter} from '@/i18n/routing';
 import {useAuthStore} from '@/store';
 import {SignUpFormValue} from '@/types';
+import {useSignUp} from '@/hooks/withQuery/useSignUp';
 
 export default function SignUpForm() {
   const t = useTranslations('signUp');
   const {stage, nextStage, previousStage} = useAuthStore();
-  const router = useRouter();
+  const signUpMutation = useSignUp();
 
   const {
     register,
@@ -50,7 +50,12 @@ export default function SignUpForm() {
       nextStage(stage);
     } else {
       console.log(data);
-      router.push('/welcome');
+      const finalData = {
+        userEmail: data.email,
+        password: data.password,
+        userName: data.name,
+      };
+      signUpMutation(finalData);
     }
   };
 

@@ -1,8 +1,8 @@
+import {useTranslations} from 'next-intl';
 import React from 'react';
 
 import TripConfigurationForm from '@/app/[locale]/(main)/_components/TripConfigurationForm';
 import Logo from '@/asset/Logo.svg';
-import {useTranslations} from 'next-intl';
 
 export default function TripConfigurationPanel() {
   const t = useTranslations('tripConfigPanel');

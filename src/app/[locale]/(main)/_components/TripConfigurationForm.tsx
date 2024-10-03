@@ -11,7 +11,7 @@ import BasicButton from '@/components/BasicButton';
 import BasicInput from '@/components/BasicInput';
 import {useDebounce} from '@/hooks/useDebounce';
 import useOutsideClick from '@/hooks/useOutsideClick';
-import {Link} from '@/i18n/routing';
+import {Link, useRouter} from '@/i18n/routing';
 import {TripConfigurationFormValue} from '@/types';
 
 import 'dayjs/locale/ko';
@@ -23,6 +23,7 @@ export default function TripConfigurationForm() {
   const {date, isSelected} = useDateStore();
   const [startDate, endDate] = date;
   const [isAutocompleteOpen, setIsAutocompleteOpen] = useState<boolean>(false);
+  const route = useRouter();
 
   const {register, handleSubmit, control, setValue} =
     useForm<TripConfigurationFormValue>();
@@ -39,6 +40,12 @@ export default function TripConfigurationForm() {
 
   const handleMakeTrip = (data: TripConfigurationFormValue) => {
     console.log('handleMakeTrip', data);
+    if (data.single === 'together') {
+      route.push('/invite');
+    }
+    if (data.single === 'alone') {
+      route.push('/trip');
+    }
   };
 
   const handleAutocompleteSelect = (selection: string) => {
@@ -152,8 +159,8 @@ export default function TripConfigurationForm() {
             // 옵션 value는 백엔드와 상의 후 교체
             <CustomDropdownSelectBox
               options={[
-                {value: '1', label: t('alone')},
-                {value: '2', label: t('together')},
+                {value: 'alone', label: t('alone')},
+                {value: 'together', label: t('together')},
               ]}
               value={field.value}
               onChange={field.onChange}
