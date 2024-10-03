@@ -43,6 +43,9 @@ export default function TripConfigurationForm() {
     if (data.single === 'together') {
       route.push('/invite');
     }
+    if (data.single === 'alone') {
+      route.push('/trip');
+    }
   };
 
   const handleAutocompleteSelect = (selection: string) => {

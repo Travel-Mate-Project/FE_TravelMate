@@ -103,7 +103,6 @@ async function fetchWithToken(
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-    credentials: 'include',
   };
 
   if (method !== 'GET' && method !== 'HEAD') {
@@ -128,7 +127,6 @@ async function refreshAccessToken(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({refreshToken}),
-    credentials: 'include',
   });
 
   if (!response.ok) {
