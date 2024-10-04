@@ -198,7 +198,15 @@ export const DB = {
     },
     {
       code: 3,
-      name: '제주',
+      name: '제주도',
+    },
+    {
+      code: 4,
+      name: '경북',
+    },
+    {
+      code: 5,
+      name: '경남',
     },
   ],
 };

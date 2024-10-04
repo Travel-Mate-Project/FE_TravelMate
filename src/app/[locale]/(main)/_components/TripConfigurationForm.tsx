@@ -45,7 +45,7 @@ export default function TripConfigurationForm() {
     }
     setIsAutocompleteOpen(false);
   });
-  const {filteredCityList} = useGetCityCode(debounceQuery, 1);
+  const {filteredCityList, isLoading} = useGetCityCode(debounceQuery, 1);
 
   const handleMakeTrip = (data: TripConfigurationFormValue) => {
     console.log('handleMakeTrip', data);
@@ -119,6 +119,12 @@ export default function TripConfigurationForm() {
                   </button>
                 </li>
               ))
+            ) : isLoading ? (
+              <li className={'p-1'}>
+                <span className={'flex items-center font-semibold'}>
+                  로딩중....
+                </span>
+              </li>
             ) : (
               <li className={'p-1'}>
                 <span className={'flex items-center font-semibold'}>
