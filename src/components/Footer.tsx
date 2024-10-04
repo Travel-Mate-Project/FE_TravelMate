@@ -1,5 +1,6 @@
-import LogoBlack from '@/asset/Logo-black.svg';
 import {useTranslations} from 'next-intl';
+
+import LogoBlack from '@/asset/Logo-black.svg';
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -7,7 +8,7 @@ export default function Footer() {
   return (
     <footer
       className={
-        'relative bottom-0 w-full bg-transparent py-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]'
+        'relative max-h-36 bottom-0 w-full bg-transparent py-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]'
       }
     >
       <div className="max-w-[600px] mx-auto px-5 md:px-0">
