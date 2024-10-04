@@ -53,7 +53,7 @@ export default function TripConfigurationForm() {
     if (data.single === 'together') {
       route.push('/invite');
     }
-    if (data.single === '1') {
+    if (data.single === 'alone') {
       route.push('/time');
     }
   };
@@ -180,7 +180,7 @@ export default function TripConfigurationForm() {
         <Controller
           name="single"
           control={control}
-          defaultValue="1"
+          defaultValue="alone"
           rules={{required: true}}
           render={({field}) => (
             // 옵션 value는 백엔드와 상의 후 교체
