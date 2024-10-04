@@ -15,4 +15,8 @@ export const handlers = [
   http.get(END_POINT.place.course, () => {
     return HttpResponse.json(DB.course, {});
   }),
+
+  http.get(END_POINT.place.cityCode, () => {
+    return HttpResponse.json(DB.cityCode, {});
+  }),
 ];

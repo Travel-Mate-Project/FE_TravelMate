@@ -1,6 +1,7 @@
 'use client';
 
 import dayjs from 'dayjs';
+import {useTranslations} from 'next-intl';
 import React, {useEffect, useRef, useState} from 'react';
 import {Controller, useForm, useWatch} from 'react-hook-form';
 
@@ -12,16 +13,18 @@ import BasicInput from '@/components/BasicInput';
 import {useDebounce} from '@/hooks/useDebounce';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import {Link, useRouter} from '@/i18n/routing';
-import {TripConfigurationFormValue} from '@/types';
+import {CityCodeType, TripConfigurationFormValue} from '@/types';
 
 import 'dayjs/locale/ko';
 import {useDateStore} from '@/store';
-import {useTranslations} from 'next-intl';
+import {useGetCityCode} from '@/hooks/withQuery/useGetCityCode';
 
 export default function TripConfigurationForm() {
   const t = useTranslations('tripConfigPanel');
   const {date, isSelected} = useDateStore();
   const [startDate, endDate] = date;
+  const [cityName, setCityName] = useState<string>('');
+  const [cityCode, setCityCode] = useState<number>();
   const [isAutocompleteOpen, setIsAutocompleteOpen] = useState<boolean>(false);
   const route = useRouter();
 
@@ -36,19 +39,28 @@ export default function TripConfigurationForm() {
   });
 
   const debounceQuery = useDebounce(searchQuery);
-  useOutsideClick(formRef, () => setIsAutocompleteOpen(false));
+  useOutsideClick(formRef, () => {
+    if (!cityCode) {
+      setValue('search', '');
+    }
+    setIsAutocompleteOpen(false);
+  });
+  const {filteredCityList} = useGetCityCode(debounceQuery, 1);
 
   const handleMakeTrip = (data: TripConfigurationFormValue) => {
     console.log('handleMakeTrip', data);
+    console.log(cityCode);
     if (data.single === 'together') {
       route.push('/invite');
     }
-    if (data.single === 'alone') {
-      route.push('/trip');
+    if (data.single === '1') {
+      route.push('/time');
     }
   };
 
-  const handleAutocompleteSelect = (selection: string) => {
+  const handleAutocompleteSelect = (selection: string, code: number) => {
+    setCityCode(code);
+    setCityName(selection);
     setValue('search', selection);
     setIsAutocompleteOpen(false);
   };
@@ -59,6 +71,12 @@ export default function TripConfigurationForm() {
       setValue('endDate', dayjs(endDate).format('YYYY.MM.DD'));
     }
   }, [startDate, endDate, isSelected]);
+
+  useEffect(() => {
+    if (cityName !== searchQuery) {
+      setCityCode(undefined);
+    }
+  }, [cityName, searchQuery]);
 
   return (
     <form
@@ -88,17 +106,26 @@ export default function TripConfigurationForm() {
         </span>
         {isAutocompleteOpen && debounceQuery && (
           <Autocomplete>
-            {new Array(3).fill('제주도').map((place, i) => (
-              // 임시 배열 설정 추후 MSW 테스트 필요
-              <li className={'p-1'} key={i}>
-                <button
-                  onClick={() => handleAutocompleteSelect(place)}
-                  className={'flex items-center font-semibold'}
-                >
-                  <Subtract className={'mr-1'} /> {place}
-                </button>
+            {filteredCityList.length > 0 ? (
+              filteredCityList.map((place: CityCodeType) => (
+                <li className={'p-1'} key={place.code}>
+                  <button
+                    onClick={() =>
+                      handleAutocompleteSelect(place.name, place.code)
+                    }
+                    className={'flex items-center font-semibold'}
+                  >
+                    <Subtract className={'mr-1'} /> {place.name}
+                  </button>
+                </li>
+              ))
+            ) : (
+              <li className={'p-1'}>
+                <span className={'flex items-center font-semibold'}>
+                  검색 결과가 없습니다.
+                </span>
               </li>
-            ))}
+            )}
           </Autocomplete>
         )}
       </div>

@@ -7,5 +7,6 @@ export const END_POINT = {
     regions: '/place/regions',
     place: '/place/place',
     course: '/place/course',
+    cityCode: '/cityCode',
   },
 } as const;

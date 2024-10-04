@@ -3,5 +3,6 @@ export const QUERY_KEY = {
     REGION: 'REGION',
     PLACE: 'PLACE',
     COURSE: 'COURSE',
+    CITY_CODE: 'CITY_CODE',
   },
 } as const;

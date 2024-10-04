@@ -187,4 +187,18 @@ export const DB = {
       createdAt: '2024-3-12',
     },
   ],
+  cityCode: [
+    {
+      code: 1,
+      name: '서울',
+    },
+    {
+      code: 2,
+      name: '부산',
+    },
+    {
+      code: 3,
+      name: '제주',
+    },
+  ],
 };
