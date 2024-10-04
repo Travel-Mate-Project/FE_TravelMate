@@ -87,8 +87,7 @@ export interface ModalProps {
   setValue?: UseFormSetValue<TripConfigurationFormValue>;
   // eslint-disable-next-line no-unused-vars
   handleChange?: <T>(value?: T) => void;
-  mobileModalHeight?: string;
-  desktopModalHeight?: string;
+  ModalHeight?: string;
 }
 
 interface SelectOptions {

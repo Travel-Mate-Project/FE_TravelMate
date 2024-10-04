@@ -7,11 +7,7 @@ import Modal from '@/components/Modal';
 export default function DatePageInterceptor() {
   const t = useTranslations('calender');
   return (
-    <Modal
-      desktopModalHeight={'md:h-[725px]'}
-      mobileModalHeight={'h-[90%]'}
-      title={t('intro')}
-    >
+    <Modal ModalHeight={'h-[90%] md:h-[725px]'} title={t('intro')}>
       <Calender />
     </Modal>
   );
