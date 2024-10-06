@@ -9,12 +9,12 @@ dayjs.locale('ko');
 export default function TripTimeConfigHeader() {
   const {
     date: [startDay, endDay],
-    city,
+    region,
   } = useTripStore();
   const router = useRouter();
   return (
     <>
-      <h2 className={'font-bold mb-1.5 md:text-lg'}>{city}</h2>
+      <h2 className={'font-bold mb-1.5 md:text-lg'}>{region}</h2>
       <button
         onClick={() => router.push('/date')}
         className={'flex items-center gap-1 text-xs md:text-sm text-gray700'}

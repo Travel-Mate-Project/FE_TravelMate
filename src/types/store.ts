@@ -12,11 +12,11 @@ export interface DateSlice {
   setDate: (_date: [Date, Date]) => void;
 }
 
-export interface PlaceSLice {
-  city: string;
-  cityCode: number;
-  setCity: (_place: string) => void;
-  setCityCode: (_placeCode: number) => void;
+export interface RegionSLice {
+  region: string;
+  regionCode: number;
+  setRegion: (_place: string) => void;
+  setRegionCode: (_placeCode: number) => void;
 }
 
 export interface DateAndTimeProp {

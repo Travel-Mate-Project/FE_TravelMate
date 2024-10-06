@@ -37,14 +37,7 @@ export default function Card({
         <div className={'flex flex-col justify-center'}>
           <p className={'font-semibold'}>{region.name}</p>
           {variant !== 'region' && (
-            <>
-              <span className={'text-gray300 text-sm'}>{region.addr}</span>
-              {variant === 'course' && (
-                <span className={'text-gray300 text-sm'}>
-                  {region.createdAt}
-                </span>
-              )}
-            </>
+            <span className={'text-gray300 text-sm'}>{region.addr}</span>
           )}
         </div>
         {variant !== 'region' && (

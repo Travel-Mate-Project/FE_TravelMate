@@ -3,6 +3,7 @@
 import {useTripStore} from '@/store';
 import dayjs from 'dayjs';
 import {SubmitHandler, useForm} from 'react-hook-form';
+
 import BasicButton from '@/components/BasicButton';
 import {TimeInputProps} from '@/types';
 import {useEffect} from 'react';
@@ -24,7 +25,7 @@ export default function TripTimeConfigForm() {
     updateDateAndTime(result);
     router.push('/place');
   };
-  console.log('설정한 날짜와 시간', dateAndTime);
+  // console.log('설정한 날짜와 시간', dateAndTime);
 
   useEffect(() => {
     reset();

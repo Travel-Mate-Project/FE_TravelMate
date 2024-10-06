@@ -24,8 +24,8 @@ export default function TripConfigurationForm() {
   const {
     date,
     isSelected,
-    setCity,
-    setCityCode: setStoreCityCode,
+    setRegion,
+    setRegionCode: setStoreCityCode,
     setType,
   } = useTripStore();
   const [startDate, endDate] = date;
@@ -58,7 +58,7 @@ export default function TripConfigurationForm() {
       return;
     }
 
-    setCity(data.search);
+    setRegion(data.search);
     setStoreCityCode(cityCode);
     setType(data.single);
 
