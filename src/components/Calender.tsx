@@ -14,7 +14,8 @@ import {useTranslations} from 'next-intl';
 export default function EnhancedCalendar() {
   const t = useTranslations('calender');
   const router = useRouter();
-  const {date, isSelected, setDate, setIsSelected} = useTripStore();
+  const {date, isSelected, setDate, setIsSelected, initializeTime} =
+    useTripStore();
   const [range, setRange] = useState<[Dayjs, Dayjs]>([
     dayjs(),
     dayjs().add(3, 'day'),
@@ -67,6 +68,7 @@ export default function EnhancedCalendar() {
     const [start, end] = range;
     setDate([start.toDate(), end.toDate()]);
     setIsSelected(true);
+    initializeTime(start.toDate(), end.toDate());
     router.back();
   };
 

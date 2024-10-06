@@ -135,3 +135,10 @@ export interface ServerPrefetchProviderProps {
 export interface CarouseButtonProps extends ButtonProps {
   isNext: boolean;
 }
+
+export interface TimeInputProps {
+  [key: string]: {
+    startTime: string;
+    endTime: string;
+  };
+}

@@ -27,7 +27,6 @@ export default function TripConfigurationForm() {
     setCity,
     setCityCode: setStoreCityCode,
     setType,
-    initializeTime,
   } = useTripStore();
   const [startDate, endDate] = date;
   const [cityName, setCityName] = useState<string>('');
@@ -62,7 +61,6 @@ export default function TripConfigurationForm() {
     setCity(data.search);
     setStoreCityCode(cityCode);
     setType(data.single);
-    initializeTime(startDate, endDate);
 
     if (data.single === 'together') {
       route.push('/invite');

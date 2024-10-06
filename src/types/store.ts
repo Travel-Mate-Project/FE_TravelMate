@@ -20,15 +20,16 @@ export interface PlaceSLice {
 }
 
 export interface DateAndTimeProp {
-  date: string;
-  start: string;
-  end: string;
+  date: string; // YYYY-MM-DD
+  start: string; // 24:00
+  end: string; // 24:00
 }
 
 export interface TimeSlice {
   dateAndTime: DateAndTimeProp[];
   initializeTime: (_startDate: Date, _endDate: Date) => void;
-  setTime: (_date: string, _start: string, _end: string) => void; // 특정 날짜의 시간 조정
+  updateDateAndTime: (updatedDateAndTime: DateAndTimeProp[]) => void;
+  updateSingleDateAndTime: (date: string, start: string, end: string) => void;
   clearTime: () => void;
 }
 

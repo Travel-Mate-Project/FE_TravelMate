@@ -14,19 +14,23 @@ export default function TripTimeConfigHeader() {
   const router = useRouter();
   return (
     <>
-      <h2 className={'font-bold mb-1.5'}>{city}</h2>
+      <h2 className={'font-bold mb-1.5 md:text-lg'}>{city}</h2>
       <button
         onClick={() => router.push('/date')}
-        className={'flex items-center gap-1 text-xs text-gray700'}
+        className={'flex items-center gap-1 text-xs md:text-sm text-gray700'}
       >
         <p>{dayjs(startDay).format('YYYY-MM-DD(dd)')} </p> -
         <p>{dayjs(endDay).format('YYYY-MM-DD(dd)')}</p>
         <Calender width={13} height={14} />
       </button>
-      <div className={'mt-2 text-xs text-gray700'}>
+      <div className={'mt-2 text-xs md:text-sm text-gray700'}>
         <p>여행 상세 시간 설정</p>
       </div>
-      <div className={'bg-gray600 rounded-lg w-full p-3  my-4 text-xs'}>
+      <div
+        className={
+          'bg-gray600 rounded-lg w-full p-3 my-4 mb-6 text-xs md:text-sm'
+        }
+      >
         <ul className={'list-disc pl-5'}>
           <li>
             입력하신 여행 기간이 시차를 고려한
