@@ -16,12 +16,19 @@ import {Link, useRouter} from '@/i18n/routing';
 import {CityCodeType, TripConfigurationFormValue} from '@/types';
 
 import 'dayjs/locale/ko';
-import {useDateStore} from '@/store';
+import {useTripStore} from '@/store';
 import {useGetCityCode} from '@/hooks/withQuery/useGetCityCode';
 
 export default function TripConfigurationForm() {
   const t = useTranslations('tripConfigPanel');
-  const {date, isSelected} = useDateStore();
+  const {
+    date,
+    isSelected,
+    setCity,
+    setCityCode: setStoreCityCode,
+    setType,
+    initializeTime,
+  } = useTripStore();
   const [startDate, endDate] = date;
   const [cityName, setCityName] = useState<string>('');
   const [cityCode, setCityCode] = useState<number>();
@@ -48,8 +55,15 @@ export default function TripConfigurationForm() {
   const {filteredCityList, isLoading} = useGetCityCode(debounceQuery, 1);
 
   const handleMakeTrip = (data: TripConfigurationFormValue) => {
-    console.log('handleMakeTrip', data);
-    console.log(cityCode);
+    if (!cityCode) {
+      return;
+    }
+
+    setCity(data.search);
+    setStoreCityCode(cityCode);
+    setType(data.single);
+    initializeTime(startDate, endDate);
+
     if (data.single === 'together') {
       route.push('/invite');
     }

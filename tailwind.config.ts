@@ -17,6 +17,8 @@ const config: Config = {
         gray100: '#CCCCCC',
         gray200: '#999999',
         gray300: '#666666',
+        gray600: '#EBEBEB',
+        gray700: '#808080',
         gray800: '#4D4D4D',
         gray900: '#1A1A1A',
         modalBg: 'rgba(91, 112, 131, 0.4)',

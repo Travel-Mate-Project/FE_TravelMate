@@ -1,13 +1,6 @@
 import {StateCreator} from 'zustand';
 
-export interface SignupSlice {
-  stage: number;
-  // eslint-disable-next-line no-unused-vars
-  nextStage: (stage: number) => void;
-  // eslint-disable-next-line no-unused-vars
-  previousStage: (stage: number) => void;
-  clearStage: () => void;
-}
+import {SignupSlice} from '@/types';
 
 export const createSignupSlice: StateCreator<SignupSlice> = (set) => ({
   stage: 1,

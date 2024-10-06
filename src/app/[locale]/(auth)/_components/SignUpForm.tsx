@@ -7,9 +7,9 @@ import {Controller, useForm} from 'react-hook-form';
 import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
 import BasicButton from '@/components/BasicButton';
 import BasicCheckBox from '@/components/BasicCheckBox';
+import {useSignUp} from '@/hooks/withQuery/useSignUp';
 import {useAuthStore} from '@/store';
 import {SignUpFormValue} from '@/types';
-import {useSignUp} from '@/hooks/withQuery/useSignUp';
 
 export default function SignUpForm() {
   const t = useTranslations('signUp');

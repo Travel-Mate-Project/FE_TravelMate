@@ -8,13 +8,13 @@ import LeftButton from '@/asset/leftButton.svg';
 import RightButton from '@/asset/rightButton.svg';
 import BasicButton from '@/components/BasicButton';
 import {useRouter} from '@/i18n/routing';
-import {useDateStore} from '@/store';
+import {useTripStore} from '@/store';
 import {useTranslations} from 'next-intl';
 
 export default function EnhancedCalendar() {
   const t = useTranslations('calender');
   const router = useRouter();
-  const {date, isSelected, setDate, setIsSelected} = useDateStore();
+  const {date, isSelected, setDate, setIsSelected} = useTripStore();
   const [range, setRange] = useState<[Dayjs, Dayjs]>([
     dayjs(),
     dayjs().add(3, 'day'),

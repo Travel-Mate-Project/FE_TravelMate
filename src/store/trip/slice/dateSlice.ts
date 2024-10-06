@@ -1,12 +1,7 @@
-import {StateCreator} from 'zustand';
 import dayjs from 'dayjs';
+import {StateCreator} from 'zustand';
 
-export interface DateSlice {
-  date: [Date, Date];
-  isSelected: boolean;
-  setIsSelected: (isSelect: boolean) => void;
-  setDate: (date: [Date, Date]) => void;
-}
+import {DateSlice} from '@/types';
 
 export const createDateSlice: StateCreator<DateSlice> = (set) => ({
   date: [dayjs().toDate(), dayjs().toDate()],
