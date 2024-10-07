@@ -103,6 +103,7 @@ export default function TripConfigurationForm() {
           }
           label={'search'}
           placeholder={t('whereEver')}
+          autoComplete={'off'}
           type={'text'}
           register={register}
           required

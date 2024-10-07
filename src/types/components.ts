@@ -33,7 +33,7 @@ export interface InputProps<T extends FieldValues> {
   placeholder: string;
   type: InputType;
   classNames?: string;
-  autoComplete?: 'email' | 'name';
+  autoComplete?: 'email' | 'name' | 'off';
   register: UseFormRegister<T>;
   control?: Control<T>;
   required: boolean;
