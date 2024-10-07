@@ -142,3 +142,6 @@ export interface TimeInputProps {
     endTime: string;
   };
 }
+
+export type LatLngLiteral = google.maps.LatLngLiteral;
+export type MapOptions = google.maps.MapOptions;

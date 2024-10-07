@@ -1,6 +1,6 @@
 'use client';
 
-import {ReactNode, useEffect} from 'react';
+import {ReactNode, useCallback, useEffect} from 'react';
 import {useRouter} from '@/i18n/routing';
 
 export default function UnsavedChangesWarning({
@@ -9,6 +9,18 @@ export default function UnsavedChangesWarning({
   children: ReactNode;
 }) {
   const router = useRouter();
+
+  const handlePopState = useCallback(() => {
+    history.pushState(null, '', location.href);
+
+    const confirmLeave = window.confirm(
+      '페이지를 나가시겠습니까? 저장되지 않은 변경사항이 있을 수 있습니다.',
+    );
+
+    if (confirmLeave) {
+      router.push('/');
+    }
+  }, [router]);
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -31,6 +43,9 @@ export default function UnsavedChangesWarning({
       router.push('/');
     }
 
+    history.pushState(null, '', location.href);
+    window.addEventListener('popstate', handlePopState);
+
     sessionStorage.setItem('pageLoadTimestamp', currentTime);
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -39,9 +54,10 @@ export default function UnsavedChangesWarning({
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
       window.removeEventListener('pageshow', handlePageShow);
+      window.removeEventListener('popstate', handlePopState);
       sessionStorage.removeItem('pageLoadTimestamp');
     };
-  }, [router]);
+  }, [router, handlePopState]);
 
   return <>{children}</>;
 }

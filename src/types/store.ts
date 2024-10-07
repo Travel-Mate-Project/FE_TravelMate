@@ -37,3 +37,11 @@ export interface TripTypeSlice {
   type: string;
   setType: (_type: string) => void;
 }
+
+export interface MapSlice {
+  totalHeight: number;
+  minMapHeight: number;
+  maxMapHeight: number;
+  mapHeight: number;
+  setMapHeight: (height: number) => void;
+}

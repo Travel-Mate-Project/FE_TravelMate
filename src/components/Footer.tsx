@@ -1,7 +1,6 @@
 'use client';
 
 import {useTranslations} from 'next-intl';
-
 import LogoBlack from '@/asset/Logo-black.svg';
 import {usePathname} from '@/i18n/routing';
 
@@ -10,8 +9,6 @@ export default function Footer() {
   const params = usePathname();
 
   const hiddenPaths = ['/time', '/place', '/edit', '/ready'];
-
-  console.log(hiddenPaths.includes(params));
 
   return (
     <footer

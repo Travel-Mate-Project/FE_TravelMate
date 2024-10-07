@@ -4,11 +4,14 @@ import React from 'react';
 
 import TripTimeConfigFrom from '@/app/[locale]/(main)/(trip)/_components/TripTimeConfigFrom';
 import TripTimeConfigHeader from '@/app/[locale]/(main)/(trip)/_components/TripTimeConfigHeader';
+import NotificationBox from '@/app/[locale]/(main)/(trip)/_components/NotificationBox';
 
 export default function TimePage() {
   return (
     <>
-      <TripTimeConfigHeader />
+      <TripTimeConfigHeader>
+        <NotificationBox />
+      </TripTimeConfigHeader>
       <TripTimeConfigFrom />
     </>
   );
