@@ -28,10 +28,10 @@ export default function InviteItems() {
           </NavigationButton>
           <Kakao className={'absolute top-5 left-24'} />
         </div>
-        <BasicButton classNames={'w-full'} type={'button'}>
+        <BasicButton classNames={'w-full px-4 py-4'} type={'button'}>
           초대 링크 복사
         </BasicButton>
-        <BasicButton classNames={'w-full'} type={'button'}>
+        <BasicButton classNames={'w-full px-4 py-4'} type={'button'}>
           일정으로 이동
         </BasicButton>
       </div>

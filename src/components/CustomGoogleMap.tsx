@@ -22,6 +22,7 @@ export default function ResizableMapWithContent() {
     mapTypeControl: false,
     streetViewControl: false,
     fullscreenControl: true,
+    gestureHandling: 'greedy',
   };
 
   const location = useTripStore.use.region();
@@ -29,6 +30,7 @@ export default function ResizableMapWithContent() {
     id: 'google-map-script',
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP || '',
     libraries: libraries,
+    language: 'ko',
   });
 
   const onLoad = useCallback((map: google.maps.Map) => {
@@ -60,7 +62,7 @@ export default function ResizableMapWithContent() {
     if (!location) {
       router.replace('/');
     }
-  }, []);
+  }, [location, router]);
 
   if (loadError || !location) {
     return <div>지도를 로드할 수 없습니다. 다시 시도해 주세요.</div>;
