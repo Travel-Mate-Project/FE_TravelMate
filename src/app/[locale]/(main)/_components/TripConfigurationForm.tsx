@@ -16,12 +16,18 @@ import {Link, useRouter} from '@/i18n/routing';
 import {CityCodeType, TripConfigurationFormValue} from '@/types';
 
 import 'dayjs/locale/ko';
-import {useDateStore} from '@/store';
+import {useTripStore} from '@/store';
 import {useGetCityCode} from '@/hooks/withQuery/useGetCityCode';
 
 export default function TripConfigurationForm() {
   const t = useTranslations('tripConfigPanel');
-  const {date, isSelected} = useDateStore();
+  const {
+    date,
+    isSelected,
+    setRegion,
+    setRegionCode: setStoreCityCode,
+    setType,
+  } = useTripStore();
   const [startDate, endDate] = date;
   const [cityName, setCityName] = useState<string>('');
   const [cityCode, setCityCode] = useState<number>();
@@ -45,11 +51,17 @@ export default function TripConfigurationForm() {
     }
     setIsAutocompleteOpen(false);
   });
-  const {filteredCityList} = useGetCityCode(debounceQuery, 1);
+  const {filteredCityList, isLoading} = useGetCityCode(debounceQuery, 1);
 
   const handleMakeTrip = (data: TripConfigurationFormValue) => {
-    console.log('handleMakeTrip', data);
-    console.log(cityCode);
+    if (!cityCode) {
+      return;
+    }
+
+    setRegion(data.search);
+    setStoreCityCode(cityCode);
+    setType(data.single);
+
     if (data.single === 'together') {
       route.push('/invite');
     }
@@ -91,6 +103,7 @@ export default function TripConfigurationForm() {
           }
           label={'search'}
           placeholder={t('whereEver')}
+          autoComplete={'off'}
           type={'text'}
           register={register}
           required
@@ -119,6 +132,12 @@ export default function TripConfigurationForm() {
                   </button>
                 </li>
               ))
+            ) : isLoading ? (
+              <li className={'p-1'}>
+                <span className={'flex items-center font-semibold'}>
+                  로딩중....
+                </span>
+              </li>
             ) : (
               <li className={'p-1'}>
                 <span className={'flex items-center font-semibold'}>

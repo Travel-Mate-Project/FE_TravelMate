@@ -12,7 +12,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
     {
       placeId: 2,
@@ -26,7 +25,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
     {
       placeId: 3,
@@ -40,7 +38,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
     {
       placeId: 4,
@@ -54,7 +51,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
     {
       placeId: 5,
@@ -68,7 +64,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
     {
       placeId: 6,
@@ -82,7 +77,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
     {
       placeId: 7,
@@ -96,7 +90,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
   ],
   course: [
@@ -112,7 +105,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
     {
       placeId: 2,
@@ -126,7 +118,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
     {
       placeId: 3,
@@ -140,7 +131,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
     {
       placeId: 4,
@@ -154,7 +144,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
     {
       placeId: 5,
@@ -168,7 +157,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
   ],
   place: [
@@ -184,7 +172,6 @@ export const DB = {
       imageURL: 'https://placehold.co/200x200',
       commentCount: 15,
       rating: 4.2,
-      createdAt: '2024-3-12',
     },
   ],
   cityCode: [
@@ -198,7 +185,15 @@ export const DB = {
     },
     {
       code: 3,
-      name: '제주',
+      name: '제주도',
+    },
+    {
+      code: 4,
+      name: '경북',
+    },
+    {
+      code: 5,
+      name: '경남',
     },
   ],
 };

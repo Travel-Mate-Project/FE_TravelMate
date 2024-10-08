@@ -8,13 +8,21 @@ import LeftButton from '@/asset/leftButton.svg';
 import RightButton from '@/asset/rightButton.svg';
 import BasicButton from '@/components/BasicButton';
 import {useRouter} from '@/i18n/routing';
-import {useDateStore} from '@/store';
+import {useTripStore} from '@/store';
 import {useTranslations} from 'next-intl';
 
 export default function EnhancedCalendar() {
   const t = useTranslations('calender');
   const router = useRouter();
-  const {date, isSelected, setDate, setIsSelected} = useDateStore();
+  const {
+    date,
+    isSelected,
+    setDate,
+    setIsSelected,
+    initializeTime,
+    totalTripTime,
+    clearTotalTripTime,
+  } = useTripStore();
   const [range, setRange] = useState<[Dayjs, Dayjs]>([
     dayjs(),
     dayjs().add(3, 'day'),
@@ -67,7 +75,12 @@ export default function EnhancedCalendar() {
     const [start, end] = range;
     setDate([start.toDate(), end.toDate()]);
     setIsSelected(true);
+    initializeTime(start.toDate(), end.toDate());
     router.back();
+
+    if (totalTripTime) {
+      clearTotalTripTime();
+    }
   };
 
   useEffect(() => {
@@ -115,7 +128,7 @@ export default function EnhancedCalendar() {
         type={'button'}
         onClick={handleSetDate}
         classNames={
-          'w-[calc(100%-48px)] absolute bottom-8 left-1/2 transform -translate-x-1/2'
+          'w-[calc(100%-48px)] absolute bottom-8 left-1/2 transform -translate-x-1/2 px-3 py-4'
         }
       >
         {t('confirm')}

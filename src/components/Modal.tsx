@@ -5,26 +5,14 @@ import React, {useEffect, useState} from 'react';
 import CloseIcon from '@/asset/closeIcon.svg';
 import {useRouter} from '@/i18n/routing';
 import {ModalProps} from '@/types';
-import {
-  getDesktopHeightClass,
-  getMobileHeightClass,
-} from '@/util/getHeightClass';
 
-export default function Modal({
-  children,
-  title,
-  mobileModalHeight = 90,
-  desktopModalWidth = 725,
-}: ModalProps) {
+export default function Modal({children, title, ModalHeight}: ModalProps) {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
-  const mobileHeightClass = getMobileHeightClass(mobileModalHeight);
-  const desktopHeightClass = getDesktopHeightClass(desktopModalWidth);
 
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -41,11 +29,11 @@ export default function Modal({
         onClick={handleModalClick}
         className={`
          absolute bottom-0
-          bg-white w-full ${mobileHeightClass} max-w-md rounded-t-2xl shadow-lg
+          bg-white w-full ${ModalHeight} max-w-md rounded-t-2xl shadow-lg
           transition-all duration-300 ease-in-out
           ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}
           md:static
-          md:w-7xl ${desktopHeightClass} md:rounded-2xl
+          md:w-7xl md:rounded-2xl
           md:transform-none md:opacity-100
         `}
       >

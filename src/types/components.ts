@@ -33,7 +33,7 @@ export interface InputProps<T extends FieldValues> {
   placeholder: string;
   type: InputType;
   classNames?: string;
-  autoComplete?: 'email' | 'name';
+  autoComplete?: 'email' | 'name' | 'off';
   register: UseFormRegister<T>;
   control?: Control<T>;
   required: boolean;
@@ -87,8 +87,7 @@ export interface ModalProps {
   setValue?: UseFormSetValue<TripConfigurationFormValue>;
   // eslint-disable-next-line no-unused-vars
   handleChange?: <T>(value?: T) => void;
-  mobileModalHeight?: number | string;
-  desktopModalWidth?: number | string;
+  ModalHeight?: string;
 }
 
 interface SelectOptions {
@@ -136,3 +135,13 @@ export interface ServerPrefetchProviderProps {
 export interface CarouseButtonProps extends ButtonProps {
   isNext: boolean;
 }
+
+export interface TimeInputProps {
+  [key: string]: {
+    startTime: string;
+    endTime: string;
+  };
+}
+
+export type LatLngLiteral = google.maps.LatLngLiteral;
+export type MapOptions = google.maps.MapOptions;
