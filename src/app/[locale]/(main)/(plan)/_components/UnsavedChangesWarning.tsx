@@ -22,7 +22,7 @@ export default function UnsavedChangesWarning({
     const handlePageShow = (e: PageTransitionEvent) => {
       if (e.persisted) {
         // 페이지가 bfcache에서 복원된 경우 (새로고침)
-        router.push('/');
+        router.replace('/');
       }
     };
 
@@ -31,7 +31,7 @@ export default function UnsavedChangesWarning({
 
     if (timestamp) {
       // 타임스탬프가 존재하면 새로고침으로 간주
-      router.push('/');
+      router.replace('/');
     }
 
     sessionStorage.setItem('pageLoadTimestamp', currentTime);

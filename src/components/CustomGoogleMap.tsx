@@ -5,10 +5,12 @@ import React, {useCallback, useEffect, useState} from 'react';
 
 import {useTripStore} from '@/store';
 import {LatLngLiteral, MapOptions} from '@/types';
+import {useRouter} from '@/i18n/routing';
 
 const libraries: 'places'[] = ['places'];
 
 export default function ResizableMapWithContent() {
+  const router = useRouter();
   const defaultCenter: LatLngLiteral = {
     lat: 33.4897,
     lng: 126.809,
@@ -57,6 +59,12 @@ export default function ResizableMapWithContent() {
       });
     }
   }, [isLoaded, loadError, location, map]);
+
+  useEffect(() => {
+    if (!location) {
+      router.replace('/');
+    }
+  }, []);
 
   if (loadError || !location) {
     return <div>지도를 로드할 수 없습니다. 다시 시도해 주세요.</div>;

@@ -29,6 +29,9 @@ export default function TripTimeConfigForm() {
 
   useEffect(() => {
     reset();
+    if (dateAndTime.length <= 0) {
+      router.replace('/');
+    }
   }, [dateAndTime, reset]);
 
   return (
