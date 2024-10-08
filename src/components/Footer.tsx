@@ -9,7 +9,6 @@ export default function Footer() {
   const params = usePathname();
 
   const hiddenPaths = ['/time', '/place', '/edit', '/ready'];
-
   return (
     <footer
       className={`relative max-h-36 bottom-0 w-full bg-transparent py-10 ${hiddenPaths.includes(params) ? 'hidden' : 'block'}  md:block`}

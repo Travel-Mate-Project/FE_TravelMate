@@ -1,7 +1,8 @@
 'use client';
 
-import React, {useCallback, useEffect, useState} from 'react';
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api';
+import React, {useCallback, useEffect, useState} from 'react';
+
 import {useTripStore} from '@/store';
 import {LatLngLiteral, MapOptions} from '@/types';
 

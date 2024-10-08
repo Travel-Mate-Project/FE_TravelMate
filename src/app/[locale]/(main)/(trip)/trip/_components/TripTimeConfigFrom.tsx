@@ -23,7 +23,7 @@ export default function TripTimeConfigForm() {
       end: times.endTime,
     }));
     updateDateAndTime(result);
-    router.push('/place');
+    router.push('/trip/place');
   };
   // console.log('설정한 날짜와 시간', dateAndTime);
 

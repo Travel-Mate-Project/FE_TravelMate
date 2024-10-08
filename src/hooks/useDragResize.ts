@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useRef} from 'react';
+
 import {useTripStore} from '@/store';
 
 export function useDragResize() {
@@ -13,9 +14,11 @@ export function useDragResize() {
 
   const handleMove = useCallback(
     (clientY: number) => {
-      if (!isDragging.current) return;
-      const deltaY = clientY - startY.current;
-      setMapHeight(mapHeight + deltaY);
+      if (!isDragging.current) {
+        return;
+      }
+      const deltaY = clientY - startY.current; // 움직인 Y축 거리
+      setMapHeight(mapHeight + deltaY); // 현재 지도 크기에서 움직인 거리만큼 더하여 높이 설정
       startY.current = clientY;
     },
     [mapHeight, setMapHeight],

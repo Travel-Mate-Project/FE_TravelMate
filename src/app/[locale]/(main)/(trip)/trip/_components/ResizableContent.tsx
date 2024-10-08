@@ -12,13 +12,13 @@ export default function ResizableContent() {
 
   return (
     <div className="mx-auto w-full max-w-[600px]">
-      <div
+      <button
         className="h-10 bg-gray-300 cursor-ns-resize flex items-center justify-center touch-none"
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
         <div className="w-10 h-1 bg-gray-500 rounded"></div>
-      </div>
+      </button>
       <div style={{height: `${contentHeight}px`, overflow: 'auto'}}>
         {/* 여기에 컨텐츠를 넣으세요 */}
         <p>이 영역의 크기도 상단 바를 드래그하여 조절할 수 있습니다.</p>
