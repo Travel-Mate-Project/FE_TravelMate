@@ -2,8 +2,8 @@ import React from 'react';
 
 import NavigationButton from '@/components/NavigationButton';
 import CustomGoogleMap from '@/components/CustomGoogleMap';
-import TripTimeConfigHeader from '@/app/[locale]/(main)/(trip)/trip/_components/TripTimeConfigHeader';
-import ResizableContent from '@/app/[locale]/(main)/(trip)/trip/_components/ResizableContent';
+import TripTimeConfigHeader from '@/app/[locale]/(main)/(plan)/_components/TripTimeConfigHeader';
+import ResizableContent from '@/app/[locale]/(main)/(plan)/_components/ResizableContent';
 
 export default function PlacePage() {
   return (

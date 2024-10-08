@@ -66,7 +66,7 @@ export default function TripConfigurationForm() {
       route.push('/invite');
     }
     if (data.single === 'alone') {
-      route.push('/trip/time');
+      route.push('/time');
     }
   };
 
