@@ -8,6 +8,7 @@ const DEFAULT_END_TIME = '22:00';
 
 export const createTimeSlice: StateCreator<TimeSlice> = (set) => ({
   dateAndTime: [],
+  totalTripTime: '',
 
   initializeTime: (startDate, endDate) =>
     set(() => {
@@ -33,5 +34,8 @@ export const createTimeSlice: StateCreator<TimeSlice> = (set) => ({
       ),
     })),
 
+  updateTotalTripTime: (totalTripTime) => set(() => ({totalTripTime})),
+
   clearTime: () => set({dateAndTime: []}),
+  clearTotalTripTime: () => set({totalTripTime: ''}),
 });

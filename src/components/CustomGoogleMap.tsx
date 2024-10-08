@@ -78,7 +78,7 @@ export default function ResizableMapWithContent() {
           center={center}
           onLoad={onLoad}
           onUnmount={onUnmount}
-          zoom={10}
+          zoom={9}
           options={mapOptions}
         >
           {/* Child components, such as markers, info windows, etc. */}

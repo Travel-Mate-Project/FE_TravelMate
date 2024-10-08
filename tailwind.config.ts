@@ -14,6 +14,7 @@ const config: Config = {
         green200: '#00927E',
         kakaoBg: '#FEE500',
         gray50: '#F5F8FF',
+        gray80: '#F7F7F7',
         gray100: '#CCCCCC',
         gray200: '#999999',
         gray300: '#666666',

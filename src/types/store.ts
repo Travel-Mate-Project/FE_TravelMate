@@ -1,21 +1,21 @@
 export interface SignupSlice {
   stage: number;
-  nextStage: (_stage: number) => void;
-  previousStage: (_stage: number) => void;
+  nextStage: (stage: number) => void;
+  previousStage: (stage: number) => void;
   clearStage: () => void;
 }
 
 export interface DateSlice {
   date: [Date, Date];
   isSelected: boolean;
-  setIsSelected: (_isSelect: boolean) => void;
-  setDate: (_date: [Date, Date]) => void;
+  setIsSelected: (isSelect: boolean) => void;
+  setDate: (date: [Date, Date]) => void;
 }
 
 export interface RegionSLice {
   region: string;
   regionCode: number;
-  setRegion: (_place: string) => void;
+  setRegion: (place: string) => void;
   setRegionCode: (_placeCode: number) => void;
 }
 
@@ -27,15 +27,18 @@ export interface DateAndTimeProp {
 
 export interface TimeSlice {
   dateAndTime: DateAndTimeProp[];
-  initializeTime: (_startDate: Date, _endDate: Date) => void;
+  totalTripTime: string;
+  initializeTime: (startDate: Date, endDate: Date) => void;
   updateDateAndTime: (updatedDateAndTime: DateAndTimeProp[]) => void;
   updateSingleDateAndTime: (date: string, start: string, end: string) => void;
   clearTime: () => void;
+  updateTotalTripTime: (totalTripTime: string) => void;
+  clearTotalTripTime: () => void;
 }
 
 export interface TripTypeSlice {
   type: string;
-  setType: (_type: string) => void;
+  setType: (type: string) => void;
 }
 
 export interface MapSlice {

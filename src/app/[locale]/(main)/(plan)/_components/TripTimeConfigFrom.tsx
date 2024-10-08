@@ -8,24 +8,32 @@ import BasicButton from '@/components/BasicButton';
 import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
 import {TimeInputProps} from '@/types';
+import {calculateTotalTripTime} from '@/helper/calculateTotalTripTime';
 
 export default function TripTimeConfigForm() {
   const dateAndTime = useTripStore.use.dateAndTime();
   const updateDateAndTime = useTripStore.use.updateDateAndTime();
+  const updateTotalTripTime = useTripStore.use.updateTotalTripTime();
   const router = useRouter();
 
-  const {register, handleSubmit, reset} = useForm<TimeInputProps>();
+  const {register, handleSubmit, reset, watch} = useForm<TimeInputProps>();
+  const times = watch();
 
-  const handleSetTime: SubmitHandler<TimeInputProps> = (data) => {
-    const result = Object.entries(data).map(([date, times]) => ({
+  const transformData = (data: TimeInputProps) => {
+    return Object.entries(data).map(([date, times]) => ({
       date,
       start: times.startTime,
       end: times.endTime,
     }));
+  };
+
+  const handleSetTime: SubmitHandler<TimeInputProps> = (data) => {
+    const result = transformData(data);
     updateDateAndTime(result);
+    const {hours, minutes} = calculateTotalTripTime(result);
+    updateTotalTripTime(`총 ${hours}시간 ${minutes}분`);
     router.push('/place');
   };
-  // console.log('설정한 날짜와 시간', dateAndTime);
 
   useEffect(() => {
     reset();
@@ -33,6 +41,16 @@ export default function TripTimeConfigForm() {
       router.replace('/');
     }
   }, [dateAndTime, reset]);
+
+  useEffect(() => {
+    if (Object.keys(times).length === 0 && dateAndTime.length > 0) {
+      const {hours, minutes} = calculateTotalTripTime(dateAndTime);
+      updateTotalTripTime(`총 ${hours}시간 ${minutes}분`);
+    } else if (Object.keys(times).length > 0) {
+      const {hours, minutes} = calculateTotalTripTime(times);
+      updateTotalTripTime(`총 ${hours}시간 ${minutes}분`);
+    }
+  }, [times, dateAndTime]);
 
   return (
     <form
@@ -117,7 +135,7 @@ export default function TripTimeConfigForm() {
       )}
 
       <BasicButton
-        classNames={'w-full absolute -bottom-2 md:bottom-0'}
+        classNames={'w-full absolute -bottom-2 md:bottom-0 px-3 py-4'}
         type="submit"
       >
         시간 설정 완료

@@ -14,8 +14,15 @@ import {useTranslations} from 'next-intl';
 export default function EnhancedCalendar() {
   const t = useTranslations('calender');
   const router = useRouter();
-  const {date, isSelected, setDate, setIsSelected, initializeTime} =
-    useTripStore();
+  const {
+    date,
+    isSelected,
+    setDate,
+    setIsSelected,
+    initializeTime,
+    totalTripTime,
+    clearTotalTripTime,
+  } = useTripStore();
   const [range, setRange] = useState<[Dayjs, Dayjs]>([
     dayjs(),
     dayjs().add(3, 'day'),
@@ -70,6 +77,10 @@ export default function EnhancedCalendar() {
     setIsSelected(true);
     initializeTime(start.toDate(), end.toDate());
     router.back();
+
+    if (totalTripTime) {
+      clearTotalTripTime();
+    }
   };
 
   useEffect(() => {
@@ -117,7 +128,7 @@ export default function EnhancedCalendar() {
         type={'button'}
         onClick={handleSetDate}
         classNames={
-          'w-[calc(100%-48px)] absolute bottom-8 left-1/2 transform -translate-x-1/2'
+          'w-[calc(100%-48px)] absolute bottom-8 left-1/2 transform -translate-x-1/2 px-3 py-4'
         }
       >
         {t('confirm')}
