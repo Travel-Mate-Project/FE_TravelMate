@@ -5,10 +5,10 @@ import {useEffect} from 'react';
 import {SubmitHandler, useForm} from 'react-hook-form';
 
 import BasicButton from '@/components/BasicButton';
+import {calculateTotalTripTime} from '@/helper/calculateTotalTripTime';
 import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
 import {TimeInputProps} from '@/types';
-import {calculateTotalTripTime} from '@/helper/calculateTotalTripTime';
 
 export default function TripTimeConfigForm() {
   const dateAndTime = useTripStore.use.dateAndTime();
@@ -31,7 +31,7 @@ export default function TripTimeConfigForm() {
     const result = transformData(data);
     updateDateAndTime(result);
     const {hours, minutes} = calculateTotalTripTime(result);
-    updateTotalTripTime(`총 ${hours}시간 ${minutes}분`);
+    updateTotalTripTime(`${hours}시간 ${minutes}분`);
     router.push('/place');
   };
 
@@ -40,17 +40,17 @@ export default function TripTimeConfigForm() {
     if (dateAndTime.length <= 0) {
       router.replace('/');
     }
-  }, [dateAndTime, reset]);
+  }, [dateAndTime, reset, router]);
 
   useEffect(() => {
     if (Object.keys(times).length === 0 && dateAndTime.length > 0) {
       const {hours, minutes} = calculateTotalTripTime(dateAndTime);
-      updateTotalTripTime(`총 ${hours}시간 ${minutes}분`);
+      updateTotalTripTime(`${hours}시간 ${minutes}분`);
     } else if (Object.keys(times).length > 0) {
       const {hours, minutes} = calculateTotalTripTime(times);
-      updateTotalTripTime(`총 ${hours}시간 ${minutes}분`);
+      updateTotalTripTime(`${hours}시간 ${minutes}분`);
     }
-  }, [times, dateAndTime]);
+  }, [times, dateAndTime, updateTotalTripTime]);
 
   return (
     <form

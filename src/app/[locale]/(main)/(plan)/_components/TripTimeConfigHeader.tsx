@@ -3,8 +3,9 @@
 import dayjs from 'dayjs';
 
 import Calender from '@/asset/calender.svg';
-import {useRouter} from '@/i18n/routing';
+import {Link, usePathname, useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
+
 import 'dayjs/locale/ko';
 import {ReactNode, useEffect} from 'react';
 
@@ -20,6 +21,21 @@ export default function TripTimeConfigHeader({
   } = useTripStore();
   const router = useRouter();
   const totalTripTime = useTripStore.use.totalTripTime();
+  const path = usePathname();
+
+  const changeDate = () => {
+    if (path !== '/time') {
+      // TODO: 이후 커스텀 모달창으로 교체하기
+      const result = confirm('일정을 바꾸면 시간을 다시 설정해야 합니다.');
+      if (result) {
+        router.push('/date');
+      } else {
+        return;
+      }
+    } else {
+      router.push('/date');
+    }
+  };
 
   useEffect(() => {
     if (totalTripTime === '') {
@@ -31,7 +47,7 @@ export default function TripTimeConfigHeader({
     <>
       <h2 className={'font-bold mb-1.5 md:text-lg'}>{region}</h2>
       <button
-        onClick={() => router.push('/date')}
+        onClick={changeDate}
         className={'flex items-center gap-1 text-xs md:text-sm text-gray700'}
       >
         <p>{dayjs(startDay).format('YYYY-MM-DD(dd)')} </p> -
@@ -43,8 +59,10 @@ export default function TripTimeConfigHeader({
           'flex items-center gap-3 mt-2 text-xs md:text-sm text-gray700'
         }
       >
-        <p>여행 상세 시간 설정</p>
-        <span className={'text-green200'}>{totalTripTime || ''}</span>
+        <Link href={'/time'}>
+          <p>여행 상세 시간 설정</p>
+        </Link>
+        <span className={'text-green200'}>총 {totalTripTime || ''}</span>
       </div>
       {children}
     </>

@@ -3,21 +3,17 @@
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api';
 import React, {useCallback, useEffect, useState} from 'react';
 
+import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
 import {LatLngLiteral, MapOptions} from '@/types';
-import {useRouter} from '@/i18n/routing';
 
 const libraries: 'places'[] = ['places'];
 
 export default function ResizableMapWithContent() {
   const router = useRouter();
-  const defaultCenter: LatLngLiteral = {
-    lat: 33.4897,
-    lng: 126.809,
-  };
 
   const [map, setMap] = useState<google.maps.Map | null>(null);
-  const [center, setCenter] = useState<LatLngLiteral>(defaultCenter);
+  const [center, setCenter] = useState<LatLngLiteral>();
 
   const {mapHeight} = useTripStore();
 

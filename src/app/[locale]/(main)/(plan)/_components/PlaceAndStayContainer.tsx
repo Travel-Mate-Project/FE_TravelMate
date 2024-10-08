@@ -1,14 +1,15 @@
 'use client';
 
 import React, {useState} from 'react';
-import {useDragResize} from '@/hooks/useDragResize';
-import {useTripStore} from '@/store';
+
 import DragDown from '@/asset/Menu_Duo_LG.svg';
 import BasicButton from '@/components/BasicButton';
+import {useDragResize} from '@/hooks/useDragResize';
+import {useTripStore} from '@/store';
 
 export default function PlaceAndStayContainer() {
   const [select, setSelect] = useState<string>('place');
-  const {totalHeight, mapHeight} = useTripStore();
+  const {totalHeight, mapHeight, totalTripTime} = useTripStore();
   const {handleMouseDown, handleTouchStart} = useDragResize();
 
   const contentHeight = totalHeight - mapHeight;
@@ -64,7 +65,7 @@ export default function PlaceAndStayContainer() {
             <p className={'pr-4 font-bold text-xl'}>0</p>
             <div className={'flex flex-col text-xs gap-1.5'}>
               <button className={'text-green100'}>초기화</button>
-              <p className={'text-gray700'}>몇시간</p>
+              <p className={'text-gray700'}>시간/{totalTripTime}</p>
             </div>
           </div>
           <BasicButton classNames={'text-sm px-5 py-1.5'} type={'button'}>
@@ -80,7 +81,7 @@ export default function PlaceAndStayContainer() {
         </div>
       </div>
       <BasicButton type={'button'} classNames={'w-full px-5 py-4 mb-5'}>
-        저장
+        일정 생성
       </BasicButton>
     </div>
   );
