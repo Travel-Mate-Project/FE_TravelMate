@@ -1,21 +1,21 @@
 export interface SignupSlice {
   stage: number;
-  nextStage: (stage: number) => void;
-  previousStage: (stage: number) => void;
+  nextStage: (_stage: number) => void;
+  previousStage: (_stage: number) => void;
   clearStage: () => void;
 }
 
 export interface DateSlice {
   date: [Date, Date];
   isSelected: boolean;
-  setIsSelected: (isSelect: boolean) => void;
-  setDate: (date: [Date, Date]) => void;
+  setIsSelected: (_isSelect: boolean) => void;
+  setDate: (_date: [Date, Date]) => void;
 }
 
 export interface RegionSLice {
   region: string;
   regionCode: number;
-  setRegion: (place: string) => void;
+  setRegion: (_place: string) => void;
   setRegionCode: (_placeCode: number) => void;
 }
 
@@ -28,17 +28,21 @@ export interface DateAndTimeProp {
 export interface TimeSlice {
   dateAndTime: DateAndTimeProp[];
   totalTripTime: string;
-  initializeTime: (startDate: Date, endDate: Date) => void;
-  updateDateAndTime: (updatedDateAndTime: DateAndTimeProp[]) => void;
-  updateSingleDateAndTime: (date: string, start: string, end: string) => void;
+  initializeTime: (_startDate: Date, _endDate: Date) => void;
+  updateDateAndTime: (_updatedDateAndTime: DateAndTimeProp[]) => void;
+  updateSingleDateAndTime: (
+    _date: string,
+    _start: string,
+    _end: string,
+  ) => void;
   clearTime: () => void;
-  updateTotalTripTime: (totalTripTime: string) => void;
+  updateTotalTripTime: (_totalTripTime: string) => void;
   clearTotalTripTime: () => void;
 }
 
 export interface TripTypeSlice {
   type: string;
-  setType: (type: string) => void;
+  setType: (_type: string) => void;
 }
 
 export interface MapSlice {
@@ -46,5 +50,23 @@ export interface MapSlice {
   minMapHeight: number;
   maxMapHeight: number;
   mapHeight: number;
-  setMapHeight: (height: number) => void;
+  setMapHeight: (_height: number) => void;
+}
+
+export interface Place {
+  id: string;
+  name: string;
+  type: string;
+  location: {
+    lat: number;
+    lng: number;
+  };
+}
+
+export interface PlaceSlice {
+  places: Place[];
+  addPlace: (_place: Place) => void;
+  removePlace: (_place: Place) => void;
+  updatePlace: (_place: Place[]) => void;
+  clearPlaces: () => void;
 }
