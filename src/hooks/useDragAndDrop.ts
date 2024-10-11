@@ -3,9 +3,9 @@ import {useDrag, useDrop} from 'react-dnd';
 
 import {Location} from '@/types';
 
-export const useDragAndDrop = (
-  itemList: Location[], // 전체 리스트
-  updateItem: (_place: Location[]) => void, // 리스트 업데이트 함수
+export const useDragAndDrop = <T extends Location>(
+  itemList: T[], // 전체 리스트
+  updateItem: (_item: T[]) => void, // 리스트 업데이트 함수
   id: number, // 드래그할 아이템의 id
   accept: string, // 드래그할 아이템의 타입
 ) => {
@@ -13,10 +13,10 @@ export const useDragAndDrop = (
 
   const findItem = useCallback(
     (id: number) => {
-      const place = itemList.find((c) => c.id === id);
+      const item = itemList.find((item) => 'id' in item && item.id === id);
       return {
-        place,
-        index: place ? itemList.indexOf(place) : -1,
+        item,
+        index: item ? itemList.indexOf(item) : -1,
       };
     },
     [itemList],
@@ -24,14 +24,14 @@ export const useDragAndDrop = (
 
   const moveItem = useCallback(
     (id: number, atIndex: number) => {
-      const {place, index} = findItem(id);
+      const {item, index} = findItem(id);
       if (index === atIndex) {
         return;
       }
       const newPlaces = [...itemList];
       newPlaces.splice(index, 1);
-      if (place) {
-        newPlaces.splice(atIndex, 0, place);
+      if (item) {
+        newPlaces.splice(atIndex, 0, item);
       }
       updateItem(newPlaces);
     },
