@@ -10,7 +10,6 @@ import {
 } from 'react-hook-form';
 
 import {RegionType} from '@/types/response';
-import {Location} from '@/types/store';
 
 type InputType = 'text' | 'password' | 'email' | 'date' | 'number';
 type ButtonType = 'button' | 'submit' | 'reset';
@@ -146,8 +145,3 @@ export interface TimeInputProps {
 
 export type LatLngLiteral = google.maps.LatLngLiteral;
 export type MapOptions = google.maps.MapOptions;
-
-export interface DndCardProps extends Location {
-  moveCard: (_id: number, _to: number) => void;
-  findCard: (_id: number) => {index: number};
-}

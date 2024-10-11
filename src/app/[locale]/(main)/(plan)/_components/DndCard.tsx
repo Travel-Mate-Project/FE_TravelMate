@@ -1,67 +1,24 @@
 'use client';
 
-import {useDrag, useDrop} from 'react-dnd';
+import {useDragAndDrop} from '@/hooks/useDragAndDrop';
+import {useTripStore} from '@/store';
+import {Location} from '@/types';
 
-import {DndCardProps} from '@/types';
-import {useEffect, useRef} from 'react';
-
-export default function DndCard({
-  id,
-  name,
-  type,
-  imageUrl,
-  location,
-  moveCard,
-  findCard,
-}: DndCardProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const originalIndex = findCard(id).index;
-  const [, drag] = useDrag(
-    () => ({
-      type: 'PLACE',
-      item: {id, originalIndex},
-      collect: (monitor) => ({
-        isDragging: monitor.isDragging(),
-      }),
-      end: (item, monitor) => {
-        const {id: droppedId, originalIndex} = item;
-        const didDrop = monitor.didDrop();
-        if (!didDrop) {
-          // @ts-ignore
-          moveCard(droppedId, originalIndex);
-        }
-      },
-    }),
-    [id, originalIndex, moveCard],
-  );
-
-  const [, drop] = useDrop(
-    () => ({
-      accept: 'PLACE',
-      hover({id: draggedId}: {id: number}) {
-        if (draggedId !== id) {
-          const {index: overIndex} = findCard(id);
-          moveCard(draggedId, overIndex);
-        }
-      },
-    }),
-    [findCard, moveCard],
-  );
-
-  useEffect(() => {
-    drag(drop(ref));
-  }, [drag, drop]);
+export default function DndCard({place}: {place: Location}) {
+  const places = useTripStore.use.places();
+  const updatePlace = useTripStore.use.updatePlace();
+  const {DndRef} = useDragAndDrop(places, updatePlace, place.id, 'PLACE');
 
   return (
     <div
       className={'h-10 p-3 flex items-center justify-center gap-3'}
-      ref={ref}
+      ref={DndRef}
     >
-      <span>{id}</span>
-      <span>{name}</span>
-      <span>{type}</span>
-      <span>{imageUrl}</span>
-      <span>{location?.lat}</span>
+      <span>{place.id}</span>
+      <span>{place.name}</span>
+      <span>{place.type}</span>
+      <span>{place.imageUrl}</span>
+      <span>{place.location?.lat}</span>
     </div>
   );
 }

@@ -2,12 +2,12 @@
 
 import React, {useState} from 'react';
 
+import DragAndDropProvider from '@/app/[locale]/(main)/(plan)/_components/DragAndDropProvider';
+import PlaceSelection from '@/app/[locale]/(main)/(plan)/_components/PlaceSelection';
 import DragDown from '@/asset/Menu_Duo_LG.svg';
 import BasicButton from '@/components/BasicButton';
 import {useDragResize} from '@/hooks/useDragResize';
 import {useTripStore} from '@/store';
-import PlaceSelection from '@/app/[locale]/(main)/(plan)/_components/PlaceSelection';
-import DragAndDropProvider from '@/app/[locale]/(main)/(plan)/_components/DragAndDropProvider';
 
 export default function PlaceAndStayContainer() {
   const [select, setSelect] = useState<string>('place');
@@ -81,10 +81,10 @@ export default function PlaceAndStayContainer() {
         >
           <p className={'text-sm text-gray200'}>장소를 선택해 주세요.</p>
         </div>
+        <DragAndDropProvider>
+          <PlaceSelection />
+        </DragAndDropProvider>
       </div>
-      <DragAndDropProvider>
-        <PlaceSelection />
-      </DragAndDropProvider>
       <BasicButton type={'button'} classNames={'w-full px-5 py-4 mb-5'}>
         일정 생성
       </BasicButton>
