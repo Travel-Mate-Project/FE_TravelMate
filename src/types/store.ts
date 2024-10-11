@@ -53,10 +53,11 @@ export interface MapSlice {
   setMapHeight: (_height: number) => void;
 }
 
-export interface Place {
-  id: string;
+export interface Location {
+  id: number;
   name: string;
   type: string;
+  imageUrl: string;
   location: {
     lat: number;
     lng: number;
@@ -64,9 +65,9 @@ export interface Place {
 }
 
 export interface PlaceSlice {
-  places: Place[];
-  addPlace: (_place: Place) => void;
-  removePlace: (_place: Place) => void;
-  updatePlace: (_place: Place[]) => void;
+  places: Location[];
+  addPlace: (_place: Location) => void;
+  removePlace: (_place: Location) => void;
+  updatePlace: (_place: Location[]) => void;
   clearPlaces: () => void;
 }
