@@ -1,6 +1,6 @@
 'use client';
 
-import {useCallback} from 'react';
+import {useCallback, useEffect, useRef} from 'react';
 import {useDrop} from 'react-dnd';
 
 import DndCard from '@/app/[locale]/(main)/(plan)/_components/DndCard';
@@ -10,6 +10,7 @@ import {Location} from '@/types';
 export default function PlaceSelection() {
   const places = useTripStore.use.places();
   const updatePlace = useTripStore.use.updatePlace();
+  const ref = useRef<HTMLDivElement>(null);
 
   const findPlace = useCallback(
     (id: number) => {
@@ -30,7 +31,9 @@ export default function PlaceSelection() {
       }
       const newPlaces = [...places];
       newPlaces.splice(index, 1);
-      newPlaces.splice(atIndex, 0, place);
+      if (place) {
+        newPlaces.splice(atIndex, 0, place);
+      }
       updatePlace(newPlaces);
     },
     [findPlace, places, updatePlace],
@@ -38,18 +41,24 @@ export default function PlaceSelection() {
 
   const [, drop] = useDrop(() => ({accept: 'PLACE'}));
 
+  useEffect(() => {
+    if (ref.current) {
+      drop(ref);
+    }
+  }, [drop]);
+
   return (
-    <div ref={drop}>
+    <div ref={ref}>
       {places?.map((place: Location) => (
         <DndCard
-          key={place?.id}
+          key={place.id}
           moveCard={movePlace}
           findCard={findPlace}
-          id={place?.id}
-          name={place?.name}
-          type={place?.type}
-          imageUrl={place?.imageUrl}
-          location={place?.location}
+          id={place.id}
+          name={place.name}
+          type={place.type}
+          imageUrl={place.imageUrl}
+          location={place.location}
         />
       ))}
     </div>

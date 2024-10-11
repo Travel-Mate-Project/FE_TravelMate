@@ -3,6 +3,7 @@
 import {useDrag, useDrop} from 'react-dnd';
 
 import {DndCardProps} from '@/types';
+import {useEffect, useRef} from 'react';
 
 export default function DndCard({
   id,
@@ -13,6 +14,7 @@ export default function DndCard({
   moveCard,
   findCard,
 }: DndCardProps) {
+  const ref = useRef<HTMLDivElement>(null);
   const originalIndex = findCard(id).index;
   const [, drag] = useDrag(
     () => ({
@@ -46,10 +48,14 @@ export default function DndCard({
     [findCard, moveCard],
   );
 
+  useEffect(() => {
+    drag(drop(ref));
+  }, [drag, drop]);
+
   return (
     <div
       className={'h-10 p-3 flex items-center justify-center gap-3'}
-      ref={(node) => drag(drop(node))}
+      ref={ref}
     >
       <span>{id}</span>
       <span>{name}</span>
