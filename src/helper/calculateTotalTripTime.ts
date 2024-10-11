@@ -1,5 +1,6 @@
-import {DateAndTimeProp, TimeInputProps} from '@/types';
 import dayjs from 'dayjs';
+
+import {DateAndTimeProp, TimeInputProps} from '@/types';
 
 export const calculateTotalTripTime = (
   input: DateAndTimeProp[] | TimeInputProps,
