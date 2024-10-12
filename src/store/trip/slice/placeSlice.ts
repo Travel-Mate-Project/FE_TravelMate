@@ -6,14 +6,14 @@ export const creatPlaceSlice: StateCreator<PlaceSlice> = (set) => ({
   places: [
     {
       id: 1,
-      name: 'test',
+      name: '제주국제공항',
       type: 'place',
       imageUrl: 'https://placehold.co/47x47',
       location: {lat: 33.5067, lng: 126.493},
     },
     {
       id: 2,
-      name: 'test2',
+      name: '여행지1',
       type: 'place',
       imageUrl: 'https://placehold.co/47x47',
       location: {lat: 33.4587, lng: 126.9426},

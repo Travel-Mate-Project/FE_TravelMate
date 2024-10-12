@@ -1,6 +1,6 @@
 'use client';
 
-import {GoogleMap, Marker} from '@react-google-maps/api';
+import {GoogleMap, Marker, OverlayView} from '@react-google-maps/api';
 import React from 'react';
 
 import {useGoogleMap} from '@/hooks/useGoogleMap';
@@ -35,16 +35,37 @@ export default function ResizableMapWithContent() {
           options={mapOptions}
         >
           {places.map((place, index) => (
-            <Marker
-              key={place.id}
-              position={{lat: place.location.lat, lng: place.location.lng}}
-              label={{
-                text: (index + 1).toString(),
-                color: 'white',
-                fontSize: '14px',
-                fontWeight: 'bold',
-              }}
-            />
+            <React.Fragment key={place.id}>
+              <Marker
+                position={{lat: place.location.lat, lng: place.location.lng}}
+                icon={{
+                  path: google.maps.SymbolPath.CIRCLE,
+                  fillColor: '#808080',
+                  fillOpacity: 1,
+                  strokeWeight: 3,
+                  strokeColor: '#fff',
+                  scale: 20,
+                }}
+                label={{
+                  text: (index + 1).toString(),
+                  color: 'white',
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                }}
+              />
+              <OverlayView
+                position={{lat: place.location.lat, lng: place.location.lng}}
+                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+              >
+                <div
+                  className="bg-white w-max px-2.5 py-1.5 text-sm rounded-xl
+                 shadow-md absolute left-1/2 -translate-x-1/2 -translate-y-14
+                  -mt-1 whitespace-nowrap border border-solid border-gray-700 font-semibold"
+                >
+                  {place.name}
+                </div>
+              </OverlayView>
+            </React.Fragment>
           ))}
         </GoogleMap>
       </div>
