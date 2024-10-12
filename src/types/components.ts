@@ -155,3 +155,7 @@ export interface DndCardProps {
   accept: string;
   children: ReactNode;
 }
+
+export interface AddPlacePageProps {
+  type: 'place' | 'stay';
+}
