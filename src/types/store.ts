@@ -67,7 +67,7 @@ export interface Location {
 export interface PlaceSlice {
   places: Location[];
   addPlace: (_place: Location) => void;
-  removePlace: (_place: Location) => void;
+  removePlace: (id: number) => void;
   updatePlace: (_place: Location[]) => void;
   clearPlaces: () => void;
 }

@@ -150,7 +150,8 @@ export type MapOptions = google.maps.MapOptions;
 export interface DndCardProps {
   items: Location[];
   updateItem: (_item: Location[]) => void;
+  removeItem: (_id: number) => void;
   id: number;
   accept: string;
-  index?: number;
+  children: ReactNode;
 }

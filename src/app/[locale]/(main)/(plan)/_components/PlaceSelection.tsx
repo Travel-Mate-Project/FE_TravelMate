@@ -4,24 +4,52 @@ import DndCard from '@/app/[locale]/(main)/(plan)/_components/DndCard';
 import {useDroppableList} from '@/hooks/useDroppableList';
 import {useTripStore} from '@/store';
 import {Location} from '@/types';
+import Image from 'next/image';
 
 export default function PlaceSelection() {
   const places = useTripStore.use.places();
   const updatePlace = useTripStore.use.updatePlace();
+  const removePlace = useTripStore.use.removePlace();
 
   const {droppableRef} = useDroppableList('PLACE');
 
   return (
-    <div ref={droppableRef}>
+    <div
+      className={'flex flex-col mt-5 gap-3 px-2 overflow-visible'}
+      ref={droppableRef}
+    >
       {places?.map((place: Location, index) => (
         <DndCard
           key={place.id}
           items={places}
           id={place.id}
           updateItem={updatePlace}
+          removeItem={removePlace}
           accept={'PLACE'}
-          index={index + 1}
-        />
+        >
+          <div className={'flex gap-3 items-center'}>
+            <div
+              className={
+                'rounded-full bg-gray300 text-white h-[30px] w-[30px] flex items-center justify-center font-semibold'
+              }
+            >
+              {index + 1}
+            </div>
+            <div className={'flex gap-2'}>
+              <Image
+                className={'rounded-full'}
+                src={place.imageUrl}
+                alt={'placeImage'}
+                width={47}
+                height={47}
+              />
+              <div>
+                <p>{place.name}</p>
+                <p>{place.type === 'place' ? '여행지' : '숙소'}</p>
+              </div>
+            </div>
+          </div>
+        </DndCard>
       ))}
     </div>
   );

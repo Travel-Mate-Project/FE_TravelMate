@@ -1,9 +1,10 @@
 'use client';
 
-import {GoogleMap} from '@react-google-maps/api';
+import {GoogleMap, Marker} from '@react-google-maps/api';
 import React from 'react';
 
 import {useGoogleMap} from '@/hooks/useGoogleMap';
+import {useTripStore} from '@/store';
 
 export default function ResizableMapWithContent() {
   const {
@@ -15,6 +16,8 @@ export default function ResizableMapWithContent() {
     isLoaded,
     loadError,
   } = useGoogleMap();
+
+  const places = useTripStore.use.places();
 
   if (loadError || !location) {
     return <div>지도를 로드할 수 없습니다. 다시 시도해 주세요.</div>;
@@ -31,7 +34,18 @@ export default function ResizableMapWithContent() {
           zoom={9}
           options={mapOptions}
         >
-          {/* Child components, such as markers, info windows, etc. */}
+          {places.map((place, index) => (
+            <Marker
+              key={place.id}
+              position={{lat: place.location.lat, lng: place.location.lng}}
+              label={{
+                text: (index + 1).toString(),
+                color: 'white',
+                fontSize: '14px',
+                fontWeight: 'bold',
+              }}
+            />
+          ))}
         </GoogleMap>
       </div>
     </div>

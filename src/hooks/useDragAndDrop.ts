@@ -10,6 +10,7 @@ export const useDragAndDrop = <T extends Location>(
   accept: string, // 드래그할 아이템의 타입
 ) => {
   const DndRef = useRef<HTMLDivElement>(null);
+  const dragHandleRef = useRef<HTMLDivElement>(null);
 
   const findItem = useCallback(
     (id: number) => {
@@ -40,7 +41,7 @@ export const useDragAndDrop = <T extends Location>(
 
   const originalIndex = findItem(id).index;
 
-  const [, drag] = useDrag(
+  const [{isDragging}, drag, preview] = useDrag(
     () => ({
       type: accept,
       item: {id, originalIndex},
@@ -51,7 +52,6 @@ export const useDragAndDrop = <T extends Location>(
         const {id: droppedId, originalIndex} = item;
         const didDrop = monitor.didDrop();
         if (!didDrop) {
-          // @ts-ignore
           moveItem(droppedId, originalIndex);
         }
       },
@@ -73,8 +73,9 @@ export const useDragAndDrop = <T extends Location>(
   );
 
   useEffect(() => {
-    drag(drop(DndRef));
-  }, [drag, drop]);
+    preview(drop(DndRef));
+    drag(dragHandleRef);
+  }, [drag, drop, preview]);
 
-  return {DndRef};
+  return {DndRef, dragHandleRef, isDragging};
 };

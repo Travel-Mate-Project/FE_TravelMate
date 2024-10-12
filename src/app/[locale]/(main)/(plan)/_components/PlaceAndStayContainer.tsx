@@ -13,11 +13,23 @@ export default function PlaceAndStayContainer() {
   const [select, setSelect] = useState<string>('place');
   const {totalHeight, mapHeight, totalTripTime, places} = useTripStore();
   const {handleMouseDown, handleTouchStart} = useDragResize();
+  const addPlace = useTripStore.use.addPlace();
 
   const contentHeight = totalHeight - mapHeight;
 
   const handleSelect = (value: string) => {
     setSelect(value);
+  };
+
+  // NOTICE: 테스트를 위한 함수 추후 삭제 예정
+  const onAddPlaceTest = () => {
+    addPlace({
+      id: 3,
+      name: 'test3',
+      type: 'place',
+      imageUrl: 'https://placehold.co/47x47',
+      location: {lat: 33.289, lng: 126.3774},
+    });
   };
 
   return (
@@ -70,7 +82,11 @@ export default function PlaceAndStayContainer() {
               <p className={'text-gray700'}>시간/{totalTripTime}</p>
             </div>
           </div>
-          <BasicButton classNames={'text-sm px-5 py-1.5'} type={'button'}>
+          <BasicButton
+            onClick={onAddPlaceTest}
+            classNames={'text-sm px-5 py-1.5'}
+            type={'button'}
+          >
             장소추가
           </BasicButton>
         </div>

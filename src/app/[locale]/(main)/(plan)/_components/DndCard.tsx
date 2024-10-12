@@ -2,21 +2,39 @@
 
 import {useDragAndDrop} from '@/hooks/useDragAndDrop';
 import {DndCardProps} from '@/types';
+import Drag from '@/asset/Drag.svg';
+import Remove from '@/asset/remove.svg';
 
 export default function DndCard({
   items,
   updateItem,
+  removeItem,
   id,
   accept,
-  index,
+  children,
 }: DndCardProps) {
-  const {DndRef} = useDragAndDrop(items, updateItem, id, accept);
+  const {DndRef, dragHandleRef, isDragging} = useDragAndDrop(
+    items,
+    updateItem,
+    id,
+    accept,
+  );
+
   return (
     <div
-      className={'h-10 p-3 flex items-center justify-center gap-3 shadow-black'}
       ref={DndRef}
+      className={`py-3 px-5 flex items-center justify-center rounded-2xl bg-white
+       shadow-[0_5px_30px_-10px_rgba(0,0,0,0.3)] ${isDragging ? 'scale-105 opacity-50' : ''}`}
     >
-      <div></div>
+      <div className={'w-full flex items-center justify-between'}>
+        {children}
+        <div className={'flex gap-5'}>
+          <div ref={dragHandleRef}>
+            <Drag className={'cursor-move'} />
+          </div>
+          <Remove onClick={() => removeItem(id)} />
+        </div>
+      </div>
     </div>
   );
 }
