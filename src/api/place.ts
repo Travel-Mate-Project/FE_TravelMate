@@ -16,6 +16,11 @@ export const getCourseList = async () => {
   return res.data;
 };
 
+export const getCafeList = async () => {
+  const res = await axiosDefault.get(END_POINT.place.cafe);
+  return res.data;
+};
+
 export const getCityCodeList = async (code: number) => {
   const res = await axiosDefault.get(
     `${END_POINT.place.cityCode}?countryId=${code}`,

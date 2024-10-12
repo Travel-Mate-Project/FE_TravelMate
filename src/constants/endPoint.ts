@@ -7,6 +7,9 @@ export const END_POINT = {
     regions: '/place/regions',
     place: '/place/place',
     course: '/place/course',
+    cafe: '/place/cafe',
+    restaurant: '/place/restaurant',
+    stay: '/place/stay',
     cityCode: '/cityCode',
   },
 } as const;

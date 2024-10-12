@@ -16,6 +16,10 @@ export const handlers = [
     return HttpResponse.json(DB.course, {});
   }),
 
+  http.get(END_POINT.place.cafe, () => {
+    return HttpResponse.json(DB.cafe, {});
+  }),
+
   http.get(END_POINT.place.cityCode, () => {
     return HttpResponse.json(DB.cityCode, {});
   }),

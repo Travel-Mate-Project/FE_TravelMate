@@ -6,10 +6,12 @@ import {useState} from 'react';
 import PopularCourseList from '@/app/[locale]/(main)/_components/PopularCourseList';
 import PopularPlaceList from '@/app/[locale]/(main)/_components/PopularPlaceList';
 import {useGetPopularPlaceList} from '@/hooks/withQuery/useGetPopularPlaceList';
+import {useGetCafeList} from '@/hooks/withQuery/useGetCafeList';
 
 export default function DynamicTravelList() {
   const t = useTranslations('mainTravelList');
   const {placeList} = useGetPopularPlaceList();
+  const {cafeList} = useGetCafeList();
 
   const [listType, setListType] = useState<
     'course' | 'place' | 'cafe' | 'restaurant' | 'stay'
@@ -44,7 +46,7 @@ export default function DynamicTravelList() {
       </div>
       {listType === 'course' && <PopularCourseList />}
       {listType === 'place' && <PopularPlaceList data={placeList} />}
-      {listType === 'cafe' && <PopularPlaceList data={placeList} />}
+      {listType === 'cafe' && <PopularPlaceList data={cafeList} />}
       {listType === 'restaurant' && <PopularPlaceList data={placeList} />}
       {listType === 'stay' && <PopularPlaceList data={placeList} />}
     </div>

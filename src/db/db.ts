@@ -174,6 +174,21 @@ export const DB = {
       rating: 4.2,
     },
   ],
+  cafe: [
+    {
+      placeId: 1,
+      name: '제주도 카페 입니다.',
+      description: '대충 설명 설명7',
+      addr: '제주도 어딘가',
+      type: 'cafe',
+      latitude: 123123.123,
+      longitude: 123123.123,
+      likeCount: 5,
+      imageURL: 'https://placehold.co/200x200',
+      commentCount: 2,
+      rating: 4.9,
+    },
+  ],
   cityCode: [
     {
       code: 1,
