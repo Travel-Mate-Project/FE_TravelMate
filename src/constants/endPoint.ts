@@ -12,4 +12,8 @@ export const END_POINT = {
     stay: '/place/stay',
     cityCode: '/cityCode',
   },
+  search: {
+    addPlace: '/addPlace',
+    addStay: '/addStay',
+  },
 } as const;

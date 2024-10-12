@@ -5,8 +5,8 @@ import {useState} from 'react';
 
 import PopularCourseList from '@/app/[locale]/(main)/_components/PopularCourseList';
 import PopularPlaceList from '@/app/[locale]/(main)/_components/PopularPlaceList';
-import {useGetPopularPlaceList} from '@/hooks/withQuery/useGetPopularPlaceList';
-import {useGetCafeList} from '@/hooks/withQuery/useGetCafeList';
+import {useGetPopularPlaceList} from '@/hooks/withQuery/get/useGetPopularPlaceList';
+import {useGetCafeList} from '@/hooks/withQuery/get/useGetCafeList';
 
 export default function DynamicTravelList() {
   const t = useTranslations('mainTravelList');

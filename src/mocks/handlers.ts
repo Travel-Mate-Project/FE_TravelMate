@@ -23,4 +23,8 @@ export const handlers = [
   http.get(END_POINT.place.cityCode, () => {
     return HttpResponse.json(DB.cityCode, {});
   }),
+
+  http.get(END_POINT.search.addPlace, () => {
+    return HttpResponse.json(DB.searchPlace, {});
+  }),
 ];

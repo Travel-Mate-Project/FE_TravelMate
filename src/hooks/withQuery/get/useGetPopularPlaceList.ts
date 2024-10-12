@@ -1,6 +1,6 @@
 import {useQuery} from '@tanstack/react-query';
-import {QUERY_KEY} from '@/constants/queryKey';
 import {getPlaceList} from '@/api';
+import {QUERY_KEY} from '@/constants/queryKey';
 
 export const useGetPopularPlaceList = () => {
   const {data: placeList, isLoading} = useQuery({

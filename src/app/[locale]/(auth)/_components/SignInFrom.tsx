@@ -9,7 +9,7 @@ import BasicButton from '@/components/BasicButton';
 import BasicCheckBox from '@/components/BasicCheckBox';
 import {Link} from '@/i18n/routing';
 import {SignInFormValue} from '@/types';
-import {useSignIn} from '@/hooks/withQuery/useSignIn';
+import {useSignIn} from '@/hooks/withQuery/post/useSignIn';
 
 export default function SignInFrom() {
   const t = useTranslations('signIn');
