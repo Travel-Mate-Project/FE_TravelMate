@@ -156,6 +156,15 @@ export interface DndCardProps {
   children: ReactNode;
 }
 
-export interface AddPlacePageProps {
-  type: 'place' | 'stay';
+export interface selectNavProps {
+  selectOption: [string, string];
+  select: string;
+  name: [string, string];
+  setSelect: (_value: string) => void;
+}
+
+export interface SearchInputProps {
+  placeholder: string;
+  value: string;
+  onChange: (_value: string) => void;
 }

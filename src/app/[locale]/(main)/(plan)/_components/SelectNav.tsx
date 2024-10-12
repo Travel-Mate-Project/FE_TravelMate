@@ -2,43 +2,43 @@
 
 import React from 'react';
 
+import {selectNavProps} from '@/types';
+
 export default function SelectNav({
   selectOption,
   select,
+  name,
   setSelect,
-}: {
-  selectOption: [string, string];
-  select: string;
-  setSelect: (_value: string) => void;
-}) {
+}: selectNavProps) {
   const [selectOne, selectTwo] = selectOption;
+  const [contentOne, contentTwo] = name;
   return (
     <nav className={'flex items-center justify-center'}>
       <button
         onClick={() => setSelect(selectOne)}
-        className={'flex-1 text-center relative'}
+        className={'flex-1 text-center '}
       >
         <span
-          className={`inline-block py-2 ${select === selectOne ? 'text-green100' : ''}`}
+          className={`relative inline-block py-2 ${select === selectOne ? 'text-green100' : ''}`}
         >
-          장소
+          {contentOne}
           <span
-            className={`absolute bottom-0 left-1/2 w-[53px] h-0.5 bg-green100 transition-all duration-300 transform -translate-x-1/2 ${
+            className={`absolute bottom-0 left-1/2 w-[calc(100%+20px)] h-0.5 bg-green100 transition-all duration-300 transform -translate-x-1/2 ${
               select === selectOne ? 'opacity-100' : 'opacity-0'
             }`}
           ></span>
         </span>
       </button>
       <button
-        onClick={() => setSelect('stay')}
-        className={'flex-1 text-center relative'}
+        onClick={() => setSelect(selectTwo)}
+        className={'flex-1 text-center '}
       >
         <span
-          className={`inline-block py-2 ${select === 'stay' ? 'text-green100' : ''}`}
+          className={`relative inline-block py-2 ${select === selectTwo ? 'text-green100' : ''}`}
         >
-          숙소
+          {contentTwo}
           <span
-            className={`absolute bottom-0 left-1/2 w-[53px] h-0.5 bg-green100 transition-all duration-300 transform -translate-x-1/2 ${
+            className={`absolute bottom-0 left-1/2 w-[calc(100%+25px)] h-0.5 bg-green100 transition-all duration-300 transform -translate-x-1/2 ${
               select === selectTwo ? 'opacity-100' : 'opacity-0'
             }`}
           ></span>

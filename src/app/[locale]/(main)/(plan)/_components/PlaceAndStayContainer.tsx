@@ -19,6 +19,14 @@ export default function PlaceAndStayContainer() {
 
   const contentHeight = totalHeight - mapHeight;
 
+  const handleAddRoute = () => {
+    if (select === 'place') {
+      router.push('/plan/add-place');
+    } else {
+      router.push('/plan/add-stay');
+    }
+  };
+
   return (
     <div className="mx-auto w-full max-w-[600px]">
       <button
@@ -31,6 +39,7 @@ export default function PlaceAndStayContainer() {
       <div style={{maxHeight: `${contentHeight}px`, overflow: 'auto'}}>
         <SelectNav
           selectOption={['place', 'stay']}
+          name={['장소', '숙소']}
           select={select}
           setSelect={setSelect}
         />
@@ -45,7 +54,7 @@ export default function PlaceAndStayContainer() {
             </div>
           </div>
           <BasicButton
-            onClick={() => router.push('/place/add')}
+            onClick={handleAddRoute}
             classNames={'text-sm px-5 py-1.5'}
             type={'button'}
           >
