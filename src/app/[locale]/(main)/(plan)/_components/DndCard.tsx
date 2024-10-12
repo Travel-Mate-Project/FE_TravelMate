@@ -1,9 +1,9 @@
 'use client';
 
-import {useDragAndDrop} from '@/hooks/useDragAndDrop';
-import {DndCardProps} from '@/types';
 import Drag from '@/asset/Drag.svg';
 import Remove from '@/asset/remove.svg';
+import {useDragAndDrop} from '@/hooks/useDragAndDrop';
+import {DndCardProps} from '@/types';
 
 export default function DndCard({
   items,
@@ -32,7 +32,7 @@ export default function DndCard({
           <div ref={dragHandleRef}>
             <Drag className={'cursor-move'} />
           </div>
-          <Remove onClick={() => removeItem(id)} />
+          <Remove className={'cursor-pointer'} onClick={() => removeItem(id)} />
         </div>
       </div>
     </div>

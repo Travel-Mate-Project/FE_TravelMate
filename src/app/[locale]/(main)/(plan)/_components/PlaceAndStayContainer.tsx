@@ -77,9 +77,11 @@ export default function PlaceAndStayContainer() {
         <div className={'flex items-center justify-between pt-5'}>
           <div className={'flex items-center'}>
             <p className={'pr-4 font-bold text-xl'}>0</p>
-            <div className={'flex flex-col text-xs gap-1.5'}>
+            <div className={'flex flex-col items-start text-xs gap-1.5'}>
               <button className={'text-green100'}>초기화</button>
-              <p className={'text-gray700'}>시간/{totalTripTime}</p>
+              <p className={'text-gray700'}>
+                {places.length * 2}시간 0분 / {totalTripTime}
+              </p>
             </div>
           </div>
           <BasicButton
