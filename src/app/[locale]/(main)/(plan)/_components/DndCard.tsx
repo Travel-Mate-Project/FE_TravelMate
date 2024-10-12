@@ -1,24 +1,22 @@
 'use client';
 
 import {useDragAndDrop} from '@/hooks/useDragAndDrop';
-import {useTripStore} from '@/store';
-import {Location} from '@/types';
+import {DndCardProps} from '@/types';
 
-export default function DndCard({place}: {place: Location}) {
-  const places = useTripStore.use.places();
-  const updatePlace = useTripStore.use.updatePlace();
-  const {DndRef} = useDragAndDrop(places, updatePlace, place.id, 'PLACE');
-
+export default function DndCard({
+  items,
+  updateItem,
+  id,
+  accept,
+  index,
+}: DndCardProps) {
+  const {DndRef} = useDragAndDrop(items, updateItem, id, accept);
   return (
     <div
-      className={'h-10 p-3 flex items-center justify-center gap-3'}
+      className={'h-10 p-3 flex items-center justify-center gap-3 shadow-black'}
       ref={DndRef}
     >
-      <span>{place.id}</span>
-      <span>{place.name}</span>
-      <span>{place.type}</span>
-      <span>{place.imageUrl}</span>
-      <span>{place.location?.lat}</span>
+      <div></div>
     </div>
   );
 }

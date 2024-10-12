@@ -7,12 +7,21 @@ import {Location} from '@/types';
 
 export default function PlaceSelection() {
   const places = useTripStore.use.places();
+  const updatePlace = useTripStore.use.updatePlace();
+
   const {droppableRef} = useDroppableList('PLACE');
 
   return (
     <div ref={droppableRef}>
-      {places?.map((place: Location) => (
-        <DndCard key={place.id} place={place} />
+      {places?.map((place: Location, index) => (
+        <DndCard
+          key={place.id}
+          items={places}
+          id={place.id}
+          updateItem={updatePlace}
+          accept={'PLACE'}
+          index={index + 1}
+        />
       ))}
     </div>
   );

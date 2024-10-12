@@ -11,7 +11,7 @@ import {useTripStore} from '@/store';
 
 export default function PlaceAndStayContainer() {
   const [select, setSelect] = useState<string>('place');
-  const {totalHeight, mapHeight, totalTripTime} = useTripStore();
+  const {totalHeight, mapHeight, totalTripTime, places} = useTripStore();
   const {handleMouseDown, handleTouchStart} = useDragResize();
 
   const contentHeight = totalHeight - mapHeight;
@@ -74,16 +74,19 @@ export default function PlaceAndStayContainer() {
             장소추가
           </BasicButton>
         </div>
-        <div
-          className={
-            'w-full bg-gray80 p-3 h-24 mt-5 flex justify-center items-center rounded-lg'
-          }
-        >
-          <p className={'text-sm text-gray200'}>장소를 선택해 주세요.</p>
-        </div>
-        <DragAndDropProvider>
-          <PlaceSelection />
-        </DragAndDropProvider>
+        {places.length <= 0 ? (
+          <div
+            className={
+              'w-full bg-gray80 p-3 h-24 mt-5 flex justify-center items-center rounded-lg'
+            }
+          >
+            <p className={'text-sm text-gray200'}>장소를 선택해 주세요.</p>
+          </div>
+        ) : (
+          <DragAndDropProvider>
+            {select === 'place' ? <PlaceSelection /> : <div>숙소</div>}
+          </DragAndDropProvider>
+        )}
       </div>
       <BasicButton type={'button'} classNames={'w-full px-5 py-4 mb-5'}>
         일정 생성
