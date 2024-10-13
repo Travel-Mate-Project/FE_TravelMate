@@ -3,7 +3,7 @@
 import React, {useState} from 'react';
 
 import DragAndDropProvider from '@/app/[locale]/(main)/(plan)/_components/DragAndDropProvider';
-import PlaceSelection from '@/app/[locale]/(main)/(plan)/_components/PlaceSelection';
+import PlaceSelectList from '@/app/[locale]/(main)/(plan)/_components/PlaceSelectList';
 import SelectNav from '@/app/[locale]/(main)/(plan)/_components/SelectNav';
 import DragDown from '@/asset/Menu_Duo_LG.svg';
 import BasicButton from '@/components/BasicButton';
@@ -62,7 +62,7 @@ export default function PlaceAndStayContainer() {
           </BasicButton>
         </div>
         <DragAndDropProvider>
-          {select === 'place' ? <PlaceSelection /> : <div>숙소</div>}
+          {select === 'place' ? <PlaceSelectList /> : <div>숙소</div>}
         </DragAndDropProvider>
       </div>
       <BasicButton type={'button'} classNames={'w-full px-5 py-4 mb-5 mt-10'}>

@@ -9,7 +9,7 @@ import {
   UseFormSetValue,
 } from 'react-hook-form';
 
-import {RegionType} from '@/types/response';
+import {RegionType, SearchPlaceType} from '@/types/response';
 import {Location} from '@/types/store';
 
 type InputType = 'text' | 'password' | 'email' | 'date' | 'number';
@@ -167,4 +167,15 @@ export interface SearchInputProps {
   placeholder: string;
   value: string;
   onChange: (_value: string) => void;
+}
+
+export interface FilterButtonProps {
+  filterName: {key: string; value: string}[];
+  setFilter: (_value: string) => void;
+  filter: string;
+}
+
+export interface SelectCardProps {
+  info: SearchPlaceType;
+  variant: 'place' | 'stay';
 }

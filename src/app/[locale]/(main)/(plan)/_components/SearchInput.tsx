@@ -17,7 +17,7 @@ export default function SearchInput({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        type={'search'}
+        type={'text'}
       />
       <SearchIcon
         className={'stroke-green100 w-5 h-5 absolute right-3 top-9'}

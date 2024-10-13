@@ -27,3 +27,10 @@ export const getCityCodeList = async (code: number) => {
   );
   return res.data;
 };
+
+export const getSearchPlaceList = async (searchQuery: string, type: string) => {
+  const res = await axiosDefault.get(
+    `${END_POINT.search.addPlace}?searchQuery=${searchQuery}&type=${type}`,
+  );
+  return res.data;
+};

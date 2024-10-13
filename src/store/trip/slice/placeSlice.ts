@@ -3,22 +3,7 @@ import {StateCreator} from 'zustand';
 import {PlaceSlice} from '@/types';
 
 export const creatPlaceSlice: StateCreator<PlaceSlice> = (set) => ({
-  places: [
-    {
-      id: 1,
-      name: '제주국제공항',
-      type: 'place',
-      imageUrl: 'https://placehold.co/47x47',
-      location: {lat: 33.5067, lng: 126.493},
-    },
-    {
-      id: 2,
-      name: '여행지1',
-      type: 'place',
-      imageUrl: 'https://placehold.co/47x47',
-      location: {lat: 33.4587, lng: 126.9426},
-    },
-  ],
+  places: [],
   addPlace: (place) => set((state) => ({places: [...state.places, place]})),
   removePlace: (id) =>
     set((state) => ({

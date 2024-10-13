@@ -8,7 +8,7 @@ import {useDroppableList} from '@/hooks/useDroppableList';
 import {useTripStore} from '@/store';
 import {Location} from '@/types';
 
-export default function PlaceSelection() {
+export default function PlaceSelectList() {
   const places = useTripStore.use.places();
   const updatePlace = useTripStore.use.updatePlace();
   const removePlace = useTripStore.use.removePlace();

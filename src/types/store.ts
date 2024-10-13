@@ -1,3 +1,5 @@
+import {SearchPlaceType} from '@/types/response';
+
 export interface SignupSlice {
   stage: number;
   nextStage: (_stage: number) => void;
@@ -70,4 +72,11 @@ export interface PlaceSlice {
   removePlace: (id: number) => void;
   updatePlace: (_place: Location[]) => void;
   clearPlaces: () => void;
+}
+
+export interface SelectPlaceSlice {
+  selectedPlace: SearchPlaceType[];
+  addSelectedPlace: (_place: SearchPlaceType) => void;
+  removeSelectedPlace: (_id: number) => void;
+  clearSelectedPlace: () => void;
 }

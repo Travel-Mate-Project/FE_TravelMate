@@ -4,6 +4,7 @@ import Drag from '@/asset/Drag.svg';
 import Remove from '@/asset/remove.svg';
 import {useDragAndDrop} from '@/hooks/useDragAndDrop';
 import {DndCardProps} from '@/types';
+import {useTripStore} from '@/store';
 
 export default function DndCard({
   items,
@@ -20,6 +21,13 @@ export default function DndCard({
     accept,
   );
 
+  const removeSelectedPlace = useTripStore.use.removeSelectedPlace();
+
+  const handleRemove = () => {
+    removeItem(id);
+    removeSelectedPlace(id);
+  };
+
   return (
     <div
       ref={DndRef}
@@ -32,7 +40,7 @@ export default function DndCard({
           <div ref={dragHandleRef}>
             <Drag className={'cursor-move'} />
           </div>
-          <Remove className={'cursor-pointer'} onClick={() => removeItem(id)} />
+          <Remove className={'cursor-pointer'} onClick={handleRemove} />
         </div>
       </div>
     </div>

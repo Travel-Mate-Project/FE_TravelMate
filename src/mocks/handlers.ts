@@ -24,7 +24,21 @@ export const handlers = [
     return HttpResponse.json(DB.cityCode, {});
   }),
 
-  http.get(END_POINT.search.addPlace, () => {
-    return HttpResponse.json(DB.searchPlace, {});
+  http.get(END_POINT.search.addPlace, ({request}) => {
+    const url = new URL(request.url);
+    const searchQuery = url.searchParams.get('searchQuery');
+    const type = url.searchParams.get('type');
+
+    if (!searchQuery) {
+      return HttpResponse.json([]);
+    }
+
+    const filteredPlaces = DB.searchPlace.filter((place) => {
+      const matchesQuery = place.name.includes(searchQuery);
+      const matchesType = type === 'recommand' || place.type === type;
+      return matchesQuery && matchesType;
+    });
+
+    return HttpResponse.json(filteredPlaces);
   }),
 ];

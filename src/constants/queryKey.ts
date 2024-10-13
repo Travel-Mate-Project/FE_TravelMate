@@ -7,5 +7,6 @@ export const QUERY_KEY = {
     RESTAURANT: 'RESTAURANT',
     STAY: 'STAY',
     CITY_CODE: 'CITY_CODE',
+    SEARCH_PLACE: 'SEARCH_PLACE',
   },
 } as const;
