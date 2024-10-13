@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 import DragAndDropProvider from '@/app/[locale]/(main)/(plan)/_components/DragAndDropProvider';
 import PlaceSelectList from '@/app/[locale]/(main)/(plan)/_components/PlaceSelectList';
 import SelectNav from '@/app/[locale]/(main)/(plan)/_components/SelectNav';
+import StaySelectList from '@/app/[locale]/(main)/(plan)/_components/StaySelectList';
 import DragDown from '@/asset/Menu_Duo_LG.svg';
 import BasicButton from '@/components/BasicButton';
 import {useDragResize} from '@/hooks/useDragResize';
@@ -18,6 +19,7 @@ export default function PlaceAndStayContainer() {
   const router = useRouter();
 
   const contentHeight = totalHeight - mapHeight;
+  const placeLength = places.length;
 
   const handleAddRoute = () => {
     if (select === 'place') {
@@ -45,7 +47,7 @@ export default function PlaceAndStayContainer() {
         />
         <div className={'flex items-center justify-between pt-5'}>
           <div className={'flex items-center'}>
-            <p className={'pr-4 font-bold text-xl'}>0</p>
+            <p className={'pr-4 font-bold text-xl'}>{placeLength}</p>
             <div className={'flex flex-col items-start text-xs gap-1.5'}>
               <button className={'text-green100'}>초기화</button>
               <p className={'text-gray700'}>
@@ -62,7 +64,7 @@ export default function PlaceAndStayContainer() {
           </BasicButton>
         </div>
         <DragAndDropProvider>
-          {select === 'place' ? <PlaceSelectList /> : <div>숙소</div>}
+          {select === 'place' ? <PlaceSelectList /> : <StaySelectList />}
         </DragAndDropProvider>
       </div>
       <BasicButton type={'button'} classNames={'w-full px-5 py-4 mb-5 mt-10'}>

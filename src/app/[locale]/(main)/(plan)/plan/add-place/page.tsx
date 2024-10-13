@@ -1,7 +1,5 @@
 'use client';
 
-import {useState} from 'react';
-
 import FilterButton from '@/app/[locale]/(main)/(plan)/_components/FilterButton';
 import MessageBox from '@/app/[locale]/(main)/(plan)/_components/MessageBox';
 import SearchInput from '@/app/[locale]/(main)/(plan)/_components/SearchInput';
@@ -9,22 +7,33 @@ import SelectCard from '@/app/[locale]/(main)/(plan)/_components/SelectCard';
 import SelectNav from '@/app/[locale]/(main)/(plan)/_components/SelectNav';
 import BasicButton from '@/components/BasicButton';
 import {useDebounce} from '@/hooks/useDebounce';
+import {useSearch} from '@/hooks/useSearch';
 import {useSearchPlace} from '@/hooks/withQuery/get/useSearchPlace';
 import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
 import {SearchPlaceType} from '@/types';
 
 export default function AddPlacePage() {
-  const [navSelect, setNavSelect] = useState<string>('search');
-  const [search, setSearch] = useState<string>('');
-  const [filter, setFilter] = useState<string>('recommand');
+  const {navSelect, setNavSelect, search, setSearch, filter, setFilter} =
+    useSearch('search', 'all');
 
-  const selectedPlace = useTripStore.use.selectedPlace();
-  const addPlace = useTripStore.use.addPlace();
-  const places = useTripStore.use.places();
+  const {selectedPlace, addPlace, places} = useTripStore();
   const router = useRouter();
 
+  const debounceQuery = useDebounce(search);
+  const {searchPlaceList} = useSearchPlace(debounceQuery, filter);
+
+  const handleAddPlaceList = () => {
+    selectedPlace.forEach((place) => {
+      if (!places.some((existingPlace) => existingPlace.id === place.id)) {
+        addPlace(place);
+      }
+    });
+    router.replace('/plan');
+  };
+
   const filterName = [
+    {key: '전체', value: 'all'},
     {key: '추천장소', value: 'recommand'},
     {key: '관광지', value: 'place'},
     {
@@ -33,20 +42,6 @@ export default function AddPlacePage() {
     },
     {key: '카페', value: 'cafe'},
   ];
-
-  const debounceQuery = useDebounce(search);
-  const {searchPlaceList} = useSearchPlace(debounceQuery, filter);
-
-  const handleAddPlaceList = () => {
-    if (selectedPlace.length > 0) {
-      selectedPlace.forEach((place) => {
-        if (!places.some((existingPlace) => existingPlace.id === place.id)) {
-          addPlace(place);
-        }
-      });
-      router.replace('/plan');
-    }
-  };
 
   return (
     <div className="mx-auto w-full max-w-[600px] h-[calc(100vh-140px)] md:h-[calc(100vh-240px)] flex flex-col">
@@ -66,7 +61,7 @@ export default function AddPlacePage() {
         setFilter={setFilter}
         filterName={filterName}
       />
-      <div className={`flex-grow overflow-y-auto`}>
+      <div className={`flex-grow overflow-y-auto mb-5`}>
         {searchPlaceList?.length <= 0 ? (
           <MessageBox>결과 없습니다.</MessageBox>
         ) : (

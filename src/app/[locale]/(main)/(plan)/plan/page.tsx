@@ -1,7 +1,8 @@
 import React from 'react';
-import CustomGoogleMap from '@/components/CustomGoogleMap';
-import TripTimeConfigHeader from '@/app/[locale]/(main)/(plan)/_components/TripTimeConfigHeader';
+
 import PlaceAndStayContainer from '@/app/[locale]/(main)/(plan)/_components/PlaceAndStayContainer';
+import TripTimeConfigHeader from '@/app/[locale]/(main)/(plan)/_components/TripTimeConfigHeader';
+import CustomGoogleMap from '@/components/CustomGoogleMap';
 
 export default function PlacePage() {
   return (

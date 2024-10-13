@@ -33,14 +33,12 @@ export const handlers = [
       const filterTye = DB.searchPlace.filter((place) => {
         return place.type === type;
       });
-      return HttpResponse.json(
-        type === 'recommand' ? DB.searchPlace : filterTye,
-      );
+      return HttpResponse.json(type === 'all' ? DB.searchPlace : filterTye);
     }
 
     const filteredPlaces = DB.searchPlace.filter((place) => {
       const matchesQuery = place.name.includes(searchQuery);
-      const matchesType = type === 'recommand' || place.type === type;
+      const matchesType = type === 'all' || place.type === type;
       return matchesQuery && matchesType;
     });
 

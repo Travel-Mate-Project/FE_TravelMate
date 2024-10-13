@@ -3,8 +3,8 @@
 import Drag from '@/asset/Drag.svg';
 import Remove from '@/asset/remove.svg';
 import {useDragAndDrop} from '@/hooks/useDragAndDrop';
-import {DndCardProps} from '@/types';
 import {useTripStore} from '@/store';
+import {DndCardProps} from '@/types';
 
 export default function DndCard({
   items,
