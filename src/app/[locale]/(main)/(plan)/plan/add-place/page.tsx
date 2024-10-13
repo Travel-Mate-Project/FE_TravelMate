@@ -2,17 +2,17 @@
 
 import {useState} from 'react';
 
-import SearchInput from '@/app/[locale]/(main)/(plan)/_components/SearchInput';
-import SelectNav from '@/app/[locale]/(main)/(plan)/_components/SelectNav';
-import {useDebounce} from '@/hooks/useDebounce';
 import FilterButton from '@/app/[locale]/(main)/(plan)/_components/FilterButton';
-import {SearchPlaceType} from '@/types';
-import {useSearchPlace} from '@/hooks/withQuery/get/useSearchPlace';
-import SelectCard from '@/app/[locale]/(main)/(plan)/_components/SelectCard';
 import MessageBox from '@/app/[locale]/(main)/(plan)/_components/MessageBox';
+import SearchInput from '@/app/[locale]/(main)/(plan)/_components/SearchInput';
+import SelectCard from '@/app/[locale]/(main)/(plan)/_components/SelectCard';
+import SelectNav from '@/app/[locale]/(main)/(plan)/_components/SelectNav';
 import BasicButton from '@/components/BasicButton';
-import {useTripStore} from '@/store';
+import {useDebounce} from '@/hooks/useDebounce';
+import {useSearchPlace} from '@/hooks/withQuery/get/useSearchPlace';
 import {useRouter} from '@/i18n/routing';
+import {useTripStore} from '@/store';
+import {SearchPlaceType} from '@/types';
 
 export default function AddPlacePage() {
   const [navSelect, setNavSelect] = useState<string>('search');
@@ -35,7 +35,7 @@ export default function AddPlacePage() {
   ];
 
   const debounceQuery = useDebounce(search);
-  const {searchPlaceList, isLoading} = useSearchPlace(debounceQuery, filter);
+  const {searchPlaceList} = useSearchPlace(debounceQuery, filter);
 
   const handleAddPlaceList = () => {
     if (selectedPlace.length > 0) {
@@ -66,26 +66,17 @@ export default function AddPlacePage() {
         setFilter={setFilter}
         filterName={filterName}
       />
-      {!debounceQuery ? (
-        <div className={'flex-grow overflow-y-auto'}>
-          <MessageBox>결과가 이곳에 표시됩니다.</MessageBox>
-        </div>
-      ) : (
-        <div
-          className={`flex-grow overflow-y-auto ${selectedPlace.length ? 'mb-20' : 'mb-5'}`}
-        >
-          {searchPlaceList?.length <= 0 ? (
-            <MessageBox>결과 없습니다.</MessageBox>
-          ) : (
-            <div className={'flex flex-col gap-5'}>
-              {searchPlaceList?.map((place: SearchPlaceType) => (
-                <SelectCard key={place.id} info={place} variant={'place'} />
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
+      <div className={`flex-grow overflow-y-auto`}>
+        {searchPlaceList?.length <= 0 ? (
+          <MessageBox>결과 없습니다.</MessageBox>
+        ) : (
+          <div className={'flex flex-col gap-5'}>
+            {searchPlaceList?.map((place: SearchPlaceType) => (
+              <SelectCard key={place.id} info={place} variant={'place'} />
+            ))}
+          </div>
+        )}
+      </div>
       <BasicButton
         onClick={handleAddPlaceList}
         classNames={'w-full py-3 mt-auto z-30'}

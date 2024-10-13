@@ -1,13 +1,14 @@
 'use client';
 
-import {SelectCardProps} from '@/types';
 import Image from 'next/image';
-import {convertTypeLang} from '@/helper/convertTypeLang';
-import RateStar from '@/asset/Star.svg';
-import Comment from '@/asset/message.svg';
+
 import Plus from '@/asset/Add_round.svg';
 import Check from '@/asset/check.svg';
+import Comment from '@/asset/message.svg';
+import RateStar from '@/asset/Star.svg';
+import {convertTypeLang} from '@/helper/convertTypeLang';
 import {useTripStore} from '@/store';
+import {SelectCardProps} from '@/types';
 
 export default function SelectCard({info, variant}: SelectCardProps) {
   const {addSelectedPlace, removeSelectedPlace, selectedPlace} = useTripStore();

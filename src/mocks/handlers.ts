@@ -30,7 +30,12 @@ export const handlers = [
     const type = url.searchParams.get('type');
 
     if (!searchQuery) {
-      return HttpResponse.json([]);
+      const filterTye = DB.searchPlace.filter((place) => {
+        return place.type === type;
+      });
+      return HttpResponse.json(
+        type === 'recommand' ? DB.searchPlace : filterTye,
+      );
     }
 
     const filteredPlaces = DB.searchPlace.filter((place) => {
