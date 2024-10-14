@@ -181,3 +181,8 @@ export interface SelectCardProps {
   info: SearchPlaceType;
   variant: 'place' | 'stay';
 }
+
+export interface TransportationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}

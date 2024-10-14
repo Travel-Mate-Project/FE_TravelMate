@@ -1,28 +1,15 @@
 'use client';
 
-import React, {useEffect} from 'react';
+import Image from 'next/image';
+import React from 'react';
 
 import Plus from '@/asset/Add_round.svg';
-import {createStayDateRange} from '@/helper/createStayDateRange';
-import {useTripStore} from '@/store';
 import {useRouter} from '@/i18n/routing';
-import Image from 'next/image';
+import {useTripStore} from '@/store';
 
 export default function StaySelectList() {
-  const {initializeStays, stays} = useTripStore();
-  const [startDay, endDay] = useTripStore.use.date();
+  const {stays} = useTripStore();
   const router = useRouter();
-
-  const dateRange = createStayDateRange(startDay, endDay);
-
-  useEffect(() => {
-    const hasAnyStay = stays.some((stay) => stay.stay !== null);
-
-    if (!hasAnyStay) {
-      initializeStays(startDay, endDay);
-    }
-  }, []);
-  console.log(stays);
 
   return (
     <div className={'flex flex-col gap-3 mt-8 p-3'}>

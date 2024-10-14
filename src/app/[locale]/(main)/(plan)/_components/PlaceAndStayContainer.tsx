@@ -1,11 +1,12 @@
 'use client';
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import DragAndDropProvider from '@/app/[locale]/(main)/(plan)/_components/DragAndDropProvider';
 import PlaceSelectList from '@/app/[locale]/(main)/(plan)/_components/PlaceSelectList';
 import SelectNav from '@/app/[locale]/(main)/(plan)/_components/SelectNav';
 import StaySelectList from '@/app/[locale]/(main)/(plan)/_components/StaySelectList';
+import TransportationModal from '@/app/[locale]/(main)/(plan)/_components/TransportationModal';
 import DragDown from '@/asset/Menu_Duo_LG.svg';
 import BasicButton from '@/components/BasicButton';
 import {useDragResize} from '@/hooks/useDragResize';
@@ -13,8 +14,17 @@ import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
 
 export default function PlaceAndStayContainer() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [select, setSelect] = useState<string>('place');
-  const {totalHeight, mapHeight, totalTripTime, places} = useTripStore();
+  const {
+    totalHeight,
+    mapHeight,
+    totalTripTime,
+    places,
+    stays,
+    initializeStays,
+  } = useTripStore();
+  const [startDay, endDay] = useTripStore.use.date();
   const {handleMouseDown, handleTouchStart} = useDragResize();
   const router = useRouter();
 
@@ -28,6 +38,22 @@ export default function PlaceAndStayContainer() {
       router.push('/plan/add-stay');
     }
   };
+
+  const handleMakePlan = () => {
+    const allStaysNotNull = stays.every((stay) => stay.stay !== null);
+    if (!allStaysNotNull || places.length === 0) {
+      alert('숙소와 장소를 모두 선택해주세요.');
+      return;
+    }
+    setIsModalOpen(true);
+  };
+
+  useEffect(() => {
+    const hasAnyStay = stays.some((stay) => stay.stay !== null);
+    if (!hasAnyStay) {
+      initializeStays(startDay, endDay);
+    }
+  }, []);
 
   return (
     <div className="mx-auto w-full max-w-[600px]">
@@ -67,9 +93,17 @@ export default function PlaceAndStayContainer() {
           {select === 'place' ? <PlaceSelectList /> : <StaySelectList />}
         </DragAndDropProvider>
       </div>
-      <BasicButton type={'button'} classNames={'w-full px-5 py-4 mb-5 mt-10'}>
+      <BasicButton
+        onClick={handleMakePlan}
+        type={'button'}
+        classNames={'w-full px-5 py-4 mb-5 mt-10'}
+      >
         일정 생성
       </BasicButton>
+      <TransportationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      ></TransportationModal>
     </div>
   );
 }

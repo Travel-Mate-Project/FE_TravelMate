@@ -1,5 +1,6 @@
-import {SearchPlaceType} from '@/types/response';
 import dayjs from 'dayjs';
+
+import {SearchPlaceType} from '@/types/response';
 
 export interface SignupSlice {
   stage: number;
