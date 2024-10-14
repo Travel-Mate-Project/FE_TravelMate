@@ -6,7 +6,6 @@ import React, {useState} from 'react';
 import MenuIcon from '@/asset/Hamburger_MD.svg';
 import HandBag from '@/asset/Handbag.svg';
 import Pine from '@/asset/icon-map-pin.svg';
-import Logo from '@/asset/Logo.svg';
 import Map from '@/asset/Map.svg';
 import User from '@/asset/User_02.svg';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
@@ -27,12 +26,6 @@ export default function MobileMenu() {
         <button onClick={toggleMenu} type={'button'}>
           <MenuIcon width={30} height={30} />
         </button>
-        <Logo
-          onClick={() => router.replace('/')}
-          className={'ml-5'}
-          width={100}
-          height={30}
-        />
       </div>
       <div
         className={`fixed top-0 left-0 h-full w-72 md:w-96 bg-white shadow-md z-30 transform transition-transform duration-300 ease-in-out ${
