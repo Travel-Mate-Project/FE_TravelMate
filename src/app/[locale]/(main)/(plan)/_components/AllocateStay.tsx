@@ -1,11 +1,12 @@
 'use client';
 
-import {useTripStore} from '@/store';
-import Plus from '@/asset/Add_round.svg';
-import Image from 'next/image';
 import dayjs from 'dayjs';
+import Image from 'next/image';
+
+import Plus from '@/asset/Add_round.svg';
 import BasicButton from '@/components/BasicButton';
 import {useRouter} from '@/i18n/routing';
+import {useTripStore} from '@/store';
 
 export default function AllocateStay() {
   const {selectedStay, stays, toggleStay, setAll, addSelectedStay} =
@@ -29,7 +30,7 @@ export default function AllocateStay() {
   return (
     <div className={'flex flex-col items-center max-h-[calc(100vh-250px)]'}>
       <h2 className="font-bold mb-5">{selectedStay?.name}</h2>
-      <div className="grid grid-cols-3 gap-4 flex-grow overflow-y-auto">
+      <div className="grid grid-cols-3 gap-4 flex-grow overflow-y-auto pb-5">
         {stays.map((stay, index) => (
           <div
             key={index}

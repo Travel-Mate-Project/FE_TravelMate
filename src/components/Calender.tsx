@@ -1,6 +1,7 @@
 'use client';
 
 import dayjs, {Dayjs} from 'dayjs';
+import {useTranslations} from 'next-intl';
 import React, {useEffect, useState} from 'react';
 import Calendar from 'react-calendar';
 
@@ -9,7 +10,6 @@ import RightButton from '@/asset/rightButton.svg';
 import BasicButton from '@/components/BasicButton';
 import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
-import {useTranslations} from 'next-intl';
 
 export default function EnhancedCalendar() {
   const t = useTranslations('calender');
@@ -22,6 +22,7 @@ export default function EnhancedCalendar() {
     initializeTime,
     totalTripTime,
     clearTotalTripTime,
+    clearStays,
   } = useTripStore();
   const [range, setRange] = useState<[Dayjs, Dayjs]>([
     dayjs(),
@@ -76,6 +77,7 @@ export default function EnhancedCalendar() {
     setDate([start.toDate(), end.toDate()]);
     setIsSelected(true);
     initializeTime(start.toDate(), end.toDate());
+    clearStays();
     router.back();
 
     if (totalTripTime) {
