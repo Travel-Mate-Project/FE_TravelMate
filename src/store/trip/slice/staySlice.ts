@@ -1,28 +1,36 @@
 import {StateCreator} from 'zustand';
-
-import {StayItem, StaySlice} from '@/types';
+import {Location, StaySlice} from '@/types';
 import {createStayDateRange} from '@/helper/createStayDateRange';
+import dayjs from 'dayjs';
 
 export const createStaySlice: StateCreator<StaySlice> = (set) => ({
   stays: [],
+  selectedStay: null,
   initializeStays: (startDate: Date, endDate: Date) => {
     const dateArray = createStayDateRange(startDate, endDate);
     set({stays: dateArray});
   },
-  addStay: (newStay: StayItem) =>
+  toggleStay: (date: dayjs.Dayjs, stayLocation: Location) =>
     set((state) => ({
       stays: state.stays.map((stay) =>
-        stay.date.isSame(newStay.date, 'day')
-          ? {...newStay, isCheck: !stay.isCheck}
+        stay.date.isSame(date, 'day')
+          ? {
+              ...stay,
+              isCheck: !stay.isCheck,
+              stay: stay.isCheck ? null : stayLocation,
+            }
           : stay,
       ),
     })),
-  removeStay: (id: number) =>
+  addSelectedStay: (newStay: Location) => set(() => ({selectedStay: newStay})),
+  removeSelectedStay: () => set({selectedStay: null}),
+  setAll: () =>
     set((state) => ({
-      stays: state.stays.map((stay) =>
-        stay.stay?.id === id ? {...stay, isCheck: false, stay: null} : stay,
-      ),
+      stays: state.stays.map((stay) => ({
+        ...stay,
+        isCheck: !!state.selectedStay,
+        stay: state.selectedStay,
+      })),
     })),
-  setAll: (newStays: StayItem[]) => set(() => ({stays: newStays})),
-  clearStays: () => set(() => ({stays: []})),
+  clearStays: () => set(() => ({stays: [], selectedStay: null})),
 });

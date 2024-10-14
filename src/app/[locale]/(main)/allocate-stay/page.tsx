@@ -2,14 +2,12 @@
 
 import Modal from '@/components/Modal';
 import React from 'react';
-import {useSearchParams} from 'next/navigation';
+import AllocateStay from '@/app/[locale]/(main)/(plan)/_components/AllocateStay';
 
 export default function NewStayPage() {
-  const id = useSearchParams().get('id');
-
   return (
     <Modal title={'숙소 추가'}>
-      <div>숙소 추가 모달{id}</div>
+      <AllocateStay />
     </Modal>
   );
 }

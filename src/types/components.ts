@@ -22,6 +22,7 @@ export interface ButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   type: ButtonType;
   disabled?: boolean;
+  variant?: 'primary' | 'secondary' | 'tertiary';
 }
 
 export interface NavigationButtonProps extends ButtonProps {
@@ -84,6 +85,7 @@ export interface TripConfigurationFormValue {
 
 export interface ModalProps {
   title: string;
+  subTitle?: string;
   children: ReactNode;
   setValue?: UseFormSetValue<TripConfigurationFormValue>;
   // eslint-disable-next-line no-unused-vars

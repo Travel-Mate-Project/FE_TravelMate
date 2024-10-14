@@ -8,7 +8,21 @@ export default function BasicButton({
   onClick,
   type,
   disabled = false,
+  variant = 'primary',
 }: ButtonProps) {
+  const handleBackGroundColor = () => {
+    switch (variant) {
+      case 'primary':
+        return 'bg-green100 hover:bg-green200';
+      case 'secondary':
+        return 'bg-black';
+      case 'tertiary':
+        return 'bg-white border border-solid border-green100 !text-green100';
+      default:
+        return 'bg-green100';
+    }
+  };
+
   return (
     <button
       disabled={disabled}
@@ -16,7 +30,7 @@ export default function BasicButton({
       className={`${
         disabled
           ? `!cursor-not-allowed !bg-gray200 rounded-lg text-white font-semibold ${classNames}`
-          : `bg-green100 rounded-lg text-white font-semibold hover:bg-green200 transition duration-200 ease-in-out ${classNames}`
+          : `${handleBackGroundColor()} rounded-lg text-white font-semibold transition duration-200 ease-in-out ${classNames}`
       }`}
       onClick={onClick}
     >

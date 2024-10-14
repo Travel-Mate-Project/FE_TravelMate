@@ -8,11 +8,17 @@ import Comment from '@/asset/message.svg';
 import RateStar from '@/asset/Star.svg';
 import {convertTypeLang} from '@/helper/convertTypeLang';
 import {useTripStore} from '@/store';
-import {SelectCardProps} from '@/types';
+import {SelectCardProps, StayItem} from '@/types';
 import {useRouter} from '@/i18n/routing';
 
 export default function SelectCard({info, variant}: SelectCardProps) {
-  const {addSelectedPlace, removeSelectedPlace, selectedPlace} = useTripStore();
+  const {
+    addSelectedPlace,
+    removeSelectedPlace,
+    selectedPlace,
+    addSelectedStay,
+    stays,
+  } = useTripStore();
   const isSelect = selectedPlace.some((place) => place.id === info.id);
   const removePlace = useTripStore.use.removePlace();
   const router = useRouter();
@@ -28,8 +34,13 @@ export default function SelectCard({info, variant}: SelectCardProps) {
     }
 
     if (variant === 'stay' && stayId) {
-      router.push(`/new-stay?id=${stayId}`);
+      addSelectedStay(info);
+      router.push(`/allocate-stay`);
     }
+  };
+
+  const isStaySelected = (stays: StayItem[], infoId: number): boolean => {
+    return stays.some((stay) => stay.stay?.id === infoId);
   };
 
   return (
@@ -72,9 +83,13 @@ export default function SelectCard({info, variant}: SelectCardProps) {
           ) : (
             <button
               onClick={() => handleAddCard(info.id)}
-              className={`rounded-full p-1 flex items-center justify-center cursor-pointer bg-gray80`}
+              className={`rounded-full p-1 flex items-center justify-center cursor-pointer  ${isStaySelected(stays, info.id) ? 'bg-green100' : 'bg-gray80'}`}
             >
-              {1 ? <Plus /> : <Check className={'h-5 w-5'} />}
+              {!isStaySelected(stays, info.id) ? (
+                <Plus />
+              ) : (
+                <Check className={'h-5 w-5'} />
+              )}
             </button>
           )}
         </div>

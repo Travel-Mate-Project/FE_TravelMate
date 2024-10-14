@@ -90,9 +90,11 @@ export interface StayItem {
 
 export interface StaySlice {
   stays: StayItem[];
+  selectedStay: Location | null;
   initializeStays: (startDate: Date, endDate: Date) => void;
-  addStay: (newStay: StayItem) => void;
-  removeStay: (id: number) => void;
-  setAll: (newStays: StayItem[]) => void;
+  toggleStay: (date: dayjs.Dayjs, stayLocation: Location) => void;
+  addSelectedStay: (newStay: Location) => void;
+  removeSelectedStay: () => void;
+  setAll: () => void;
   clearStays: () => void;
 }

@@ -6,6 +6,7 @@ import Plus from '@/asset/Add_round.svg';
 import {createStayDateRange} from '@/helper/createStayDateRange';
 import {useTripStore} from '@/store';
 import {useRouter} from '@/i18n/routing';
+import Image from 'next/image';
 
 export default function StaySelectList() {
   const {initializeStays, stays} = useTripStore();
@@ -15,14 +16,17 @@ export default function StaySelectList() {
   const dateRange = createStayDateRange(startDay, endDay);
 
   useEffect(() => {
-    initializeStays(startDay, endDay);
-  }, []);
+    const hasAnyStay = stays.some((stay) => stay.stay !== null);
 
+    if (!hasAnyStay) {
+      initializeStays(startDay, endDay);
+    }
+  }, []);
   console.log(stays);
 
   return (
     <div className={'flex flex-col gap-3 mt-8 p-3'}>
-      {dateRange.map((stay, index) => (
+      {stays.map((stay, index) => (
         <div
           key={stay.date.toString()}
           className={`py-3 px-5 flex items-center rounded-2xl bg-white
@@ -39,13 +43,25 @@ export default function StaySelectList() {
             onClick={() => router.push('/plan/add-stay')}
             className={`rounded-full p-1 flex items-center justify-center cursor-pointer bg-gray80`}
           >
-            <Plus />
+            {stay.stay ? (
+              <Image
+                className={'rounded-full'}
+                src={stay.stay.imageUrl}
+                alt={'stayImage'}
+                width={47}
+                height={47}
+              />
+            ) : (
+              <Plus />
+            )}
           </button>
           <div className={'flex flex-col'}>
             <p className={'text-green100 font-lg'}>
               {stay.date.format('MM.DD(dd)')}
             </p>
-            <p className={'text-gray300 text-sm'}>숙소를 추가해 주세요.</p>
+            <p className={'text-gray300 text-sm'}>
+              {stay.stay ? stay.stay.name : '숙소를 추가해 주세요.'}
+            </p>
           </div>
         </div>
       ))}
