@@ -1,9 +1,9 @@
 import {useJsApiLoader} from '@react-google-maps/api';
-import {useCallback, useEffect, useState} from 'react';
-
+import {useCallback, useEffect, useMemo, useState} from 'react';
 import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
 import {LatLngLiteral, MapOptions} from '@/types';
+import {GOOGLE_MAPS_LIBRARIES} from '@/constants/component';
 
 export const useGoogleMap = () => {
   const router = useRouter();
@@ -11,19 +11,22 @@ export const useGoogleMap = () => {
   const [center, setCenter] = useState<LatLngLiteral>();
   const {mapHeight} = useTripStore();
 
-  const mapOptions: MapOptions = {
-    zoomControl: false,
-    mapTypeControl: false,
-    streetViewControl: false,
-    fullscreenControl: true,
-    gestureHandling: 'greedy',
-  };
+  const mapOptions: MapOptions = useMemo(
+    () => ({
+      zoomControl: false,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: true,
+      gestureHandling: 'greedy',
+    }),
+    [],
+  );
 
   const location = useTripStore.use.region();
   const {isLoaded, loadError} = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP || '',
-    libraries: ['places'],
+    libraries: GOOGLE_MAPS_LIBRARIES,
     language: 'ko',
   });
 

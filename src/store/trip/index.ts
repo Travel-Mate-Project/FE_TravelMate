@@ -13,10 +13,12 @@ import {
   PlaceSlice,
   RegionSLice,
   SelectPlaceSlice,
+  StaySlice,
   TimeSlice,
   TripTypeSlice,
 } from '@/types';
 import {creatSelectPlaceSlice} from '@/store/trip/slice/selectPlaceSlice';
+import {createStaySlice} from '@/store/trip/slice/staySlice';
 
 export interface TripStore
   extends DateSlice,
@@ -25,7 +27,8 @@ export interface TripStore
     TripTypeSlice,
     MapSlice,
     PlaceSlice,
-    SelectPlaceSlice {}
+    SelectPlaceSlice,
+    StaySlice {}
 
 export const createTripStore: StateCreator<TripStore> = (...a) => ({
   ...createDateSlice(...a),
@@ -35,6 +38,7 @@ export const createTripStore: StateCreator<TripStore> = (...a) => ({
   ...creatMapSLice(...a),
   ...creatPlaceSlice(...a),
   ...creatSelectPlaceSlice(...a),
+  ...createStaySlice(...a),
 });
 
 export const tripStoreBase = create<TripStore>()((...a) => ({

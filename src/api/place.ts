@@ -34,3 +34,10 @@ export const getSearchPlaceList = async (searchQuery: string, type: string) => {
   );
   return res.data;
 };
+
+export const getSearchStayList = async (searchQuery: string, type: string) => {
+  const res = await axiosDefault.get(
+    `${END_POINT.search.addStay}?searchQuery=${searchQuery}&type=${type}`,
+  );
+  return res.data;
+};

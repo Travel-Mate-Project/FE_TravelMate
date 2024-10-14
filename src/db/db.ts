@@ -285,4 +285,33 @@ export const DB = {
       location: {lat: 33.256, lng: 126.4076},
     },
   ],
+  searchStay: [
+    {
+      id: 1,
+      imageUrl: 'https://placehold.co/47x47',
+      name: '제주 리조트',
+      type: 'stay',
+      averageRating: '4.2',
+      commentCount: 15,
+      location: {lat: 33.489, lng: 126.498},
+    },
+    {
+      id: 2,
+      imageUrl: 'https://placehold.co/47x47',
+      name: '성산 펜션',
+      type: 'stay',
+      averageRating: '4.2',
+      commentCount: 15,
+      location: {lat: 33.4587, lng: 126.9426},
+    },
+    {
+      id: 3,
+      imageUrl: 'https://placehold.co/47x47',
+      name: '애월 민박',
+      type: 'stay',
+      averageRating: '4.2',
+      commentCount: 15,
+      location: {lat: 33.4639, lng: 126.3111},
+    },
+  ],
 };

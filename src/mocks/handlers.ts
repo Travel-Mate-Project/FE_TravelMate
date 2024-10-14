@@ -44,4 +44,25 @@ export const handlers = [
 
     return HttpResponse.json(filteredPlaces);
   }),
+
+  http.get(END_POINT.search.addStay, ({request}) => {
+    const url = new URL(request.url);
+    const searchQuery = url.searchParams.get('searchQuery');
+    const type = url.searchParams.get('type');
+
+    if (!searchQuery) {
+      const filterTye = DB.searchStay.filter((stay) => {
+        return stay.type === type;
+      });
+      return HttpResponse.json(type === 'all' ? DB.searchStay : filterTye);
+    }
+
+    const filteredPlaces = DB.searchStay.filter((place) => {
+      const matchesQuery = place.name.includes(searchQuery);
+      const matchesType = type === 'all' || place.type === type;
+      return matchesQuery && matchesType;
+    });
+
+    return HttpResponse.json(filteredPlaces);
+  }),
 ];

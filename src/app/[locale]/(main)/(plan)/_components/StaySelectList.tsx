@@ -1,21 +1,30 @@
 'use client';
 
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import Plus from '@/asset/Add_round.svg';
-import {createDateRange} from '@/helper/createDateRange';
+import {createStayDateRange} from '@/helper/createStayDateRange';
 import {useTripStore} from '@/store';
+import {useRouter} from '@/i18n/routing';
 
 export default function StaySelectList() {
+  const {initializeStays, stays} = useTripStore();
   const [startDay, endDay] = useTripStore.use.date();
+  const router = useRouter();
 
-  const dateRange = createDateRange(startDay, endDay);
+  const dateRange = createStayDateRange(startDay, endDay);
+
+  useEffect(() => {
+    initializeStays(startDay, endDay);
+  }, []);
+
+  console.log(stays);
 
   return (
-    <div className={'flex flex-col gap-3 mt-10 p-3'}>
-      {dateRange.map((date, index) => (
+    <div className={'flex flex-col gap-3 mt-8 p-3'}>
+      {dateRange.map((stay, index) => (
         <div
-          key={date.toString()}
+          key={stay.date.toString()}
           className={`py-3 px-5 flex items-center rounded-2xl bg-white
        shadow-[0_5px_30px_-10px_rgba(0,0,0,0.3)] gap-4`}
         >
@@ -27,13 +36,14 @@ export default function StaySelectList() {
             {index + 1}
           </div>
           <button
+            onClick={() => router.push('/plan/add-stay')}
             className={`rounded-full p-1 flex items-center justify-center cursor-pointer bg-gray80`}
           >
             <Plus />
           </button>
           <div className={'flex flex-col'}>
             <p className={'text-green100 font-lg'}>
-              {date.format('MM.DD(dd)')}
+              {stay.date.format('MM.DD(dd)')}
             </p>
             <p className={'text-gray300 text-sm'}>숙소를 추가해 주세요.</p>
           </div>

@@ -1,4 +1,5 @@
 import {SearchPlaceType} from '@/types/response';
+import dayjs from 'dayjs';
 
 export interface SignupSlice {
   stage: number;
@@ -79,4 +80,19 @@ export interface SelectPlaceSlice {
   addSelectedPlace: (_place: SearchPlaceType) => void;
   removeSelectedPlace: (_id: number) => void;
   clearSelectedPlace: () => void;
+}
+
+export interface StayItem {
+  date: dayjs.Dayjs;
+  isCheck: boolean;
+  stay: Location | null;
+}
+
+export interface StaySlice {
+  stays: StayItem[];
+  initializeStays: (startDate: Date, endDate: Date) => void;
+  addStay: (newStay: StayItem) => void;
+  removeStay: (id: number) => void;
+  setAll: (newStays: StayItem[]) => void;
+  clearStays: () => void;
 }

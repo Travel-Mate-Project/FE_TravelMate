@@ -9,14 +9,16 @@ import RateStar from '@/asset/Star.svg';
 import {convertTypeLang} from '@/helper/convertTypeLang';
 import {useTripStore} from '@/store';
 import {SelectCardProps} from '@/types';
+import {useRouter} from '@/i18n/routing';
 
 export default function SelectCard({info, variant}: SelectCardProps) {
   const {addSelectedPlace, removeSelectedPlace, selectedPlace} = useTripStore();
   const isSelect = selectedPlace.some((place) => place.id === info.id);
   const removePlace = useTripStore.use.removePlace();
+  const router = useRouter();
 
-  const handleAddCard = () => {
-    if (variant === 'place') {
+  const handleAddCard = (stayId?: number) => {
+    if (variant === 'place' && !stayId) {
       if (isSelect) {
         removeSelectedPlace(info.id);
         removePlace(info.id);
@@ -25,8 +27,8 @@ export default function SelectCard({info, variant}: SelectCardProps) {
       }
     }
 
-    if (variant === 'stay') {
-      //TODO: 숙소 추가 로직
+    if (variant === 'stay' && stayId) {
+      router.push(`/new-stay?id=${stayId}`);
     }
   };
 
@@ -60,12 +62,21 @@ export default function SelectCard({info, variant}: SelectCardProps) {
           </div>
         </div>
         <div>
-          <button
-            onClick={handleAddCard}
-            className={`rounded-full p-1 flex items-center justify-center cursor-pointer ${isSelect ? 'bg-green100' : 'bg-gray80'}`}
-          >
-            {!isSelect ? <Plus /> : <Check className={'h-5 w-5'} />}
-          </button>
+          {variant === 'place' ? (
+            <button
+              onClick={() => handleAddCard()}
+              className={`rounded-full p-1 flex items-center justify-center cursor-pointer ${isSelect ? 'bg-green100' : 'bg-gray80'}`}
+            >
+              {!isSelect ? <Plus /> : <Check className={'h-5 w-5'} />}
+            </button>
+          ) : (
+            <button
+              onClick={() => handleAddCard(info.id)}
+              className={`rounded-full p-1 flex items-center justify-center cursor-pointer bg-gray80`}
+            >
+              {1 ? <Plus /> : <Check className={'h-5 w-5'} />}
+            </button>
+          )}
         </div>
       </div>
     </div>

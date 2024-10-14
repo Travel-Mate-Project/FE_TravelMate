@@ -8,5 +8,6 @@ export const QUERY_KEY = {
     STAY: 'STAY',
     CITY_CODE: 'CITY_CODE',
     SEARCH_PLACE: 'SEARCH_PLACE',
+    SEARCH_STAY: 'SEARCH_STAY',
   },
 } as const;
