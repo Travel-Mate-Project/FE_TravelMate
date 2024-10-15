@@ -57,7 +57,7 @@ export default function ResizableMapWithContent() {
           {places.map((place, index) => (
             <React.Fragment key={place.id}>
               <Marker
-                position={{lat: place.location.lat, lng: place.location.lng}}
+                position={{lat: place.latitude, lng: place.longitude}}
                 icon={{
                   path: google.maps.SymbolPath.CIRCLE,
                   fillColor: '#808080',
@@ -74,7 +74,7 @@ export default function ResizableMapWithContent() {
                 }}
               />
               <OverlayView
-                position={{lat: place.location.lat, lng: place.location.lng}}
+                position={{lat: place.latitude, lng: place.longitude}}
                 mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
               >
                 <div className="bg-white w-max px-2.5 py-1.5 text-sm rounded-xl shadow-md absolute left-1/2 -translate-x-1/2 -translate-y-14 -mt-1 whitespace-nowrap border border-solid border-gray-700 font-semibold">
@@ -86,14 +86,14 @@ export default function ResizableMapWithContent() {
           {getUniqueStays(stays).map((stay) => (
             <React.Fragment key={`stay-${stay.id}`}>
               <Marker
-                position={{lat: stay.location.lat, lng: stay.location.lng}}
+                position={{lat: stay.latitude, lng: stay.longitude}}
                 icon={{
                   url: svgMarker,
                   scaledSize: new google.maps.Size(50, 50),
                 }}
               />
               <OverlayView
-                position={{lat: stay.location.lat, lng: stay.location.lng}}
+                position={{lat: stay.latitude, lng: stay.longitude}}
                 mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
               >
                 <div className="bg-blue-100 w-max px-2.5 py-1.5 text-sm rounded-xl shadow-md absolute left-1/2 -translate-x-1/2 -translate-y-20 -mt-1 whitespace-nowrap border border-solid border-blue-500 font-semibold">

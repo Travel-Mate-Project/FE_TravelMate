@@ -62,10 +62,8 @@ export interface Location {
   name: string;
   type: string;
   imageUrl: string;
-  location: {
-    lat: number;
-    lng: number;
-  };
+  latitude: number;
+  longitude: number;
 }
 
 export interface PlaceSlice {
