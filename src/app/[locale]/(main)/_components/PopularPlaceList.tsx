@@ -1,17 +1,16 @@
 import Card from '@/components/Card';
-import {useGetPopularPlaceList} from '@/hooks/withQuery/useGetPopularPlaceList';
 import Carousel from '@/components/Carousel';
-import {RegionType} from '@/types/response';
+import {RegionType} from '@/types';
 
-export default function PopularPlaceList() {
-  const {placeList} = useGetPopularPlaceList();
-
-  console.log('PopularPlaceList', placeList);
-
+export default function PopularPlaceList<T extends RegionType>({
+  data,
+}: {
+  data: T[];
+}) {
   return (
     <div className="w-full mx-auto py-2">
       <Carousel>
-        {placeList?.map((region: RegionType) => (
+        {data?.map((region: T) => (
           <div key={region.placeId}>
             <Card region={region} variant={'place'} />
           </div>

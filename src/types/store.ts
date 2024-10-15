@@ -1,3 +1,7 @@
+import dayjs from 'dayjs';
+
+import {SearchPlaceType} from '@/types/response';
+
 export interface SignupSlice {
   stage: number;
   nextStage: (_stage: number) => void;
@@ -67,7 +71,36 @@ export interface Location {
 export interface PlaceSlice {
   places: Location[];
   addPlace: (_place: Location) => void;
-  removePlace: (_place: Location) => void;
+  removePlace: (id: number) => void;
   updatePlace: (_place: Location[]) => void;
   clearPlaces: () => void;
+}
+
+export interface SelectPlaceSlice {
+  selectedPlace: SearchPlaceType[];
+  addSelectedPlace: (_place: SearchPlaceType) => void;
+  removeSelectedPlace: (_id: number) => void;
+  clearSelectedPlace: () => void;
+}
+
+export interface StayItem {
+  date: dayjs.Dayjs;
+  isCheck: boolean;
+  stay: Location | null;
+}
+
+export interface StaySlice {
+  stays: StayItem[];
+  selectedStay: Location | null;
+  initializeStays: (startDate: Date, endDate: Date) => void;
+  toggleStay: (date: dayjs.Dayjs, stayLocation: Location) => void;
+  addSelectedStay: (newStay: Location) => void;
+  removeSelectedStay: () => void;
+  setAll: () => void;
+  clearStays: () => void;
+}
+
+export interface TransportationSlice {
+  transportation: string;
+  setTransportation: (_transportation: string) => void;
 }

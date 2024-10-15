@@ -1,68 +1,43 @@
 'use client';
 
-import {GoogleMap, useJsApiLoader} from '@react-google-maps/api';
-import React, {useCallback, useEffect, useState} from 'react';
+import {GoogleMap, Marker, OverlayView} from '@react-google-maps/api';
+import React from 'react';
 
-import {useRouter} from '@/i18n/routing';
+import {useGoogleMap} from '@/hooks/useGoogleMap';
 import {useTripStore} from '@/store';
-import {LatLngLiteral, MapOptions} from '@/types';
-
-const libraries: 'places'[] = ['places'];
+import {StayItem} from '@/types';
+import {svgMarker} from '@/asset/base64/svg';
 
 export default function ResizableMapWithContent() {
-  const router = useRouter();
+  const {
+    onLoad,
+    onUnmount,
+    center,
+    mapHeight,
+    mapOptions,
+    isLoaded,
+    loadError,
+  } = useGoogleMap();
 
-  const [map, setMap] = useState<google.maps.Map | null>(null);
-  const [center, setCenter] = useState<LatLngLiteral>();
+  const places = useTripStore.use.places();
+  const stays = useTripStore.use.stays();
 
-  const {mapHeight} = useTripStore();
-
-  const mapOptions: MapOptions = {
-    zoomControl: false,
-    mapTypeControl: false,
-    streetViewControl: false,
-    fullscreenControl: true,
-    gestureHandling: 'greedy',
-  };
-
-  const location = useTripStore.use.region();
-  const {isLoaded, loadError} = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP || '',
-    libraries: libraries,
-    language: 'ko',
-  });
-
-  const onLoad = useCallback((map: google.maps.Map) => {
-    setMap(map);
-  }, []);
-
-  const onUnmount = useCallback(() => {
-    setMap(null);
-  }, []);
-
-  useEffect(() => {
-    if (isLoaded && !loadError && location) {
-      const geocoder = new google.maps.Geocoder();
-      geocoder.geocode({address: location}, (results, status) => {
-        if (status === google.maps.GeocoderStatus.OK && results && results[0]) {
-          const {lat, lng} = results[0].geometry.location.toJSON();
-          setCenter({lat, lng});
-          if (map) {
-            map.setCenter({lat, lng});
-          }
+  const getUniqueStays = (stays: StayItem[]) => {
+    const uniqueStays = new Map();
+    stays.forEach((stayItem) => {
+      if (stayItem.isCheck && stayItem.stay) {
+        if (!uniqueStays.has(stayItem.stay.id)) {
+          uniqueStays.set(stayItem.stay.id, {
+            ...stayItem.stay,
+            dates: [stayItem.date],
+          });
         } else {
-          console.error('Geocode 패칭 실패: ' + status);
+          uniqueStays.get(stayItem.stay.id).dates.push(stayItem.date);
         }
-      });
-    }
-  }, [isLoaded, loadError, location, map]);
-
-  useEffect(() => {
-    if (!location) {
-      router.replace('/');
-    }
-  }, [location, router]);
+      }
+    });
+    return Array.from(uniqueStays.values());
+  };
 
   if (loadError || !location) {
     return <div>지도를 로드할 수 없습니다. 다시 시도해 주세요.</div>;
@@ -79,7 +54,55 @@ export default function ResizableMapWithContent() {
           zoom={9}
           options={mapOptions}
         >
-          {/* Child components, such as markers, info windows, etc. */}
+          {places.map((place, index) => (
+            <React.Fragment key={place.id}>
+              <Marker
+                position={{lat: place.location.lat, lng: place.location.lng}}
+                icon={{
+                  path: google.maps.SymbolPath.CIRCLE,
+                  fillColor: '#808080',
+                  fillOpacity: 1,
+                  strokeWeight: 3,
+                  strokeColor: '#fff',
+                  scale: 20,
+                }}
+                label={{
+                  text: (index + 1).toString(),
+                  color: 'white',
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                }}
+              />
+              <OverlayView
+                position={{lat: place.location.lat, lng: place.location.lng}}
+                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+              >
+                <div className="bg-white w-max px-2.5 py-1.5 text-sm rounded-xl shadow-md absolute left-1/2 -translate-x-1/2 -translate-y-14 -mt-1 whitespace-nowrap border border-solid border-gray-700 font-semibold">
+                  {place.name}
+                </div>
+              </OverlayView>
+            </React.Fragment>
+          ))}
+          {getUniqueStays(stays).map((stay) => (
+            <React.Fragment key={`stay-${stay.id}`}>
+              <Marker
+                position={{lat: stay.location.lat, lng: stay.location.lng}}
+                icon={{
+                  url: svgMarker,
+                  scaledSize: new google.maps.Size(50, 50),
+                }}
+              />
+              <OverlayView
+                position={{lat: stay.location.lat, lng: stay.location.lng}}
+                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+              >
+                <div className="bg-blue-100 w-max px-2.5 py-1.5 text-sm rounded-xl shadow-md absolute left-1/2 -translate-x-1/2 -translate-y-20 -mt-1 whitespace-nowrap border border-solid border-blue-500 font-semibold">
+                  {stay.name} ({stay.dates.length}
+                  {stay.dates.length > 1 ? '박' : '일'})
+                </div>
+              </OverlayView>
+            </React.Fragment>
+          ))}
         </GoogleMap>
       </div>
     </div>

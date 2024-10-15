@@ -1,61 +1,48 @@
 'use client';
 
-import {useDrag, useDrop} from 'react-dnd';
-
+import Drag from '@/asset/Drag.svg';
+import Remove from '@/asset/remove.svg';
+import {useDragAndDrop} from '@/hooks/useDragAndDrop';
+import {useTripStore} from '@/store';
 import {DndCardProps} from '@/types';
 
 export default function DndCard({
+  items,
+  updateItem,
+  removeItem,
   id,
-  name,
-  type,
-  imageUrl,
-  location,
-  moveCard,
-  findCard,
+  accept,
+  children,
 }: DndCardProps) {
-  const originalIndex = findCard(id).index;
-  const [, drag] = useDrag(
-    () => ({
-      type: 'PLACE',
-      item: {id, originalIndex},
-      collect: (monitor) => ({
-        isDragging: monitor.isDragging(),
-      }),
-      end: (item, monitor) => {
-        const {id: droppedId, originalIndex} = item;
-        const didDrop = monitor.didDrop();
-        if (!didDrop) {
-          // @ts-ignore
-          moveCard(droppedId, originalIndex);
-        }
-      },
-    }),
-    [id, originalIndex, moveCard],
+  const {DndRef, dragHandleRef, isDragging} = useDragAndDrop(
+    items,
+    updateItem,
+    id,
+    accept,
   );
 
-  const [, drop] = useDrop(
-    () => ({
-      accept: 'PLACE',
-      hover({id: draggedId}: {id: number}) {
-        if (draggedId !== id) {
-          const {index: overIndex} = findCard(id);
-          moveCard(draggedId, overIndex);
-        }
-      },
-    }),
-    [findCard, moveCard],
-  );
+  const removeSelectedPlace = useTripStore.use.removeSelectedPlace();
+
+  const handleRemove = () => {
+    removeItem(id);
+    removeSelectedPlace(id);
+  };
 
   return (
     <div
-      className={'h-10 p-3 flex items-center justify-center gap-3'}
-      ref={(node) => drag(drop(node))}
+      ref={DndRef}
+      className={`py-3 px-5 flex items-center justify-center rounded-2xl bg-white
+       shadow-[0_5px_30px_-10px_rgba(0,0,0,0.3)] ${isDragging ? 'scale-105 opacity-50' : ''}`}
     >
-      <span>{id}</span>
-      <span>{name}</span>
-      <span>{type}</span>
-      <span>{imageUrl}</span>
-      <span>{location?.lat}</span>
+      <div className={'w-full flex items-center justify-between'}>
+        {children}
+        <div className={'flex gap-5'}>
+          <div ref={dragHandleRef}>
+            <Drag className={'cursor-move'} />
+          </div>
+          <Remove className={'cursor-pointer'} onClick={handleRemove} />
+        </div>
+      </div>
     </div>
   );
 }

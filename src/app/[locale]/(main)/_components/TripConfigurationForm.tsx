@@ -17,7 +17,7 @@ import {CityCodeType, TripConfigurationFormValue} from '@/types';
 
 import 'dayjs/locale/ko';
 import {useTripStore} from '@/store';
-import {useGetCityCode} from '@/hooks/withQuery/useGetCityCode';
+import {useGetCityCode} from '@/hooks/withQuery/get/useGetCityCode';
 
 export default function TripConfigurationForm() {
   const t = useTranslations('tripConfigPanel');

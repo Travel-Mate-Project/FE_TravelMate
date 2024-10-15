@@ -115,6 +115,9 @@
     "topTenPlace": "현재 가장 사랑받는 여행지 BEST 10",
     "hotRegion": "요즘 많이 찾는 지역",
     "course": "코스",
-    "place": "명소"
+    "place": "명소",
+    "cafe": "카페",
+    "restaurant": "맛집",
+    "stay": "숙소"
   }
 }

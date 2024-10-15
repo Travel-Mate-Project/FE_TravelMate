@@ -5,8 +5,8 @@ import {MapSlice} from '@/types';
 export const creatMapSLice: StateCreator<MapSlice> = (set) => ({
   totalHeight: 800,
   minMapHeight: 0,
-  maxMapHeight: 350,
-  mapHeight: 230,
+  maxMapHeight: 380,
+  mapHeight: 250,
   setMapHeight: (height) =>
     set((state) => ({
       mapHeight: Math.min(

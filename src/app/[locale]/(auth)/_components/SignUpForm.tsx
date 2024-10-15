@@ -7,7 +7,7 @@ import {Controller, useForm} from 'react-hook-form';
 import AuthInput from '@/app/[locale]/(auth)/_components/AuthInput';
 import BasicButton from '@/components/BasicButton';
 import BasicCheckBox from '@/components/BasicCheckBox';
-import {useSignUp} from '@/hooks/withQuery/useSignUp';
+import {useSignUp} from '@/hooks/withQuery/post/useSignUp';
 import {useAuthStore} from '@/store';
 import {SignUpFormValue} from '@/types';
 

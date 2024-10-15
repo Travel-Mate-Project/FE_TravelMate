@@ -9,7 +9,7 @@ import {
   UseFormSetValue,
 } from 'react-hook-form';
 
-import {RegionType} from '@/types/response';
+import {RegionType, SearchPlaceType} from '@/types/response';
 import {Location} from '@/types/store';
 
 type InputType = 'text' | 'password' | 'email' | 'date' | 'number';
@@ -22,6 +22,7 @@ export interface ButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   type: ButtonType;
   disabled?: boolean;
+  variant?: 'primary' | 'secondary' | 'tertiary';
 }
 
 export interface NavigationButtonProps extends ButtonProps {
@@ -84,6 +85,7 @@ export interface TripConfigurationFormValue {
 
 export interface ModalProps {
   title: string;
+  subTitle?: string;
   children: ReactNode;
   setValue?: UseFormSetValue<TripConfigurationFormValue>;
   // eslint-disable-next-line no-unused-vars
@@ -147,7 +149,40 @@ export interface TimeInputProps {
 export type LatLngLiteral = google.maps.LatLngLiteral;
 export type MapOptions = google.maps.MapOptions;
 
-export interface DndCardProps extends Location {
-  moveCard: (_id: number, _to: number) => void;
-  findCard: (_id: number) => {index: number};
+export interface DndCardProps {
+  items: Location[];
+  updateItem: (_item: Location[]) => void;
+  removeItem: (_id: number) => void;
+  id: number;
+  accept: string;
+  children: ReactNode;
+}
+
+export interface selectNavProps {
+  selectOption: [string, string];
+  select: string;
+  name: [string, string];
+  setSelect: (_value: string) => void;
+}
+
+export interface SearchInputProps {
+  placeholder: string;
+  value: string;
+  onChange: (_value: string) => void;
+}
+
+export interface FilterButtonProps {
+  filterName: {key: string; value: string}[];
+  setFilter: (_value: string) => void;
+  filter: string;
+}
+
+export interface SelectCardProps {
+  info: SearchPlaceType;
+  variant: 'place' | 'stay';
+}
+
+export interface TransportationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
 }

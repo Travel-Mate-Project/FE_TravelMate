@@ -25,14 +25,6 @@ export default function TripTimeConfigHeader({
 
   const changeDate = () => {
     if (path !== '/time') {
-      // TODO: 이후 커스텀 모달창으로 교체하기
-      const result = confirm('일정을 바꾸면 시간을 다시 설정해야 합니다.');
-      if (result) {
-        router.push('/date');
-      } else {
-        return;
-      }
-    } else {
       router.push('/date');
     }
   };

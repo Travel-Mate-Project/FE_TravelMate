@@ -32,7 +32,7 @@ export default function TripTimeConfigForm() {
     updateDateAndTime(result);
     const {hours, minutes} = calculateTotalTripTime(result);
     updateTotalTripTime(`${hours}시간 ${minutes}분`);
-    router.push('/place');
+    router.push('/plan');
   };
 
   useEffect(() => {

@@ -2,7 +2,7 @@
 
 import Card from '@/components/Card';
 import Carousel from '@/components/Carousel';
-import {useGetPopularRegionList} from '@/hooks/withQuery/useGetPopularRegionList';
+import {useGetPopularRegionList} from '@/hooks/withQuery/get/useGetPopularRegionList';
 import {RegionType} from '@/types/response';
 
 export default function PopularRegionsList() {

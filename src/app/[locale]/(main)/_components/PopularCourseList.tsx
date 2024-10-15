@@ -1,6 +1,6 @@
 import Card from '@/components/Card';
-import {useGetPopularCourseList} from '@/hooks/withQuery/useGetPopularCourseList';
 import Carousel from '@/components/Carousel';
+import {useGetPopularCourseList} from '@/hooks/withQuery/get/useGetPopularCourseList';
 import {RegionType} from '@/types/response';
 
 export default function PopularCourseList() {
