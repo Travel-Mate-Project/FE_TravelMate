@@ -14,8 +14,9 @@ import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
 
 export default function PlaceAndStayContainer() {
+  const selectedItem = sessionStorage.getItem('NAV_SELECT');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [select, setSelect] = useState<string>('place');
+  const [select, setSelect] = useState<string>(selectedItem || 'place');
   const {
     totalHeight,
     mapHeight,
@@ -48,6 +49,11 @@ export default function PlaceAndStayContainer() {
     setIsModalOpen(true);
   };
 
+  const handleSelect = (selected: string) => {
+    sessionStorage.setItem('NAV_SELECT', selected);
+    setSelect(selected);
+  };
+
   useEffect(() => {
     const hasAnyStay = stays.some((stay) => stay.stay !== null);
     if (!hasAnyStay) {
@@ -56,7 +62,7 @@ export default function PlaceAndStayContainer() {
   }, []);
 
   return (
-    <div className="mx-auto w-full max-w-[600px]">
+    <div className="mx-auto w-full">
       <button
         className="h-3 my-4 w-full flex items-center justify-center cursor-ns-resize touch-none"
         onMouseDown={handleMouseDown}
@@ -69,7 +75,7 @@ export default function PlaceAndStayContainer() {
           selectOption={['place', 'stay']}
           name={['장소', '숙소']}
           select={select}
-          setSelect={setSelect}
+          setSelect={handleSelect}
         />
         <div className={'flex items-center justify-between pt-5'}>
           <div className={'flex items-center'}>
@@ -103,7 +109,7 @@ export default function PlaceAndStayContainer() {
       <TransportationModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-      ></TransportationModal>
+      />
     </div>
   );
 }

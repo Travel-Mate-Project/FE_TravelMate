@@ -1,16 +1,21 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 
 import Car from '@/asset/humbleicons_car.svg';
 import Bus from '@/asset/mdi_bus.svg';
 import BasicButton from '@/components/BasicButton';
 import {TransportationModalProps} from '@/types';
+import {useTripStore} from '@/store';
+import {useRouter} from '@/i18n/routing';
 
 export default function TransportationModal({
   isOpen,
   onClose,
 }: TransportationModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const [selectedType, setSelectedType] = useState<string | null>(null);
+
+  const transportation = useTripStore.use.transportation();
+  const setTransportation = useTripStore.use.setTransportation();
+  const route = useRouter();
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -27,6 +32,18 @@ export default function TransportationModal({
       document.removeEventListener('keydown', handleEscape);
     };
   }, [isOpen, onClose]);
+
+  const handleSelectType = (type: string) => {
+    setTransportation(type);
+  };
+
+  const handleNext = () => {
+    if (!transportation || transportation === '') {
+      alert('이동수단을 선택해주세요.');
+      return;
+    }
+    route.push('/ready');
+  };
 
   if (!isOpen) {
     return null;
@@ -48,23 +65,23 @@ export default function TransportationModal({
 
           <div className="flex space-x-4 mb-6">
             <button
-              className={`flex-1 py-4 border rounded-lg ${selectedType === 'public' ? 'border-teal-500 bg-green100 text-white' : 'border-gray-300'}`}
-              onClick={() => setSelectedType('public')}
+              className={`flex-1 py-4 border rounded-lg ${transportation === 'public' ? 'border-teal-500 bg-green100 text-white' : 'border-gray-300'}`}
+              onClick={() => handleSelectType('public')}
             >
               <p className={'flex flex-col items-center'}>
                 <Bus
-                  className={`w-10 h-10 ${selectedType === 'public' ? 'fill-white' : 'fill-black'}`}
+                  className={`w-10 h-10 ${transportation === 'public' ? 'fill-white' : 'fill-black'}`}
                 />
                 대중교통
               </p>
             </button>
             <button
-              className={`flex-1 py-3 border rounded-lg ${selectedType === 'car' ? 'border-teal-500 bg-green100 text-white' : 'border-gray-300'}`}
-              onClick={() => setSelectedType('car')}
+              className={`flex-1 py-3 border rounded-lg ${transportation === 'car' ? 'border-teal-500 bg-green100 text-white' : 'border-gray-300'}`}
+              onClick={() => handleSelectType('car')}
             >
               <p className={'flex flex-col items-center'}>
                 <Car
-                  className={`w-10 h-10 ${selectedType === 'car' ? 'fill-white' : 'fill-black'}`}
+                  className={`w-10 h-10 ${transportation === 'car' ? 'fill-white' : 'fill-black'}`}
                 />
                 자가용
               </p>
@@ -83,12 +100,8 @@ export default function TransportationModal({
             <BasicButton
               type={'button'}
               classNames="px-4 py-2 flex-1"
-              disabled={!selectedType}
-              onClick={() => {
-                if (selectedType) {
-                  onClose();
-                }
-              }}
+              disabled={!transportation}
+              onClick={handleNext}
             >
               다음
             </BasicButton>

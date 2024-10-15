@@ -35,7 +35,7 @@ export default function DynamicTravelList() {
               onClick={() => setListType(option)}
               className={`
               ${listType === option ? 'bg-black text-white' : 'bg-white text-black'}
-              rounded-2xl px-3 py-1 border border-solid border-black
+              rounded-2xl px-3 py-1 border border-solid border-gray200
             `}
               type={'button'}
             >

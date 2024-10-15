@@ -99,3 +99,8 @@ export interface StaySlice {
   setAll: () => void;
   clearStays: () => void;
 }
+
+export interface TransportationSlice {
+  transportation: string;
+  setTransportation: (_transportation: string) => void;
+}
