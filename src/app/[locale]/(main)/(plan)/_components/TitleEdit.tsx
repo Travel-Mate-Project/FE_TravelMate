@@ -1,16 +1,17 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
-import DragDown from '@/asset/Menu_Duo_LG.svg';
-import {useDragResize} from '@/hooks/useDragResize';
-import {useTripStore} from '@/store';
 import dayjs from 'dayjs';
 import Image from 'next/image';
+import React, {useEffect, useState} from 'react';
+
+import DragDown from '@/asset/Menu_Duo_LG.svg';
 import BasicButton from '@/components/BasicButton';
+import {useDragResize} from '@/hooks/useDragResize';
 import {useRouter} from '@/i18n/routing';
+import {useTripStore} from '@/store';
 
 export default function TitleEdit() {
-  const {totalHeight, mapHeight, places, stays, region, date, totalTripTime} =
+  const {totalHeight, mapHeight, places, region, date, totalTripTime} =
     useTripStore();
   const {handleMouseDown, handleTouchStart} = useDragResize();
   const router = useRouter();
