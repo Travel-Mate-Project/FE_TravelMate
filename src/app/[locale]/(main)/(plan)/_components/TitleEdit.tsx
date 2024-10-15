@@ -9,6 +9,7 @@ import BasicButton from '@/components/BasicButton';
 import {useDragResize} from '@/hooks/useDragResize';
 import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
+import {useOptimizeTrip} from '@/hooks/withQuery/post/useOptimizeTrip';
 
 export default function TitleEdit() {
   const {totalHeight, mapHeight, places, region, date, stays, totalTripTime} =
@@ -20,12 +21,25 @@ export default function TitleEdit() {
 
   const [title, setTitle] = useState<string>(`${region} 여행`);
 
+  const {optimizeTripMutation} = useOptimizeTrip();
+
   const handleOptimize = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('places', places);
     console.log('date', date);
     console.log('stays', stays);
     console.log(typeof stays[0].date);
+    const stay = stays
+      .filter((item) => item.stay !== null)
+      .map((item, index) => {
+        return {
+          ...item.stay!,
+          day: index + 1,
+          date: item.date,
+        };
+      });
+
+    optimizeTripMutation({accommodations: stay, attractions: places});
   };
 
   useEffect(() => {
