@@ -1,7 +1,8 @@
-import {StateCreator} from 'zustand';
-import {Location, StaySlice} from '@/types';
-import {createStayDateRange} from '@/helper/createStayDateRange';
 import dayjs from 'dayjs';
+import {StateCreator} from 'zustand';
+
+import {createStayDateRange} from '@/helper/createStayDateRange';
+import {Location, StaySlice} from '@/types';
 
 export const createStaySlice: StateCreator<StaySlice> = (set) => ({
   stays: [],
@@ -13,7 +14,7 @@ export const createStaySlice: StateCreator<StaySlice> = (set) => ({
   toggleStay: (date: dayjs.Dayjs, stayLocation: Location) =>
     set((state) => ({
       stays: state.stays.map((stay) =>
-        stay.date.isSame(date, 'day')
+        dayjs(stay.date).isSame(date, 'day')
           ? {
               ...stay,
               isCheck: !stay.isCheck,

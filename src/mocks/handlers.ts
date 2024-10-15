@@ -2,6 +2,13 @@ import {http, HttpResponse} from 'msw';
 
 import {END_POINT} from '@/constants/endPoint';
 import {DB} from '@/db/db';
+import {
+  calculateTotalTripDistance,
+  formatDailyRoutes,
+  measureExecutionTime,
+  planTrip,
+} from '@/util/tripOptimizer';
+import {OptimizeTripRequest, OptimizeTripResponse} from '@/types';
 
 export const handlers = [
   http.get(END_POINT.place.regions, () => {
@@ -65,4 +72,23 @@ export const handlers = [
 
     return HttpResponse.json(filteredPlaces);
   }),
+
+  http.post<never, OptimizeTripRequest, OptimizeTripResponse>(
+    END_POINT.trip.optimizeTrip,
+    async ({request}) => {
+      const {attractions, accommodations} = await request.json();
+
+      const optimizedPlan = planTrip(attractions, accommodations);
+      const formattedRoutes = formatDailyRoutes(optimizedPlan);
+      const totalTripDistance = calculateTotalTripDistance(optimizedPlan);
+      const executionTime = measureExecutionTime(attractions, accommodations);
+
+      return HttpResponse.json({
+        formattedRoutes,
+        totalTripDistance: totalTripDistance.toFixed(2),
+        executionTime: executionTime.toFixed(2),
+        optimizedPlan, // 클라이언트에서 추가 처리가 필요할 경우를 대비해 원본 데이터도 포함
+      });
+    },
+  ),
 ];

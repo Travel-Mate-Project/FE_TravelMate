@@ -1,5 +1,6 @@
 'use client';
 
+import dayjs from 'dayjs';
 import Image from 'next/image';
 import React from 'react';
 
@@ -44,7 +45,7 @@ export default function StaySelectList() {
           </button>
           <div className={'flex flex-col'}>
             <p className={'text-green100 font-lg'}>
-              {stay.date.format('MM.DD(dd)')}
+              {dayjs(stay.date).format('MM.DD(dd)')}
             </p>
             <p className={'text-gray300 text-sm'}>
               {stay.stay ? stay.stay.name : '숙소를 추가해 주세요.'}

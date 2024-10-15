@@ -82,7 +82,7 @@ export interface SelectPlaceSlice {
 }
 
 export interface StayItem {
-  date: dayjs.Dayjs;
+  date: Date;
   isCheck: boolean;
   stay: Location | null;
 }

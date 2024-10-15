@@ -7,9 +7,9 @@ import Check from '@/asset/check.svg';
 import Comment from '@/asset/message.svg';
 import RateStar from '@/asset/Star.svg';
 import {convertTypeLang} from '@/helper/convertTypeLang';
+import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
 import {SelectCardProps, StayItem} from '@/types';
-import {useRouter} from '@/i18n/routing';
 
 export default function SelectCard({info, variant}: SelectCardProps) {
   const {

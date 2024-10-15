@@ -11,7 +11,7 @@ import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
 
 export default function TitleEdit() {
-  const {totalHeight, mapHeight, places, region, date, totalTripTime} =
+  const {totalHeight, mapHeight, places, region, date, stays, totalTripTime} =
     useTripStore();
   const {handleMouseDown, handleTouchStart} = useDragResize();
   const router = useRouter();
@@ -20,6 +20,14 @@ export default function TitleEdit() {
 
   const [title, setTitle] = useState<string>(`${region} 여행`);
 
+  const handleOptimize = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log('places', places);
+    console.log('date', date);
+    console.log('stays', stays);
+    console.log(typeof stays[0].date);
+  };
+
   useEffect(() => {
     if (totalTripTime === '') {
       router.push('/time');
@@ -27,7 +35,7 @@ export default function TitleEdit() {
   }, [totalTripTime, router]);
 
   return (
-    <div className="mx-auto w-full">
+    <form onSubmit={handleOptimize} className="mx-auto w-full">
       <button
         className="h-3 my-4 w-full flex items-center justify-center cursor-ns-resize touch-none"
         onMouseDown={handleMouseDown}
@@ -79,10 +87,10 @@ export default function TitleEdit() {
             </figure>
           ))}
         </div>
-        <BasicButton type={'button'} classNames={'w-full mt-6 px-3 py-3'}>
+        <BasicButton type={'submit'} classNames={'w-full mt-6 px-3 py-3'}>
           완료
         </BasicButton>
       </div>
-    </div>
+    </form>
   );
 }

@@ -1,5 +1,6 @@
-import {StayItem} from '@/types';
 import dayjs from 'dayjs';
+
+import {StayItem} from '@/types';
 
 export const createStayDateRange = (
   startDate: Date,
@@ -14,7 +15,7 @@ export const createStayDateRange = (
     currentDate.isSame(lastDate, 'day')
   ) {
     const stay: StayItem = {
-      date: currentDate,
+      date: currentDate.toDate(),
       isCheck: false,
       stay: null,
     };
