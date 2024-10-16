@@ -12,12 +12,6 @@ export interface Accommodation extends TravelLocation {
   day: number;
 }
 
-// 여행 데이터 인터페이스 정의
-export interface TripData {
-  attractions: TravelLocation[];
-  accommodations: Accommodation[];
-}
-
 // 도(degree)를 라디안(radian)으로 변환하는 함수
 const degToRad = (deg: number): number => deg * (Math.PI / 180);
 

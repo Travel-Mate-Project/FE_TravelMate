@@ -11,7 +11,11 @@ export interface SignInReq {
   password: string;
 }
 
-export interface OptimizeTripRequest {
+export interface TripData {
   attractions: TravelLocation[];
   accommodations: Accommodation[];
+  title: string;
+  region: string;
+  startDate: Date;
+  endDate: Date;
 }

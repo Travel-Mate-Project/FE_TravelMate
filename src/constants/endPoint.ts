@@ -19,4 +19,7 @@ export const END_POINT = {
   trip: {
     optimizeTrip: '/api/v1/trip/optimize',
   },
+  myPage: {
+    plan: '/api/v1/myPage/plan',
+  },
 } as const;

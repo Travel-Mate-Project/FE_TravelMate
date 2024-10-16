@@ -8,8 +8,15 @@ export type CityCodeType = (typeof DB)['cityCode'][0];
 export type SearchPlaceType = (typeof DB)['searchPlace'][0];
 
 export interface OptimizeTripResponse {
+  id: number;
+  optimizedTrip: TravelLocation[][];
+  totalTripTime: number;
   formattedRoutes: string;
-  totalTripDistance: string;
-  executionTime: string;
-  optimizedPlan: TravelLocation[][];
+  totalTripDistance: number;
+  totalExecutionTime: number;
+  totalAttractions: number;
+  title: string;
+  region: string;
+  startDate: Date;
+  endDate: Date;
 }

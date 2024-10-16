@@ -38,8 +38,16 @@ export default function TitleEdit() {
           date: item.date,
         };
       });
+    const finalData = {
+      title,
+      region,
+      startDate,
+      endDate,
+      accommodations: stay,
+      attractions: places,
+    };
 
-    optimizeTripMutation({accommodations: stay, attractions: places});
+    optimizeTripMutation(finalData);
   };
 
   useEffect(() => {
