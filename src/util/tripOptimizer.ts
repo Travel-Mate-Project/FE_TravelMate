@@ -1,22 +1,26 @@
 import {Location} from '@/types';
 
+// 여행 위치 인터페이스 정의
 export interface TravelLocation extends Location {
   name: string;
   latitude: number;
   longitude: number;
 }
 
+// 숙소 인터페이스 정의 (TravelLocation을 확장)
 export interface Accommodation extends TravelLocation {
   day: number;
 }
 
+// 도(degree)를 라디안(radian)으로 변환하는 함수
 const degToRad = (deg: number): number => deg * (Math.PI / 180);
 
+// 두 위치 간의 거리를 계산하는 함수 (Haversine 공식 사용)
 const calculateDistance = (
   loc1: TravelLocation,
   loc2: TravelLocation,
 ): number => {
-  const R = 6371;
+  const R = 6371; // 지구의 반경 (km)
   const dLat = degToRad(loc2.latitude - loc1.latitude);
   const dLon = degToRad(loc2.longitude - loc1.longitude);
   const a =
@@ -29,6 +33,7 @@ const calculateDistance = (
   return R * c;
 };
 
+// 2-Opt 알고리즘을 위한 경로 교환 함수
 const twoOptSwap = (
   route: TravelLocation[],
   i: number,
@@ -40,6 +45,7 @@ const twoOptSwap = (
   return newRoute;
 };
 
+// 전체 경로의 총 거리를 계산하는 함수
 const calculateTotalDistance = (route: TravelLocation[]): number => {
   let totalDistance = 0;
   for (let i = 0; i < route.length - 1; i++) {
@@ -48,6 +54,7 @@ const calculateTotalDistance = (route: TravelLocation[]): number => {
   return totalDistance;
 };
 
+// 2-Opt 알고리즘을 사용하여 경로를 최적화하는 함수
 const optimizeRouteWith2Opt = (
   route: TravelLocation[],
   maxIterations: number = 100,
@@ -76,12 +83,14 @@ const optimizeRouteWith2Opt = (
   return bestRoute;
 };
 
+// 숙소를 중심으로 K-means 클러스터링을 수행하는 함수
 const kMeansClustering = (
   locations: TravelLocation[],
   accommodations: Accommodation[],
   maxIterations: number = 100,
 ): TravelLocation[][] => {
   const k = accommodations.length;
+  // 초기 중심점을 숙소 위치로 설정
   let centroids: TravelLocation[] = accommodations.map((acc) => ({...acc}));
   let clusters: TravelLocation[][] = Array(k)
     .fill(null)
@@ -89,6 +98,7 @@ const kMeansClustering = (
   let iterations = 0;
 
   while (iterations < maxIterations) {
+    // 각 위치를 가장 가까운 중심점(숙소)에 할당
     clusters = Array(k)
       .fill(null)
       .map(() => []);
@@ -107,6 +117,7 @@ const kMeansClustering = (
       clusters[closestCentroidIndex].push(location);
     }
 
+    // 새로운 중심점 계산 (숙소 위치는 변경하지 않음)
     const newCentroids = centroids.map((centroid, i) => {
       const cluster = clusters[i];
       if (cluster.length === 0) {
@@ -115,6 +126,7 @@ const kMeansClustering = (
       return centroid; // 숙소의 위치는 변경하지 않음
     });
 
+    // 수렴 여부 확인
     if (JSON.stringify(newCentroids) === JSON.stringify(centroids)) {
       break;
     }
@@ -126,6 +138,7 @@ const kMeansClustering = (
   return clusters;
 };
 
+// 클러스터를 재분배하여 크기를 균형있게 조정하는 함수
 const redistributeClusters = (
   clusters: TravelLocation[][],
   targetSize: number,
@@ -148,6 +161,7 @@ const redistributeClusters = (
   return newClusters;
 };
 
+// 전체 여행 계획을 수립하는 메인 함수
 export const planTrip = (
   attractions: TravelLocation[],
   accommodations: Accommodation[],
@@ -155,7 +169,10 @@ export const planTrip = (
   const numClusters = accommodations.length;
   const targetAttractionsPerDay = Math.ceil(attractions.length / numClusters);
 
+  // K-means 클러스터링 적용
   let clusters = kMeansClustering(attractions, accommodations);
+
+  // 클러스터 크기를 균형있게 재조정
   clusters = redistributeClusters(clusters, targetAttractionsPerDay);
 
   const dailyRoutes: TravelLocation[][] = [];
@@ -164,7 +181,9 @@ export const planTrip = (
     const accommodation = accommodations[i];
     const clusterAttractions = clusters[i];
 
+    // 숙소를 시작점과 끝점으로 하는 일일 경로 생성
     const dailyRoute = [accommodation, ...clusterAttractions, accommodation];
+    // 2-Opt 알고리즘을 사용하여 일일 경로 최적화
     const optimizedDailyRoute = optimizeRouteWith2Opt(dailyRoute);
 
     dailyRoutes.push(optimizedDailyRoute);
@@ -173,6 +192,7 @@ export const planTrip = (
   return dailyRoutes;
 };
 
+// 최적화된 여행 계획을 문자열로 포맷팅하는 함수
 export const formatDailyRoutes = (
   optimizedPlan: TravelLocation[][],
 ): string => {
@@ -191,6 +211,7 @@ export const formatDailyRoutes = (
   return result;
 };
 
+// 전체 여행의 총 이동 거리를 계산하는 함수
 export const calculateTotalTripDistance = (
   optimizedPlan: TravelLocation[][],
 ): number => {
@@ -200,6 +221,7 @@ export const calculateTotalTripDistance = (
   );
 };
 
+// 알고리즘의 실행 시간을 측정하는 함수
 export const measureExecutionTime = (
   attractions: TravelLocation[],
   accommodations: Accommodation[],
