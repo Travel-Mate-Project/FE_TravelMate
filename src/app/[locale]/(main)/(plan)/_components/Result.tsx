@@ -1,8 +1,10 @@
 'use client';
 
+import dayjs from 'dayjs';
 import Image from 'next/image';
 import React from 'react';
 
+import HeartIcon from '@/asset/Heart.svg';
 import DragDown from '@/asset/Menu_Duo_LG.svg';
 import {DAY_COLOR} from '@/constants/colors';
 import {calculateTripDuration} from '@/helper/calculateTripDuration';
@@ -24,7 +26,9 @@ export default function Result({optimizedPlan, isLoading}: ResultPageProps) {
   return (
     <div>
       <button
-        className="h-3 my-4 w-full flex items-center justify-center cursor-ns-resize touch-none"
+        className={
+          'h-3 my-4 w-full flex items-center justify-center cursor-ns-resize touch-none'
+        }
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
@@ -42,7 +46,7 @@ export default function Result({optimizedPlan, isLoading}: ResultPageProps) {
             <div className={'flex flex-col items-center px-2 py-4'}>
               <div
                 className={
-                  'w-full mt-5 p-3 shadow-lg rounded-2xl shadow-[0_5px_30px_-10px_rgba(0,0,0,0.3)]'
+                  'w-full mt-5 p-3 rounded-2xl shadow-[0_5px_30px_-10px_rgba(0,0,0,0.3)]'
                 }
               >
                 <div className={'border-b border-solid border-green100'}>
@@ -79,26 +83,34 @@ export default function Result({optimizedPlan, isLoading}: ResultPageProps) {
                 </div>
               </div>
             </div>
-            <div className="space-y-6">
+            <div className={'space-y-6'}>
               {optimizedPlan.optimizedTrip.map((day, index) => (
                 <div
-                  className="flex flex-col w-full p-4 rounded-xl"
+                  className={'flex flex-col w-full px-1.5 py-4 rounded-xl '}
                   key={`day-${day[index]?.id}${index}`}
                 >
-                  <div className="flex justify-between items-center mb-2">
-                    <p className="text-xl font-bold">{index + 1}일</p>
-                    <p className="text-gray-600">
-                      {optimizedPlan.dateAndTime[index].date}
+                  <div className={'flex justify-between items-center mb-2'}>
+                    <p className={'text-xl font-bold'}>{index + 1}일</p>
+                    <p className={'text-gray-600 text-sm'}>
+                      {dayjs(optimizedPlan.dateAndTime[index].date).format(
+                        'YYYY-MM-DD(dd)',
+                      )}
                     </p>
                   </div>
-                  <p className="text-sm text-gray-500 mb-4">
-                    출발 시간: {optimizedPlan.dateAndTime[index].start}
+                  <p
+                    className={
+                      'py-3 px-5 mb-3 flex items-center justify-center font-bold rounded-2xl bg-white shadow-[0_5px_30px_-10px_rgba(0,0,0,0.3)]'
+                    }
+                  >
+                    시작 {optimizedPlan.dateAndTime[index].start}
                   </p>
                   <div className="space-y-3">
                     {day.map((place, i) => (
                       <div
                         key={`place-${place.id}${i} `}
-                        className="py-3 px-5 flex items-center justify-between rounded-2xl bg-white shadow-[0_5px_30px_-10px_rgba(0,0,0,0.3)]"
+                        className={
+                          'py-3 px-5 flex items-center justify-between rounded-2xl bg-white shadow-[0_5px_30px_-10px_rgba(0,0,0,0.3)]'
+                        }
                       >
                         <div className={'flex items-center gap-3'}>
                           <div
@@ -126,9 +138,10 @@ export default function Result({optimizedPlan, isLoading}: ResultPageProps) {
                             >
                               {convertTypeLang(place.type).name}
                             </span>
-                            <p className="font-semibold">{place.name}</p>
+                            <p className={'font-semibold'}>{place.name}</p>
                           </div>
                         </div>
+                        <HeartIcon className={'cursor-pointer'} />
                       </div>
                     ))}
                   </div>
