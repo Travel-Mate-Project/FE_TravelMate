@@ -83,56 +83,48 @@ const optimizeRouteWith2Opt = (
   return bestRoute;
 };
 
-// 숙소를 중심으로 K-means 클러스터링을 수행하는 함수
-const kMeansClustering = (
+// 숙소를 중심으로 거리 기반 클러스터링을 수행하는 함수
+const distanceBasedClustering = (
   locations: TravelLocation[],
   accommodations: Accommodation[],
-  maxIterations: number = 100,
+  maxDistance: number,
 ): TravelLocation[][] => {
-  const k = accommodations.length;
-  // 초기 중심점을 숙소 위치로 설정
-  let centroids: TravelLocation[] = accommodations.map((acc) => ({...acc}));
-  let clusters: TravelLocation[][] = Array(k)
-    .fill(null)
-    .map(() => []);
-  let iterations = 0;
+  const clusters: TravelLocation[][] = accommodations.map(() => []);
+  const unassignedLocations: TravelLocation[] = [];
 
-  while (iterations < maxIterations) {
-    // 각 위치를 가장 가까운 중심점(숙소)에 할당
-    clusters = Array(k)
-      .fill(null)
-      .map(() => []);
-    for (const location of locations) {
-      let minDistance = Infinity;
-      let closestCentroidIndex = 0;
+  for (const location of locations) {
+    let minDistance = Infinity;
+    let closestAccommodationIndex = -1;
 
-      for (let i = 0; i < k; i++) {
-        const distance = calculateDistance(location, centroids[i]);
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestCentroidIndex = i;
-        }
+    for (let i = 0; i < accommodations.length; i++) {
+      const distance = calculateDistance(location, accommodations[i]);
+      if (distance < minDistance && distance <= maxDistance) {
+        minDistance = distance;
+        closestAccommodationIndex = i;
       }
-
-      clusters[closestCentroidIndex].push(location);
     }
 
-    // 새로운 중심점 계산 (숙소 위치는 변경하지 않음)
-    const newCentroids = centroids.map((centroid, i) => {
-      const cluster = clusters[i];
-      if (cluster.length === 0) {
-        return centroid;
-      }
-      return centroid; // 숙소의 위치는 변경하지 않음
-    });
+    if (closestAccommodationIndex !== -1) {
+      clusters[closestAccommodationIndex].push(location);
+    } else {
+      unassignedLocations.push(location);
+    }
+  }
 
-    // 수렴 여부 확인
-    if (JSON.stringify(newCentroids) === JSON.stringify(centroids)) {
-      break;
+  // 할당되지 않은 위치들을 가장 가까운 숙소에 할당
+  for (const location of unassignedLocations) {
+    let minDistance = Infinity;
+    let closestAccommodationIndex = 0;
+
+    for (let i = 0; i < accommodations.length; i++) {
+      const distance = calculateDistance(location, accommodations[i]);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestAccommodationIndex = i;
+      }
     }
 
-    centroids = newCentroids;
-    iterations++;
+    clusters[closestAccommodationIndex].push(location);
   }
 
   return clusters;
@@ -166,11 +158,16 @@ export const planTrip = (
   attractions: TravelLocation[],
   accommodations: Accommodation[],
 ): TravelLocation[][] => {
-  const numClusters = accommodations.length;
-  const targetAttractionsPerDay = Math.ceil(attractions.length / numClusters);
+  const numDays = accommodations.length;
+  const maxDistance = 30; // 숙소로부터 최대 30km 이내의 관광지 선택
+  const targetAttractionsPerDay = Math.ceil(attractions.length / numDays);
 
-  // K-means 클러스터링 적용
-  let clusters = kMeansClustering(attractions, accommodations);
+  // 거리 기반 클러스터링 적용
+  let clusters = distanceBasedClustering(
+    attractions,
+    accommodations,
+    maxDistance,
+  );
 
   // 클러스터 크기를 균형있게 재조정
   clusters = redistributeClusters(clusters, targetAttractionsPerDay);
