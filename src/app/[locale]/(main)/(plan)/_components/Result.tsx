@@ -23,6 +23,28 @@ export default function Result({optimizedPlan, isLoading}: ResultPageProps) {
     return DAY_COLOR[index];
   };
 
+  const calculateCumulativeTimes = (
+    startTime: string,
+    travelTimes: number[],
+  ): string[] => {
+    let currentTime = dayjs(`1970-01-01 ${startTime}`);
+
+    return travelTimes.map((duration) => {
+      currentTime = currentTime.add(duration, 'minute');
+      return currentTime.format('HH:mm');
+    });
+  };
+
+  const cumulativeTravelTimes = optimizedPlan.optimizedTrip.map(
+    (_day, index) => {
+      const startTime = optimizedPlan.dateAndTime[index].start;
+      return calculateCumulativeTimes(
+        startTime,
+        optimizedPlan.dailyTravelTimes[index],
+      );
+    },
+  );
+
   return (
     <div>
       <button
@@ -106,42 +128,63 @@ export default function Result({optimizedPlan, isLoading}: ResultPageProps) {
                   </p>
                   <div className="space-y-3">
                     {day.map((place, i) => (
-                      <div
-                        key={`place-${place.id}${i} `}
-                        className={
-                          'py-3 px-5 flex items-center justify-between rounded-2xl bg-white shadow-[0_5px_30px_-10px_rgba(0,0,0,0.3)]'
-                        }
-                      >
-                        <div className={'flex items-center gap-3'}>
-                          <div
-                            style={{backgroundColor: getDayColor(index)}}
-                            className={`h-7 w-7 rounded-full flex items-center justify-center text-white`}
-                          >
-                            {i + 1}
+                      <div key={`place-${place.id}${i} `}>
+                        <div
+                          className={
+                            'py-5 px-5 flex items-center justify-between rounded-2xl bg-white shadow-[0_5px_30px_-10px_rgba(0,0,0,0.3)]'
+                          }
+                        >
+                          <div className={'flex items-center gap-3'}>
+                            <div
+                              style={{backgroundColor: getDayColor(index)}}
+                              className={`h-7 w-7 rounded-full flex items-center justify-center text-white`}
+                            >
+                              {i + 1}
+                            </div>
+                            <Image
+                              className={'rounded-full'}
+                              src={place.imageUrl}
+                              alt={'placeImage'}
+                              width={47}
+                              height={47}
+                            />
+                            <div>
+                              <span
+                                style={{
+                                  backgroundColor: convertTypeLang(place.type)
+                                    .color,
+                                }}
+                                className={
+                                  'py-0.5 px-1.5 bg-blue-400 text-white rounded text-xs'
+                                }
+                              >
+                                {convertTypeLang(place.type).name}
+                              </span>
+                              <p className={'font-semibold'}>{place.name}</p>
+                            </div>
                           </div>
-                          <Image
-                            className={'rounded-full'}
-                            src={place.imageUrl}
-                            alt={'placeImage'}
-                            width={47}
-                            height={47}
-                          />
-                          <div>
-                            <span
-                              style={{
-                                backgroundColor: convertTypeLang(place.type)
-                                  .color,
-                              }}
+                          <HeartIcon className={'cursor-pointer'} />
+                        </div>
+                        <div className={'flex items-center gap-3'}>
+                          {optimizedPlan.dailyTravelTimes[index][i] && (
+                            <p
                               className={
-                                'py-0.5 px-1.5 bg-blue-400 text-white rounded text-xs'
+                                'bg-gray100 rounded text-gray300 w-11 text-sm text-center my-2 ml-2'
                               }
                             >
-                              {convertTypeLang(place.type).name}
-                            </span>
-                            <p className={'font-semibold'}>{place.name}</p>
-                          </div>
+                              {optimizedPlan.dailyTravelTimes[index][i]}분
+                            </p>
+                          )}
+                          {cumulativeTravelTimes[index][i] && (
+                            <p
+                              className={
+                                'text-xs text-gray200 text-center my-2 mr-2 px-2'
+                              }
+                            >
+                              {cumulativeTravelTimes[index][i]}
+                            </p>
+                          )}
                         </div>
-                        <HeartIcon className={'cursor-pointer'} />
                       </div>
                     ))}
                   </div>

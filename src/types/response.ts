@@ -1,6 +1,6 @@
 import {DB} from '@/db/db';
-import {TravelLocation} from '@/util/tripOptimizer';
 import {DateAndTimeProp} from '@/types/store';
+import {TravelLocation} from '@/util/tripOptimizer';
 
 export type RegionType = (typeof DB)['region'][0];
 
@@ -21,4 +21,5 @@ export interface OptimizeTripResponse {
   startDate: Date;
   endDate: Date;
   dateAndTime: DateAndTimeProp[];
+  dailyTravelTimes: number[][];
 }
