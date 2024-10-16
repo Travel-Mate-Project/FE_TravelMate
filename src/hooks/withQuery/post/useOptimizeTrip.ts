@@ -6,13 +6,24 @@ import {useTripStore} from '@/store';
 
 export const useOptimizeTrip = () => {
   const router = useRouter();
+  const {region, dateAndTime, places, date} = useTripStore();
+  const [startDate, endDate] = date;
   const setOptimizationResult = useTripStore.use.setOptimizationResult();
 
   const {mutate: optimizeTripMutation} = useMutation({
     mutationFn: optimizeTrip,
     onSuccess: (data) => {
-      setOptimizationResult(data);
-      sessionStorage.setItem('OTMP', JSON.stringify(data));
+      const finalData = {
+        ...data,
+        region,
+        date,
+        totalAttractions: places.length,
+        dateAndTime,
+        startDate,
+        endDate,
+      };
+      setOptimizationResult(finalData);
+      sessionStorage.setItem('OTMP', JSON.stringify(finalData));
       router.push(`/result`);
     },
   });

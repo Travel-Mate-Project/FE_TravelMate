@@ -1,18 +1,25 @@
 'use client';
 
+import Image from 'next/image';
 import React from 'react';
 
 import DragDown from '@/asset/Menu_Duo_LG.svg';
+import {DAY_COLOR} from '@/constants/colors';
+import {calculateTripDuration} from '@/helper/calculateTripDuration';
+import {convertTypeLang} from '@/helper/convertTypeLang';
 import {useDragResize} from '@/hooks/useDragResize';
 import {useTripStore} from '@/store';
 import {ResultPageProps} from '@/types';
-import {calculateTripDuration} from '@/helper/calculateTripDuration';
 
 export default function Result({optimizedPlan, isLoading}: ResultPageProps) {
   const {handleMouseDown, handleTouchStart} = useDragResize();
   const mapHeight = useTripStore.use.mapHeight();
   const totalHeight = useTripStore.use.totalHeight();
   const contentHeight = totalHeight - mapHeight;
+
+  const getDayColor = (index: number) => {
+    return DAY_COLOR[index];
+  };
 
   return (
     <div>
@@ -35,7 +42,7 @@ export default function Result({optimizedPlan, isLoading}: ResultPageProps) {
             <div className={'flex flex-col items-center px-2 py-4'}>
               <div
                 className={
-                  'w-full mt-5 p-3 shadow-lg rounded-2xl shadow-black/20'
+                  'w-full mt-5 p-3 shadow-lg rounded-2xl shadow-[0_5px_30px_-10px_rgba(0,0,0,0.3)]'
                 }
               >
                 <div className={'border-b border-solid border-green100'}>
@@ -71,6 +78,62 @@ export default function Result({optimizedPlan, isLoading}: ResultPageProps) {
                   </table>
                 </div>
               </div>
+            </div>
+            <div className="space-y-6">
+              {optimizedPlan.optimizedTrip.map((day, index) => (
+                <div
+                  className="flex flex-col w-full p-4 rounded-xl"
+                  key={`day-${day[index]?.id}${index}`}
+                >
+                  <div className="flex justify-between items-center mb-2">
+                    <p className="text-xl font-bold">{index + 1}일</p>
+                    <p className="text-gray-600">
+                      {optimizedPlan.dateAndTime[index].date}
+                    </p>
+                  </div>
+                  <p className="text-sm text-gray-500 mb-4">
+                    출발 시간: {optimizedPlan.dateAndTime[index].start}
+                  </p>
+                  <div className="space-y-3">
+                    {day.map((place, i) => (
+                      <div
+                        key={`place-${place.id}${i} `}
+                        className="py-3 px-5 flex items-center justify-between rounded-2xl bg-white shadow-[0_5px_30px_-10px_rgba(0,0,0,0.3)]"
+                      >
+                        <div className={'flex items-center gap-3'}>
+                          <div
+                            style={{backgroundColor: getDayColor(index)}}
+                            className={`h-7 w-7 rounded-full flex items-center justify-center text-white`}
+                          >
+                            {i + 1}
+                          </div>
+                          <Image
+                            className={'rounded-full'}
+                            src={place.imageUrl}
+                            alt={'placeImage'}
+                            width={47}
+                            height={47}
+                          />
+                          <div>
+                            <span
+                              style={{
+                                backgroundColor: convertTypeLang(place.type)
+                                  .color,
+                              }}
+                              className={
+                                'py-0.5 px-1.5 bg-blue-400 text-white rounded text-xs'
+                              }
+                            >
+                              {convertTypeLang(place.type).name}
+                            </span>
+                            <p className="font-semibold">{place.name}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}

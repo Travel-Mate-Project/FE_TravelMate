@@ -7,18 +7,7 @@ import {svgMarker} from '@/asset/base64/svg';
 import {useGoogleMap} from '@/hooks/useGoogleMap';
 import {useTripStore} from '@/store';
 import {StayItem} from '@/types';
-
-const dayColors = [
-  '#FFB3BA', // 파스텔 핑크
-  '#BAE1FF', // 파스텔 블루
-  '#FFFFBA', // 파스텔 옐로우
-  '#FFD1DC', // 라이트 핑크
-  '#E6E6FA', // 라벤더
-  '#FFDAB9', // 피치 퍼프
-  '#D8BFD8', // 티슬
-  '#98FB98', // 페일 그린
-  '#DDA0DD', // 플럼
-];
+import {DAY_COLOR} from '@/constants/colors';
 
 export default function ResizableMapWithContent({
   isResult = false,
@@ -38,8 +27,6 @@ export default function ResizableMapWithContent({
   const places = useTripStore.use.places();
   const stays = useTripStore.use.stays();
   const optimizationResult = useTripStore.use.optimizationResult();
-
-  console.log(optimizationResult);
 
   const getUniqueStays = (stays: StayItem[]) => {
     const uniqueStays = new Map();
@@ -77,7 +64,7 @@ export default function ResizableMapWithContent({
                     }
                   : {
                       path: google.maps.SymbolPath.CIRCLE,
-                      fillColor: dayColors[dayIndex % dayColors.length],
+                      fillColor: DAY_COLOR[dayIndex % DAY_COLOR.length],
                       fillOpacity: 1,
                       strokeWeight: 3,
                       strokeColor: '#fff',
@@ -113,7 +100,7 @@ export default function ResizableMapWithContent({
             lng: location.longitude,
           }))}
           options={{
-            strokeColor: dayColors[dayIndex % dayColors.length],
+            strokeColor: DAY_COLOR[dayIndex % DAY_COLOR.length],
             strokeOpacity: 0,
             icons: [
               {

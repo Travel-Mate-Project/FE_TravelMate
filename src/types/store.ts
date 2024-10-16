@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 
 import {OptimizeTripResponse, SearchPlaceType} from '@/types/response';
-import {TravelLocation} from '@/util/tripOptimizer';
 
 export interface SignupSlice {
   stage: number;
@@ -105,8 +104,15 @@ export interface TransportationSlice {
 }
 
 export interface ResultState {
+  title: string;
+  setTitle: (title: string) => void;
   optimizationResult: OptimizeTripResponse | null;
   setOptimizationResult: (result: OptimizeTripResponse) => void;
   resetOptimizationResult: () => void;
-  updateDailyPlan: (dayIndex: number, newPlan: TravelLocation[]) => void;
+  updateItinerary: (
+    dayIndex: number,
+    fromIndex: number,
+    toIndex: number,
+  ) => void;
+  removeItineraryItem: (dayIndex: number, itemIndex: number) => void;
 }

@@ -88,14 +88,8 @@ export const handlers = [
 
     return HttpResponse.json({
       id: 1,
-      region,
-      title,
-      startDate,
-      endDate,
       optimizedTrip,
       formattedRoutes,
-      totalAttractions: attractions.length,
-      totalTripTime: attractions.length * 2,
       totalTripDistance: totalTripDistance.toFixed(2),
       totalExecutionTime: totalExecutionTime.toFixed(2),
     });
