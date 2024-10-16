@@ -4,16 +4,22 @@ export const END_POINT = {
     signUp: '/api/v1/auth/signup',
   },
   place: {
-    regions: '/place/regions',
-    place: '/place/place',
-    course: '/place/course',
-    cafe: '/place/cafe',
-    restaurant: '/place/restaurant',
-    stay: '/place/stay',
-    cityCode: '/cityCode',
+    regions: '/api/v1/place/regions',
+    place: '/api/v1/place/place',
+    course: '/api/v1/place/course',
+    cafe: '/api/v1/place/cafe',
+    restaurant: '/api/v1/place/restaurant',
+    stay: '/api/v1/place/stay',
+    cityCode: '/api/v1/cityCode',
   },
   search: {
-    addPlace: '/addPlace',
-    addStay: '/addStay',
+    addPlace: '/api/v1/addPlace',
+    addStay: '/api/v1/addStay',
+  },
+  trip: {
+    optimizeTrip: '/api/v1/trip/optimize',
+  },
+  myPage: {
+    plan: '/api/v1/myPage/plan',
   },
 } as const;

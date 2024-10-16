@@ -219,7 +219,8 @@ export const DB = {
       type: 'place',
       averageRating: '4.2',
       commentCount: 15,
-      location: {lat: 33.5067, lng: 126.493},
+      latitude: 33.5067,
+      longitude: 126.493,
     },
     {
       id: 2,
@@ -228,7 +229,8 @@ export const DB = {
       type: 'place',
       averageRating: '4.2',
       commentCount: 12,
-      location: {lat: 33.4587, lng: 126.9426},
+      latitude: 33.4587,
+      longitude: 126.9426,
     },
     {
       id: 3,
@@ -237,7 +239,8 @@ export const DB = {
       type: 'cafe',
       averageRating: '4.2',
       commentCount: 12,
-      location: {lat: 33.5161, lng: 126.5116},
+      latitude: 33.5161,
+      longitude: 126.5116,
     },
     {
       id: 4,
@@ -246,7 +249,8 @@ export const DB = {
       type: 'restaurant',
       averageRating: '4.2',
       commentCount: 14,
-      location: {lat: 33.2367, lng: 126.505},
+      latitude: 33.2367,
+      longitude: 126.505,
     },
     {
       id: 5,
@@ -255,7 +259,8 @@ export const DB = {
       type: 'place',
       averageRating: '4.2',
       commentCount: 19,
-      location: {lat: 33.256, lng: 126.4076},
+      latitude: 33.256,
+      longitude: 126.4076,
     },
     {
       id: 6,
@@ -264,7 +269,8 @@ export const DB = {
       type: 'place',
       averageRating: '4.2',
       commentCount: 19,
-      location: {lat: 33.256, lng: 126.4076},
+      latitude: 33.256,
+      longitude: 126.4076,
     },
     {
       id: 7,
@@ -273,7 +279,8 @@ export const DB = {
       type: 'place',
       averageRating: '4.2',
       commentCount: 19,
-      location: {lat: 33.256, lng: 126.4076},
+      latitude: 33.256,
+      longitude: 126.4076,
     },
     {
       id: 8,
@@ -282,7 +289,8 @@ export const DB = {
       type: 'place',
       averageRating: '4.9',
       commentCount: 19,
-      location: {lat: 33.256, lng: 126.4076},
+      latitude: 33.256,
+      longitude: 126.4076,
     },
   ],
   searchStay: [
@@ -293,7 +301,8 @@ export const DB = {
       type: 'stay',
       averageRating: '4.2',
       commentCount: 15,
-      location: {lat: 33.489, lng: 126.498},
+      latitude: 33.489,
+      longitude: 126.498,
     },
     {
       id: 2,
@@ -302,7 +311,8 @@ export const DB = {
       type: 'stay',
       averageRating: '4.2',
       commentCount: 15,
-      location: {lat: 33.4587, lng: 126.9426},
+      latitude: 33.4587,
+      longitude: 126.9426,
     },
     {
       id: 3,
@@ -311,7 +321,8 @@ export const DB = {
       type: 'stay',
       averageRating: '4.2',
       commentCount: 15,
-      location: {lat: 33.4639, lng: 126.3111},
+      latitude: 33.4639,
+      longitude: 126.3111,
     },
   ],
 };

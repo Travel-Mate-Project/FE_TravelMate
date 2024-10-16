@@ -9,7 +9,11 @@ import {
   UseFormSetValue,
 } from 'react-hook-form';
 
-import {RegionType, SearchPlaceType} from '@/types/response';
+import {
+  OptimizeTripResponse,
+  RegionType,
+  SearchPlaceType,
+} from '@/types/response';
 import {Location} from '@/types/store';
 
 type InputType = 'text' | 'password' | 'email' | 'date' | 'number';
@@ -185,4 +189,9 @@ export interface SelectCardProps {
 export interface TransportationModalProps {
   isOpen: boolean;
   onClose: () => void;
+}
+
+export interface ResultPageProps {
+  optimizedPlan: OptimizeTripResponse;
+  isLoading: boolean;
 }

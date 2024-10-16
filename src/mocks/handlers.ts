@@ -2,6 +2,13 @@ import {http, HttpResponse} from 'msw';
 
 import {END_POINT} from '@/constants/endPoint';
 import {DB} from '@/db/db';
+import {TripData} from '@/types';
+import {
+  calculateTotalTripDistance,
+  formatDailyRoutes,
+  measureExecutionTime,
+  planTrip,
+} from '@/util/tripOptimizer';
 
 export const handlers = [
   http.get(END_POINT.place.regions, () => {
@@ -64,5 +71,35 @@ export const handlers = [
     });
 
     return HttpResponse.json(filteredPlaces);
+  }),
+
+  http.post(END_POINT.trip.optimizeTrip, async ({request}) => {
+    const data = (await request.json()) as TripData;
+    const {attractions, accommodations, region, title, startDate, endDate} =
+      data;
+
+    const optimizedTrip = planTrip(attractions, accommodations);
+    const totalTripDistance = calculateTotalTripDistance(optimizedTrip);
+    const totalExecutionTime = measureExecutionTime(
+      attractions,
+      accommodations,
+    );
+    const formattedRoutes = formatDailyRoutes(optimizedTrip);
+
+    return HttpResponse.json({
+      id: 1,
+      optimizedTrip,
+      formattedRoutes,
+      totalTripDistance: totalTripDistance.toFixed(2),
+      totalExecutionTime: totalExecutionTime.toFixed(2),
+    });
+  }),
+
+  http.get(END_POINT.myPage.plan, () => {
+    return HttpResponse.json(
+      // NOTICE: 원래는 db에서 사용자의 여행계획을 가져와야함
+      JSON.parse(sessionStorage.getItem('OTMP') as string),
+      {},
+    );
   }),
 ];

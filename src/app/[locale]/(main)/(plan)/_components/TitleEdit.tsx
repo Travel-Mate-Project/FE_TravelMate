@@ -9,16 +9,48 @@ import BasicButton from '@/components/BasicButton';
 import {useDragResize} from '@/hooks/useDragResize';
 import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
+import {useOptimizeTrip} from '@/hooks/withQuery/post/useOptimizeTrip';
 
 export default function TitleEdit() {
-  const {totalHeight, mapHeight, places, region, date, totalTripTime} =
-    useTripStore();
+  const {
+    totalHeight,
+    mapHeight,
+    places,
+    region,
+    date,
+    stays,
+    totalTripTime,
+    setTitle,
+  } = useTripStore();
   const {handleMouseDown, handleTouchStart} = useDragResize();
   const router = useRouter();
   const contentHeight = totalHeight - mapHeight;
   const [startDate, endDate] = date;
 
-  const [title, setTitle] = useState<string>(`${region} 여행`);
+  const [titleState, setTitleState] = useState<string>(`${region} 여행`);
+
+  const {optimizeTripMutation} = useOptimizeTrip();
+
+  const handleOptimize = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    setTitle(titleState);
+    const stay = stays
+      .filter((item) => item.stay !== null)
+      .map((item, index) => {
+        return {
+          ...item.stay!,
+          day: index + 1,
+          date: item.date,
+        };
+      });
+    const finalData = {
+      accommodations: stay,
+      attractions: places,
+    };
+
+    optimizeTripMutation(finalData);
+  };
 
   useEffect(() => {
     if (totalTripTime === '') {
@@ -27,7 +59,7 @@ export default function TitleEdit() {
   }, [totalTripTime, router]);
 
   return (
-    <div className="mx-auto w-full">
+    <form onSubmit={handleOptimize} className="mx-auto w-full">
       <button
         className="h-3 my-4 w-full flex items-center justify-center cursor-ns-resize touch-none"
         onMouseDown={handleMouseDown}
@@ -41,8 +73,8 @@ export default function TitleEdit() {
             'w-full  border-b border-solid border-green100 font-semibold focus:outline-none mt-4'
           }
           type={'text'}
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={titleState}
+          onChange={(e) => setTitleState(e.target.value)}
         />
         <button
           onClick={() => router.push('/date')}
@@ -79,10 +111,10 @@ export default function TitleEdit() {
             </figure>
           ))}
         </div>
-        <BasicButton type={'button'} classNames={'w-full mt-6 px-3 py-3'}>
+        <BasicButton type={'submit'} classNames={'w-full mt-6 px-3 py-3'}>
           완료
         </BasicButton>
       </div>
-    </div>
+    </form>
   );
 }

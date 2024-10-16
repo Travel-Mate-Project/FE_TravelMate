@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-import {SearchPlaceType} from '@/types/response';
+import {OptimizeTripResponse, SearchPlaceType} from '@/types/response';
 
 export interface SignupSlice {
   stage: number;
@@ -62,10 +62,8 @@ export interface Location {
   name: string;
   type: string;
   imageUrl: string;
-  location: {
-    lat: number;
-    lng: number;
-  };
+  latitude: number;
+  longitude: number;
 }
 
 export interface PlaceSlice {
@@ -84,7 +82,7 @@ export interface SelectPlaceSlice {
 }
 
 export interface StayItem {
-  date: dayjs.Dayjs;
+  date: Date;
   isCheck: boolean;
   stay: Location | null;
 }
@@ -103,4 +101,18 @@ export interface StaySlice {
 export interface TransportationSlice {
   transportation: string;
   setTransportation: (_transportation: string) => void;
+}
+
+export interface ResultState {
+  title: string;
+  setTitle: (title: string) => void;
+  optimizationResult: OptimizeTripResponse | null;
+  setOptimizationResult: (result: OptimizeTripResponse) => void;
+  resetOptimizationResult: () => void;
+  updateItinerary: (
+    dayIndex: number,
+    fromIndex: number,
+    toIndex: number,
+  ) => void;
+  removeItineraryItem: (dayIndex: number, itemIndex: number) => void;
 }
