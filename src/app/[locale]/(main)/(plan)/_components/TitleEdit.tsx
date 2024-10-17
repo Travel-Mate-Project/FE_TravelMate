@@ -98,10 +98,10 @@ export default function TitleEdit() {
             </figure>
           ))}
         </div>
-        <BasicButton type={'submit'} classNames={'w-full mt-6 px-3 py-3'}>
-          완료
-        </BasicButton>
       </HeightWrapper>
+      <BasicButton type={'submit'} classNames={'w-full mt-6 px-4 py-4'}>
+        완료
+      </BasicButton>
     </form>
   );
 }

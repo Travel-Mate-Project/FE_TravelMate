@@ -11,6 +11,7 @@ import {DAY_COLOR} from '@/constants/colors';
 import {calculateTripDuration} from '@/helper/calculateTripDuration';
 import {useDragResize} from '@/hooks/useDragResize';
 import {ResultPageProps} from '@/types';
+import BasicButton from '@/components/BasicButton';
 
 export default function Result({optimizedPlan, isLoading}: ResultPageProps) {
   const {handleMouseDown, handleTouchStart} = useDragResize();
@@ -123,6 +124,18 @@ export default function Result({optimizedPlan, isLoading}: ResultPageProps) {
           </div>
         )}
       </HeightWrapper>
+      <div className={'flex items-center gap-2'}>
+        <BasicButton
+          variant={'tertiary'}
+          type={'button'}
+          classNames={'w-full px-5 py-4 mb-1 mt-5'}
+        >
+          임시 저장
+        </BasicButton>
+        <BasicButton type={'button'} classNames={'w-full px-5 py-4 mb-1 mt-5'}>
+          저장
+        </BasicButton>
+      </div>
     </>
   );
 }

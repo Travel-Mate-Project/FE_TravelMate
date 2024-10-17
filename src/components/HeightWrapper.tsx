@@ -1,14 +1,30 @@
 'use client';
 
-import {ReactNode} from 'react';
+import {CSSProperties, ReactNode} from 'react';
 
 import {useTripStore} from '@/store';
 
 export default function HeightWrapper({children}: {children: ReactNode}) {
-  const totalHeight = useTripStore.use.totalHeight();
+  const mapHeight = useTripStore.use.mapHeight();
+
+  const mobileStyle: CSSProperties = {
+    height: `calc(calc(100vh - 340px) - ${mapHeight}px)`,
+    overflow: 'auto',
+  };
+
+  const desktopStyle: CSSProperties = {
+    height: `calc(calc(100vh - 460px) - ${mapHeight}px)`,
+    overflow: 'auto',
+  };
+
   return (
-    <div style={{maxHeight: `${totalHeight}px`, overflow: 'auto'}}>
-      {children}
-    </div>
+    <>
+      <div className="md:hidden" style={mobileStyle}>
+        {children}
+      </div>
+      <div className="hidden md:block" style={desktopStyle}>
+        {children}
+      </div>
+    </>
   );
 }

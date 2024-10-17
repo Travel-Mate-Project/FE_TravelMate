@@ -27,7 +27,9 @@ export default function PlaceSelectList() {
         </div>
       ) : (
         <div
-          className={'flex flex-col mt-5 gap-3 px-3 py-5 overflow-visible'}
+          className={
+            'flex-grow flex flex-col mt-5 gap-3 px-3 py-5 overflow-visible'
+          }
           ref={droppableRef}
         >
           {places?.map((place: Location, index) => (

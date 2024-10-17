@@ -92,7 +92,7 @@ export default function PlaceAndStayContainer() {
       <BasicButton
         onClick={handleMakePlan}
         type={'button'}
-        classNames={'w-full px-5 py-4 mb-5 mt-10'}
+        classNames={'w-full px-5 py-4 mb-1 mt-5'}
       >
         일정 생성
       </BasicButton>

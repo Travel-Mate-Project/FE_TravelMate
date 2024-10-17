@@ -13,6 +13,7 @@ export default function Footer() {
     '/plan',
     '/edit',
     '/ready',
+    '/result',
     '/plan/add-place',
     '/plan/add-stay',
   ];

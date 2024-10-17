@@ -50,7 +50,6 @@ export interface TripTypeSlice {
 }
 
 export interface MapSlice {
-  totalHeight: number;
   minMapHeight: number;
   maxMapHeight: number;
   mapHeight: number;

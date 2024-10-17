@@ -25,6 +25,14 @@ export default function TripTimeConfigHeader({
 
   const changeDate = () => {
     if (path !== '/time') {
+      const change = confirm(
+        '날짜를 변경하면 기존에 입력한 시간과 숙소가 초기화됩니다. 변경하시겠습니까?',
+      );
+      if (change) {
+        router.push('/date');
+      } else {
+        return;
+      }
       router.push('/date');
     }
   };
