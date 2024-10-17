@@ -23,3 +23,11 @@ export interface OptimizeTripResponse {
   dateAndTime: DateAndTimeProp[];
   dailyTravelTimes: number[][];
 }
+
+export interface KakaoRouteResult {
+  routes: Array<{
+    sections: Array<{
+      duration: number;
+    }>;
+  }>;
+}

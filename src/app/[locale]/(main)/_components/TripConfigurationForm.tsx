@@ -18,8 +18,10 @@ import {CityCodeType, TripConfigurationFormValue} from '@/types';
 import 'dayjs/locale/ko';
 import {useTripStore} from '@/store';
 import {useGetCityCode} from '@/hooks/withQuery/get/useGetCityCode';
+import {useConsoleLog} from '@/hooks/useConsoleLog';
 
 export default function TripConfigurationForm() {
+  useConsoleLog();
   const t = useTranslations('tripConfigPanel');
   const {
     date,

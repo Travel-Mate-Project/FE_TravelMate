@@ -1,19 +1,8 @@
 import axios from 'axios';
 import {useState} from 'react';
 
-interface TravelLocation {
-  name: string;
-  latitude: number;
-  longitude: number;
-}
-
-interface KakaoRouteResult {
-  routes: Array<{
-    sections: Array<{
-      duration: number;
-    }>;
-  }>;
-}
+import {KakaoRouteResult} from '@/types';
+import {TravelLocation} from '@/util/tripOptimizer';
 
 export const useKakaoRoute = () => {
   const [isLoading, setIsLoading] = useState(false);

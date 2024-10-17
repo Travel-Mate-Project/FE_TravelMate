@@ -15,6 +15,7 @@ import {
   SearchPlaceType,
 } from '@/types/response';
 import {Location} from '@/types/store';
+import {TravelLocation} from '@/util/tripOptimizer';
 
 type InputType = 'text' | 'password' | 'email' | 'date' | 'number';
 type ButtonType = 'button' | 'submit' | 'reset';
@@ -194,4 +195,24 @@ export interface TransportationModalProps {
 export interface ResultPageProps {
   optimizedPlan: OptimizeTripResponse;
   isLoading: boolean;
+}
+
+export interface DragButtonPops {
+  handleMouseDown: (_e: React.MouseEvent) => void;
+  handleTouchStart: (_e: React.TouchEvent) => void;
+}
+
+export interface ResultListProps {
+  date: string;
+  startTime: string;
+  children: ReactNode;
+  index: number;
+}
+
+export interface ResultItemProps {
+  dayColor: string;
+  place: TravelLocation;
+  duration: number;
+  accumulatedTime: string;
+  index: number;
 }

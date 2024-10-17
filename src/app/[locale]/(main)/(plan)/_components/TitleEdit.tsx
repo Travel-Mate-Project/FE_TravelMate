@@ -3,28 +3,18 @@
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import React, {useEffect, useState} from 'react';
-
-import DragDown from '@/asset/Menu_Duo_LG.svg';
 import BasicButton from '@/components/BasicButton';
+import DragButton from '@/components/DragButton';
 import {useDragResize} from '@/hooks/useDragResize';
+import {useOptimizeTrip} from '@/hooks/withQuery/post/useOptimizeTrip';
 import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
-import {useOptimizeTrip} from '@/hooks/withQuery/post/useOptimizeTrip';
+import HeightWrapper from '@/components/HeightWrapper';
 
 export default function TitleEdit() {
-  const {
-    totalHeight,
-    mapHeight,
-    places,
-    region,
-    date,
-    stays,
-    totalTripTime,
-    setTitle,
-  } = useTripStore();
+  const {places, region, date, stays, totalTripTime, setTitle} = useTripStore();
   const {handleMouseDown, handleTouchStart} = useDragResize();
   const router = useRouter();
-  const contentHeight = totalHeight - mapHeight;
   const [startDate, endDate] = date;
 
   const [titleState, setTitleState] = useState<string>(`${region} 여행`);
@@ -60,14 +50,11 @@ export default function TitleEdit() {
 
   return (
     <form onSubmit={handleOptimize} className="mx-auto w-full">
-      <button
-        className="h-3 my-4 w-full flex items-center justify-center cursor-ns-resize touch-none"
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-      >
-        <DragDown />
-      </button>
-      <div style={{maxHeight: `${contentHeight}px`, overflow: 'auto'}}>
+      <DragButton
+        handleMouseDown={handleMouseDown}
+        handleTouchStart={handleTouchStart}
+      />
+      <HeightWrapper>
         <input
           className={
             'w-full  border-b border-solid border-green100 font-semibold focus:outline-none mt-4'
@@ -114,7 +101,7 @@ export default function TitleEdit() {
         <BasicButton type={'submit'} classNames={'w-full mt-6 px-3 py-3'}>
           완료
         </BasicButton>
-      </div>
+      </HeightWrapper>
     </form>
   );
 }

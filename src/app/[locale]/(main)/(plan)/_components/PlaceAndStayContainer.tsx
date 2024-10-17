@@ -7,29 +7,22 @@ import PlaceSelectList from '@/app/[locale]/(main)/(plan)/_components/PlaceSelec
 import SelectNav from '@/app/[locale]/(main)/(plan)/_components/SelectNav';
 import StaySelectList from '@/app/[locale]/(main)/(plan)/_components/StaySelectList';
 import TransportationModal from '@/app/[locale]/(main)/(plan)/_components/TransportationModal';
-import DragDown from '@/asset/Menu_Duo_LG.svg';
 import BasicButton from '@/components/BasicButton';
 import {useDragResize} from '@/hooks/useDragResize';
 import {useRouter} from '@/i18n/routing';
 import {useTripStore} from '@/store';
+import DragButton from '@/components/DragButton';
+import HeightWrapper from '@/components/HeightWrapper';
 
 export default function PlaceAndStayContainer() {
   const selectedItem = sessionStorage.getItem('NAV_SELECT');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [select, setSelect] = useState<string>(selectedItem || 'place');
-  const {
-    totalHeight,
-    mapHeight,
-    totalTripTime,
-    places,
-    stays,
-    initializeStays,
-  } = useTripStore();
+  const {totalTripTime, places, stays, initializeStays} = useTripStore();
   const [startDay, endDay] = useTripStore.use.date();
   const {handleMouseDown, handleTouchStart} = useDragResize();
   const router = useRouter();
 
-  const contentHeight = totalHeight - mapHeight;
   const placeLength = places.length;
 
   const handleAddRoute = () => {
@@ -63,14 +56,11 @@ export default function PlaceAndStayContainer() {
 
   return (
     <div className="mx-auto w-full">
-      <button
-        className="h-3 my-4 w-full flex items-center justify-center cursor-ns-resize touch-none"
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-      >
-        <DragDown />
-      </button>
-      <div style={{maxHeight: `${contentHeight}px`, overflow: 'auto'}}>
+      <DragButton
+        handleMouseDown={handleMouseDown}
+        handleTouchStart={handleTouchStart}
+      />
+      <HeightWrapper>
         <SelectNav
           selectOption={['place', 'stay']}
           name={['장소', '숙소']}
@@ -98,7 +88,7 @@ export default function PlaceAndStayContainer() {
         <DragAndDropProvider>
           {select === 'place' ? <PlaceSelectList /> : <StaySelectList />}
         </DragAndDropProvider>
-      </div>
+      </HeightWrapper>
       <BasicButton
         onClick={handleMakePlan}
         type={'button'}

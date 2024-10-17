@@ -45,6 +45,7 @@ export default function ResizableMapWithContent({
     return Array.from(uniqueStays.values());
   };
 
+  // TODO: 컴포넌트로 별도 분리 작업 진행
   const renderOptimizedRoute = () => {
     if (!optimizationResult) {
       return null;
@@ -119,6 +120,7 @@ export default function ResizableMapWithContent({
     ));
   };
 
+  // TODO: 컴포넌트로 별도 분리 작업 진행
   const renderDefaultMarkers = () => (
     <>
       {places.map((place, index) => (

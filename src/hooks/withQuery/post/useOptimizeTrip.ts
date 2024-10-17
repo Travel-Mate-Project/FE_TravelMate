@@ -10,6 +10,7 @@ export const useOptimizeTrip = () => {
   const {region, dateAndTime, places, date} = useTripStore();
   const [startDate, endDate] = date;
   const setOptimizationResult = useTripStore.use.setOptimizationResult();
+  const title = useTripStore.use.title();
   const {getRoute} = useKakaoRoute();
 
   const {mutate: optimizeTripMutation} = useMutation({
@@ -23,6 +24,7 @@ export const useOptimizeTrip = () => {
 
       const finalData = {
         ...data,
+        title,
         region,
         date,
         totalAttractions: places.length,
