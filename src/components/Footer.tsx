@@ -19,7 +19,7 @@ export default function Footer() {
   ];
   return (
     <footer
-      className={`relative max-h-36 bottom-0 w-full bg-transparent py-10 ${hiddenPaths.includes(params) ? 'hidden' : 'block'}  md:block`}
+      className={`relative max-h-36 bottom-0 w-full bg-transparent py-10 ${hiddenPaths.includes(params) ? 'hidden' : 'block'}`}
     >
       <div className="max-w-[600px] mx-auto px-5 md:px-0">
         <div className={'flex flex-col gap-5'}>

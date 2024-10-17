@@ -10,7 +10,11 @@ export default function ResultList({
 }: ResultListProps) {
   return (
     <div className={'flex flex-col w-full px-1.5 py-4 rounded-xl '}>
-      <div className={'flex justify-between items-center mb-2'}>
+      <div
+        className={
+          'flex justify-between items-center mb-2 sticky top-0 bg-white'
+        }
+      >
         <p className={'text-xl font-bold'}>{index + 1}일</p>
         <p className={'text-gray-600 text-sm'}>{date}</p>
       </div>

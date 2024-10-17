@@ -13,7 +13,7 @@ export default function SelectNav({
   const [selectOne, selectTwo] = selectOption;
   const [contentOne, contentTwo] = name;
   return (
-    <nav className={'flex items-center justify-center'}>
+    <nav className={'flex items-center justify-center sticky top-0 bg-white'}>
       <button
         onClick={() => setSelect(selectOne)}
         className={'flex-1 text-center '}

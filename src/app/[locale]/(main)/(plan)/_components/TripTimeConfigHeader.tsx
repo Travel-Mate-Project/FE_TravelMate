@@ -60,9 +60,11 @@ export default function TripTimeConfigHeader({
         }
       >
         <Link href={'/time'}>
-          <p>여행 상세 시간 설정</p>
+          <p>여행 상세 시간</p>
         </Link>
-        <span className={'text-green200'}>총 {totalTripTime || ''}</span>
+        <Link href={'/time'}>
+          <span className={'text-green200'}>총 {totalTripTime || ''}</span>
+        </Link>
       </div>
       {children}
     </>

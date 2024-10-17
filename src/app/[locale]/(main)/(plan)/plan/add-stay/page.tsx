@@ -31,7 +31,7 @@ export default function AddStayPage() {
   const {stayList} = useSearchStay(debounceQuery, filter);
 
   return (
-    <div className="mx-auto w-full max-w-[600px] h-[calc(100vh-140px)] md:h-[calc(100vh-240px)] flex flex-col">
+    <div className="mx-auto w-full max-w-[600px] h-[calc(100vh-140px)] md:h-[calc(100vh-130px)] flex flex-col">
       <SelectNav
         selectOption={['search', 'add']}
         name={['숙소 검색', '신규 숙소 등록']}
@@ -61,7 +61,7 @@ export default function AddStayPage() {
       </div>
       <BasicButton
         onClick={handleAddStayList}
-        classNames={'w-full py-3 mt-auto z-30'}
+        classNames={'w-full py-4 mt-auto z-30'}
         type={'button'}
       >
         숙소 추가하기

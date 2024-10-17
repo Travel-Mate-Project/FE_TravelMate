@@ -52,9 +52,9 @@ export default function ResizableMapWithContent({
     }
 
     return optimizationResult?.optimizedTrip.map((dailyTrip, dayIndex) => (
-      <React.Fragment key={`day-${dayIndex}`}>
+      <div key={`day-${dayIndex}`}>
         {dailyTrip.map((location, locationIndex) => (
-          <React.Fragment key={`location-${dayIndex}-${locationIndex}`}>
+          <div key={`location-${dayIndex}-${locationIndex}`}>
             <Marker
               position={{lat: location.latitude, lng: location.longitude}}
               icon={
@@ -91,9 +91,18 @@ export default function ResizableMapWithContent({
                 className={`${location.type === 'stay' ? 'bg-blue-100 border-blue-500 -translate-y-20' : 'bg-white border-gray-700 -translate-y-14'} w-max px-2.5 py-1.5 text-sm rounded-xl shadow-md absolute left-1/2 -translate-x-1/2  -mt-1 whitespace-nowrap border border-solid font-semibold`}
               >
                 {location.name}
+                {location.type === 'stay' &&
+                  (() => {
+                    const stay = getUniqueStays(stays).find(
+                      (s) => s.id === location.id,
+                    );
+                    return stay
+                      ? ` (${stay.dates.length}${stay.dates.length > 1 ? '박' : '일'})`
+                      : '';
+                  })()}
               </div>
             </OverlayView>
-          </React.Fragment>
+          </div>
         ))}
         <Polyline
           path={dailyTrip.map((location) => ({
@@ -116,7 +125,7 @@ export default function ResizableMapWithContent({
             ],
           }}
         />
-      </React.Fragment>
+      </div>
     ));
   };
 
@@ -180,7 +189,7 @@ export default function ResizableMapWithContent({
   }
 
   return isLoaded ? (
-    <div className="w-screen ml-[calc(-50vw+50%)] mt-[15px]">
+    <div className="w-screen ml-[calc(-50vw+50%)]">
       <div className="mx-auto max-w-[600px]" style={{height: `${mapHeight}px`}}>
         <GoogleMap
           mapContainerStyle={{width: '100%', height: '100%'}}
@@ -195,7 +204,7 @@ export default function ResizableMapWithContent({
               renderOptimizedRoute()
             ) : (
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded shadow">
-                최적화 결과를 로딩 중입니다...
+                로딩 중입니다...
               </div>
             )
           ) : (

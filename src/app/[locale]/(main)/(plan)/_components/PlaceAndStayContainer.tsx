@@ -60,7 +60,7 @@ export default function PlaceAndStayContainer() {
         handleMouseDown={handleMouseDown}
         handleTouchStart={handleTouchStart}
       />
-      <HeightWrapper>
+      <HeightWrapper withTime>
         <SelectNav
           selectOption={['place', 'stay']}
           name={['장소', '숙소']}
@@ -92,7 +92,7 @@ export default function PlaceAndStayContainer() {
       <BasicButton
         onClick={handleMakePlan}
         type={'button'}
-        classNames={'w-full px-5 py-4 mb-1 mt-5'}
+        classNames={'w-full px-5 py-4 mt-5'}
       >
         일정 생성
       </BasicButton>

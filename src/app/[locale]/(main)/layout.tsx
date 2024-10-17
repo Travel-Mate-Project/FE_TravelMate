@@ -14,7 +14,7 @@ export default function MainLayout({children, modal}: Props) {
       <Header />
       <main
         className={
-          'pt-24 px-5 w-full max-w-xl mx-auto md:px-1.5 md:max-w-[600px] min-h-[calc(100vh-140px)] '
+          'pt-24 px-5 w-full max-w-xl mx-auto md:px-1.5 md:max-w-[600px] min-h-screen '
         }
       >
         {children}

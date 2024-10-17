@@ -4,27 +4,36 @@ import {CSSProperties, ReactNode} from 'react';
 
 import {useTripStore} from '@/store';
 
-export default function HeightWrapper({children}: {children: ReactNode}) {
+export default function HeightWrapper({
+  children,
+  withTime,
+}: {
+  children: ReactNode;
+  withTime?: boolean;
+}) {
   const mapHeight = useTripStore.use.mapHeight();
 
-  const mobileStyle: CSSProperties = {
-    height: `calc(calc(100vh - 340px) - ${mapHeight}px)`,
+  const styles: CSSProperties = {
+    height: `calc(calc(100vh - 235px) - ${mapHeight}px)`,
     overflow: 'auto',
   };
 
-  const desktopStyle: CSSProperties = {
-    height: `calc(calc(100vh - 460px) - ${mapHeight}px)`,
+  const withTimeStyle: CSSProperties = {
+    height: `calc(calc(100vh - 310px) - ${mapHeight}px)`,
     overflow: 'auto',
   };
 
   return (
     <>
-      <div className="md:hidden" style={mobileStyle}>
-        {children}
-      </div>
-      <div className="hidden md:block" style={desktopStyle}>
-        {children}
-      </div>
+      {withTime ? (
+        <div className={'relative'} style={withTimeStyle}>
+          {children}
+        </div>
+      ) : (
+        <div className={'relative'} style={styles}>
+          {children}
+        </div>
+      )}
     </>
   );
 }

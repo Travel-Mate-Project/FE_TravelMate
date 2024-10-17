@@ -54,9 +54,7 @@ export default function TripTimeConfigForm() {
 
   return (
     <form
-      className={
-        'min-h-[calc(100vh-350px)] md:min-h-[calc(100vh-465px)] relative pb-16'
-      }
+      className={'min-h-[calc(100vh-340px)] relative pb-16'}
       onSubmit={handleSubmit(handleSetTime)}
     >
       {dateAndTime.length > 0 ? (
